@@ -1,1 +1,10 @@
-theme: jekyll-theme-slate
+
+# basic options
+title: Dario Toman
+author: Dario Toman
+email: dario.toman@mail.utoronto.ca
+github_username:  dariotoman
+
+# Build settings
+markdown: kramdown
+theme: minima
