@@ -27,7 +27,7 @@ CCT, I am able to recover a differences-in-differences estimate of treatment eff
 
 Published Work
 ==============
-###Toman, D. and Gaus A. (2018). #AUEU: A Twitter analysis of the AU-EU summit 2017. _African Policy Circle_. [Technical Report]
+### Toman, D. and Gaus A. (2018). #AUEU: A Twitter analysis of the AU-EU summit 2017. _African Policy Circle_. [Technical Report]
 
 This paper presents a Twitter analysis of the African Union-European Union Summit (AU-EU Summit), which took place on November 29 and 30, 2017, in Abidjan, Ivory Coast. An analysis of Twitter data offers the opportunity to determine the views of individuals and groups around certain issues. Moreover, it can offer a window into public debates held over social media, how these debates change over time, which communities share what information, and to what extent filter bubbles and insular groups within and across larger communities exist. 
 
