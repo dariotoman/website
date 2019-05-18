@@ -30,10 +30,10 @@ Editor-in-Chief (2018 Issue),  Managing Editor (2017 issue), Editor (2016 issue)
 
 ##Teaching Assistantships
 
-**ECO101 - Principles of Microeconomics** Fall 2018 
-**ECO403 - Topics in Development** Fall 2018
-**ECO334 - Political Economy** Winter 2019 
-**ECO320 – Economics and the Law** Winter 2019 
+**ECO101 - Principles of Microeconomics** Fall 2018 <br>
+**ECO403 - Topics in Development** Fall 2018 <br>
+**ECO334 - Political Economy** Winter 2019 <br>
+**ECO320 – Economics and the Law** Winter 2019  <br>
 
 
 ## Programing:
