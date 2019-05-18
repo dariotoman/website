@@ -8,6 +8,12 @@ redirect_from:
 ---
 
 {% include base_path %}
+###Languages:
+**Fluent:** English, French, Serbo-Croation, Hungarian. **Intermediate:** German. **Basic:** Spanish
+
+###Programing:
+STATA, R, Python, Visual Basic, LaTeX, Gephi
+
 
 Education
 ======
