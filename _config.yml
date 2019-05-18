@@ -82,7 +82,7 @@ analytics:
 author:
   name             : "Dario Toman"
   avatar           : "profile.png"
-  bio              : "I am a PhD student at the University of Toronto studying Economics. My research interests lie in applied microeconometrics, with a particular focus on the nexus of development and armed conflict."
+  bio              : "Your biography for the left-hand sidebar"
   location         : "Toronto, Ontario"
   employer         : "University of Toronto"
   pubmed           :
@@ -94,7 +94,7 @@ author:
   codepen          :
   dribbble         :
   flickr           :
-  facebook         : "dario.toman"
+  facebook         : "https://www.facebook.com/dario.toman"
   foursquare       :
   github           :
   google_plus      :
