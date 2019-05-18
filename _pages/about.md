@@ -8,5 +8,5 @@ redirect_from:
   - /about.html
 ---
 
-<img src='/images/profile.jpg'>
+<img src='/images/profile.png'>
 I am a PhD student at the University of Toronto studying Economics. My research interests lie in applied microeconometrics, with a particular focus on the nexus of development and armed conflict.
