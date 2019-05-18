@@ -11,16 +11,18 @@ redirect_from:
 
 Education
 ======
-* B.S. in GitHub, GitHub University, 2012
-* M.S. in Jekyll, GitHub University, 2014
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
+* **PhD** Economics, _University of Toronto_, 2019 - 
+* **MA** Economics, *University of Toront*o, 2018 - 2019
+* **BA** Major: Economics (Major), Mathematics (Minor), German (Minor), _University of Toronto_, 2013 - 2018
 
 Work experience
 ======
-* Summer 2015: Research Assistant
-  * Github University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
+* **Global Public Policy Institute**, _Berlin, Germany (2017)_\
+Research Intern (4 months), Peace and Security Division
+    * Performed extensive literature reviews in areas including foreign policy, maritime security, conflict prevention, peace building, and conflict sensitive development aid.
+    * Designed survey, executed statistical (STATA) and network analysis (R), and created visual data representations for a report commissioned by the German Ministry of Foreign Affairs. 
+    * Co-authored social network analysis on scraped Twitter discourse using R and Gephi, resulting in a technical paper published by the African Policy Circle.
+
 
 * Fall 2015: Research Assistant
   * Github University
@@ -36,7 +38,7 @@ Skills
   * Sub-skill 2.3
 * Skill 3
 
-Publications
+Research
 ======
   <ul>{% for post in site.publications %}
     {% include archive-single-cv.html %}
