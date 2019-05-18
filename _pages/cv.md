@@ -29,6 +29,7 @@ Research Intern (4 months), Peace and Security Division
 Editor-in-Chief (2018 Issue),  Managing Editor (2017 issue), Editor (2016 issue)
 
 ##Teaching Assistantships
+
 **ECO101 - Principles of Microeconomics** Fall 2018 
 **ECO403 - Topics in Development** Fall 2018
 **ECO334 - Political Economy** Winter 2019 
