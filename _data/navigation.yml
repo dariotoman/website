@@ -6,5 +6,5 @@ main:
   - title: "Research"
     url: /publications/
 
-  - title: "Useful Links"
-    url: /links/
+  #- title: "Useful Links"
+  #  url: /links/
