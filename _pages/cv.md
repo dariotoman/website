@@ -17,6 +17,8 @@ Education
 
 **BA** Major: Economics (Major), Mathematics (Minor), German (Minor), _University of Toronto_, 2013 - 2018
 
+
+
 Experience
 ======
 **University of Toronto,** _Toronto, Ontario (2019)_ <br>
@@ -29,13 +31,17 @@ Research Intern (4 months), Peace and Security Division
 Editor-in-Chief (2018 Issue),  Managing Editor (2017 issue), Editor (2016 issue)
 
 ## Teaching Assistantships:
-**ECO101 - Principles of Microeconomics** Fall 2018 <br>
-**ECO403 - Topics in Development** Fall 2018 <br>
-**ECO334 - Political Economy** Winter 2019 <br>
+**ECO403 - Topics in Development** Fall 2018, Fall 2019 <br>
+**ECO324 - Economic Development** Fall 2019 <br> 
+**ECO368 - Economics of Conflict** Winter 2020 <br>
+**ECO334 - Political Economy** Winter 2019, Winter 2020 <br>
 **ECO320 – Economics and the Law** Winter 2019  <br>
+**ECO101 - Principles of Microeconomics** Fall 2018 <br>
+**ECO102 - Principles of Macroeconomics** Winter 2020 <br>
+
 
 ## Programing:
-STATA, R, Python, Visual Basic, LaTeX, Gephi
+STATA, R, Python, Visual Basic, LaTeX, Gephi, ArcGIS
 
 Personal
 =========
