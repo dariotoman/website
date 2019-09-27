@@ -7,7 +7,7 @@ author_profile: true
 
 
 # Estimate Tables
-Having noticed that in many 3rd and 4th year courses that involve applied work, most students simply include screenshots of STATA in their assignments, I've put together this short intro to presenting estimates.
+Being able to present regression results in a clean, concise way is a skill almost as important as running the regressions themselves. You will never see a screenshot of STATA in a journal or when an author presents their work. Yet, there isn't a class that will formally teach you how to create publication quality tables. This guide is meant to be a _very_ brief introduction to producing exportable regression tables using STATA. 
 
 _Nota Bene:  This will in no way, shape or form affect your grade, but it is best practice, and will be extremely useful if you go on to do graduate economics. If that is your plan, learning how to make estimate tables is definitely worth the time investment. There are similar workflows for R, but I will stick to STATA since it is most common._
 
