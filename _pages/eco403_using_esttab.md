@@ -135,9 +135,9 @@ esttab part_a part_b part_c1 part_c2 using "assignment_1_table.tex",
 ## Sample Code
 ```
 ****************************************************
-*				ECO403 - Development			   *
-*			    	Assignment 1			       *
-*					Sample Code                    *
+*		ECO403 - Development		   *
+*	    	Assignment 1			   *
+*		Sample Code                        *
 *                                                  *
 ****************************************************
 
@@ -151,7 +151,7 @@ use "PSET1.dta"
 
 
 ****************************************************
-*					Part A						   *
+*     	 	        Part A	         	   *
 ****************************************************
 
 *Generate log(poverty headcount) and log(GNPpc)
@@ -171,7 +171,7 @@ estadd scalar growth= log(0.5)/(_b[ln_gnppc]*25)
 
 
 ****************************************************
-*					Part B						   *
+*     	 	        Part B	         	   *
 ****************************************************
 
 eststo part_b: areg ln_hcount ln_gnppc if povline<50, absorb(ccode) cluster(ccode)
@@ -190,7 +190,7 @@ reghdfe ln_hcount ln_gnppc if povline<50, absorb(ccode) vce(cluster ccode)
 
 
 ****************************************************
-*					Part C						   *
+*     	 	        Part C	         	   *
 ****************************************************
 
 *Part C.1
@@ -230,7 +230,7 @@ reghdfe ln_hcount ln_gnppc ln_pop if povline<50, absorb(ccode year) vce(cluster 
 
 
 ****************************************************
-*					TABLE          				   *
+*	         	TABLE           	   *
 ****************************************************
 
 *I can now use the esttab function to generate one table that will have all of
