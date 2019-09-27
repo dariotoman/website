@@ -43,7 +43,7 @@ Once you have run this, the results will be stored under the name _part_b_ that 
 
 ### Creating an Estimate Table
 Say you've run all the models for this assignment, and have logically named them _part_a_, _part_b_, _part_c1_, and _part_c2_. You can now create an estimate table! To do this, we use the esttab command:
-```stata
+```
 esttab part_a part_b part_c1 part_c2
 ```
 This will produce a very ugly table, with too many dummy variables, t-stats instead of standard errors, and the wrong significance stars! We can easily fix all of that by adding some options to the command
