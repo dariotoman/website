@@ -1,4 +1,11 @@
-﻿# ECO403 - Assignment 1 STATA Tips 
+layout: archive
+title: "ECO403 - Using Esttab"
+permalink: /teaching/eco403/using_esttab
+author_profile: true 
+redirect_from:
+  - /eco403_esttab
+
+# ECO403 - Assignment 1 STATA Tips 
 ## Estimate Tables
 Having noticed that in many 3rd and 4th year courses that involve applied work, most students simply include screenshots of STATA in their assignments, I've put together this short intro to presenting estimates.
 
