@@ -49,7 +49,7 @@ esttab part_a part_b part_c1 part_c2
 This will produce a very ugly table, with too many dummy variables, t-stats instead of standard errors, and the wrong significance stars! We can easily fix all of that by adding some options to the command
 
 - _se_ will add standard errors in parenthesis
-- _label_ will use variable labels instead of names. Please use labels. No one knows what wants to be guessing what _lnhct_1_pc_4rtk_ means....
+- _label_ will use variable labels instead of names. Please use labels. No one wants to be guessing what _lnhct_1_pc_4rtk_ means....
 - _keep_ will let you specify what coefficients you want to report. In our case, we only really care about Log(GNPpc) and Log(Population)
 - _star(* 0.10 ** 0.05  *** 0.01)_ will produce the usual star system that we use be (outdated, wrong) convention
 
