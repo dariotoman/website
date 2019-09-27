@@ -58,8 +58,7 @@ Adding these options will make your command look like this:
 esttab part_a part_b part_c1 part_c2, label se star(* 0.10 ** 0.05 *** 0.01) keep(ln_gnppc ln_pop)
 ```
 We now have a table that actually looks like something you might see in a paper! 
-![First Table](https://doc-04-3s-docs.googleusercontent.com/docs/securesc/ha0ro937gcuc7l7deffksulhg5h7mbp1/o5c9su2prd7k7tn81qh4q3159eie3t9e/1569549600000/10154624908225286789/*/1J1Z_Lpd3OEjeZSojpyBl1AlvpdU7eId-)
-
+![First Table](table_first.png)
 ## _estadd_ - a very useful addition!
 Say there is some extra information about your model that you want to share in your table. In that case, _estadd_ can be incredibly useful. Let's continue with the example regression from part (b).  You would likely want to make it clear to your reader that in this regression, you are using country fixed effects, but not year fixed effects. To do this, you can add a local macro to your stored estimate. This will look something like this:
 
@@ -98,7 +97,7 @@ esttab part_a part_b part_c1 part_c2,
 ```
 This produces the exact table that we want to be showing people. Looks good, huh?
 
-![Final Table](images\esttab\table_final.png)
+![Final Table](table_final.png)
 
 ##  Exporting to Word
 The real beauty of _esttab_ is that makes it easy to export the table to your favourite typesetter. If you want to use the table in Word, simply add _using filename.rtf_ to your command. If you specify just a filename, the rtf document will be placed in your current directory. Alternatively, you can use a full file path to specify where you want the table saved. The code should look like this:
@@ -114,8 +113,7 @@ esttab part_a part_b part_c1 part_c2 using "assignment_1_table.rtf",
 ```
 Note that I include the _replace_ option. This is so that STATA will overwrite any existing file of that name (otherwise it will yell at you if you run your code more than once). You can also export to Excel, I find that .csv works better than .xls, but to each their own. The table will open up in Word like this:
 
-![Word Table](https://doc-0g-3s-docs.googleusercontent.com/docs/securesc/ha0ro937gcuc7l7deffksulhg5h7mbp1/127vrbsgt0tbga53gt3d68ri49sncntl/1569549600000/10154624908225286789/*/1Ivr6L0iQwJRUv3-b2W6eNFoSb6Aex1H7)
-
+![Word Table](table_word.png)
 
 
 ## Exporting to LaTeX
