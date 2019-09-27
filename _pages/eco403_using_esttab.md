@@ -98,7 +98,7 @@ esttab part_a part_b part_c1 part_c2,
 ```
 This produces the exact table that we want to be showing people. Looks good, huh?
 
-![Final Table](https://doc-0c-3s-docs.googleusercontent.com/docs/securesc/ha0ro937gcuc7l7deffksulhg5h7mbp1/pl8hhsht2g1tbmg80k4ld1d6veq7e0k5/1569549600000/10154624908225286789/*/1Iu0nDvknSRodBy2LNmxNAtLVk0_qiSfp)
+![Final Table](images\esttab\table_final.png)
 
 ##  Exporting to Word
 The real beauty of _esttab_ is that makes it easy to export the table to your favourite typesetter. If you want to use the table in Word, simply add _using filename.rtf_ to your command. If you specify just a filename, the rtf document will be placed in your current directory. Alternatively, you can use a full file path to specify where you want the table saved. The code should look like this:
