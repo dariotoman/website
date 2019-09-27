@@ -15,7 +15,9 @@ Education
 
 **MA** Economics, _University of Toronto_, 2018 - 2019
 
-**BA** Major: Economics (Major), Mathematics (Minor), German (Minor), _University of Toronto_, 2013 - 2018
+**BA** Economics (Major), Mathematics (Minor), German (Minor), _University of Toronto_, 2013 - 2018
+
+**Other Coursework:** Masters' Course in Peace Research, _University of Oslo & Peace Research Institute Oslo_
 
 
 
