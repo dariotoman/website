@@ -1,9 +1,9 @@
+---
 layout: archive
 title: "ECO403 - Using Esttab"
 permalink: /teaching/eco403/using_esttab
 author_profile: true 
-redirect_from:
-  - /eco403_esttab
+---
 
 # ECO403 - Assignment 1 STATA Tips 
 ## Estimate Tables
