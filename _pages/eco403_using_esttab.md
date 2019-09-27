@@ -72,7 +72,7 @@ What we have done here is created a local macro named _fixed_country_ that takes
 
 In addition to indicating fixed effects, we can use _estadd_ to add calculated statistics. This will often be the mean of the dependent variable, but in our case, the required growth rate calculation for part (e) fits here perfectly:
 
-```stata
+```
 eststo part_b: areg ln_hcount ln_gnppc if povline<50, absorb(ccode) cluster(ccode)
 estadd local fixed_country "Yes", replace
 estadd local fixed_year "No", replace
