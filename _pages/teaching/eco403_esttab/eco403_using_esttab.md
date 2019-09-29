@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "ECO403 - Intro to making Publication Quality Tables Using `esttab`"
+title: "ECO403 - Intro to making Publication Quality Tables Using _esttab_"
 permalink: /teaching/eco403/using_esttab
 author_profile: true 
 ---
