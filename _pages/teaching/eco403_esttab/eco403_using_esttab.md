@@ -128,7 +128,7 @@ esttab part_a part_b part_c1 part_c2 using "assignment_1_table.tex",
 	keep(ln_gnppc ln_pop);
 #delimit cr
 ```
-The output file that this command produces will look like this - much easier than manually creating a table in LaTeX. You can also create _booktabs_ tables (simply add the `booktabs` option in the `esttab` command and make sure you are loading the correct packages in your .tex file. _Booktabs_ tables look much nicer than the .tex default.
+The output file that this command produces will look like this - much easier than manually creating a table in LaTeX. You can also create _booktabs_ tables (simply add the `booktabs` option in the `esttab` command and make sure you are loading the correct packages in your .tex file). _Booktabs_ tables look much nicer than the .tex default.
 
 ```
 {
