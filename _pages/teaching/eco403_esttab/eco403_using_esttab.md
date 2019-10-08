@@ -19,6 +19,8 @@ The basic idea of the `eststo`/`esttab`/`estout` workflow is that you "store" es
 
 I will cover the very basics to get you going, but the documentation is available [here.](http://repec.sowi.unibe.ch/stata/estout/) There are tons of things you can do with these commands, and the documentation is fantastic.
 
+For demonstration purposes, I will be estimating a Differences-in-Differences model that aims to measure the effects of the Familias en Accion Condition Cash Transfer Program on neo-natal health. The Health Economics literature suggests that birth weight is a strong predictor of human capital later on in life. As such, policies that improve _in-utero_ health can be very useful (and often cost effective) development programs. You can [download the data here](Sample_data_FeA.dta) to play with and follow along.
+
 ## Installation
 
 To get started, install the necessary packages by running the command:
@@ -28,7 +30,7 @@ ssc install estout
 And you're good to go!
 
 ## Storing Estimates
-To store estimates, we use the `eststo` command. Let's use the regression from part (b) as an example. There are two ways to store the estimates using `eststo`:
+To store estimates, we use the `eststo` command. Let's use  as an example. There are two ways to store the estimates using `eststo`:
 
 ```
 reghdfe lbw did treat [aweight = weight], absorb(year) vce(cluster codmpio)
