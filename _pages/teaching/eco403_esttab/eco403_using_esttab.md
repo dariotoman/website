@@ -12,7 +12,6 @@ Being able to present regression results in a clean, concise way is a skill almo
 _Nota Bene:  This will in no way, shape or form affect your grade, but it is best practice, and will be extremely useful if you go on to do graduate economics. If that is your plan, learning how to make estimate tables is definitely worth the time investment. There are similar workflows for R, but I will stick to STATA since it is most common._
 
 # `eststo`/`esttab`/`estout`
-
 The most common, and in my experience most effective, workflow for creating publication quality tables is using the `eststo`, `esttab`, and `estout` commands. There is a similar workflow that uses the `outreg` command, but I find it a little more cumbersome and a little less flexible. 
 
 The basic idea of the `eststo`/`esttab`/`estout` workflow is that you "store" estimates from regression results using the `eststo` command, and then combine the estimates you have stored into a single table, where each column has the results of one regression model, using the `esttab` command. This table can easily then be exported from STATA to Word, Excel, or LateX.
@@ -32,67 +31,69 @@ And you're good to go!
 To store estimates, we use the `eststo` command. Let's use the regression from part (b) as an example. There are two ways to store the estimates using `eststo`:
 
 ```
-areg ln_hcount ln_gnppc if povline<50, absorb(ccode) cluster(ccode)
-eststo part_b
+reghdfe lbw did treat [aweight = weight], absorb(year) vce(cluster codmpio)
+eststo did_yfe
 ```
 or (my prefered syntax):
 ```
-eststo part_b: areg ln_hcount ln_gnppc if povline<50, absorb(ccode) cluster(ccode)
+eststo did_yfe: reghdfe lbw did treat [aweight = weight], absorb(year) vce(cluster codmpio)
 ```
-Once you have run this, the results will be stored under the name _part_b_ that you can call upon when you create the estimate table.  There is more you can do with the command, but this is all you will be doing 90% of the time. Note that naming is technically optional, and you can choose to leave it out - don't do that, future you will hate you.
+Once you have run this, the results will be stored under the name _did_yfe_ that you can call upon when you create the estimate table.  There is more you can do with the command, but this is all you will be doing 90% of the time. Note that naming is technically optional, and you can choose to leave it out - don't do that, future you will hate you.
 
 ## Creating an Estimate Table
-Say you've run all the models for this assignment, and have logically named them _part_a_, _part_b_, _part_c1_, and _part_c2_. You can now create an estimate table! To do this, we use the `esttab` command:
+Say you have run a number of different models and haves stored them. You can now create an estimate table! To do this, we use the `esttab` command. For this example, I have estimated a series of models where I vary the fixed effects and controls used. They are saved under the names _did, did_yfe, did_mfe, did_myfe,_ and _did_myfe_control_. To create an estimate table, you can run the command:
 ```
-esttab part_a part_b part_c1 part_c2
+esttab did did_yfe did_mfe did_myfe did_myfe_control
 ```
-This will produce a very ugly table, with too many dummy variables, t-stats instead of standard errors, and the wrong significance stars! We can easily fix all of that by adding some options to the command
+This will produce a rather crude table, with t-stats instead of standard errors and the "wrong" significance stars! We can easily fix all of that by adding some options to the command
 
 - `se` will add standard errors in parenthesis
 - `label` will use variable labels instead of names. Please use labels. No one wants to be guessing what _lnhct_1_pc_4rtk_ means....
-- `keep` will let you specify what coefficients you want to report. In our case, we only really care about Log(GNPpc) and Log(Population)
-- `star(* 0.10 ** 0.05  *** 0.01)` will produce the usual star system that we use by (outdated, wrong) convention
+- `keep` will let you specify what coefficients you want to report. In this case, we do not care about the constant, and will omit it. 
+- `star(* 0.10 ** 0.05  *** 0.01)` will produce the usual star system that we use by (outdated, wrong) convention.
 
 Adding these options will make your command look like this:
 ```
-esttab part_a part_b part_c1 part_c2, label se star(* 0.10 ** 0.05 *** 0.01) keep(ln_gnppc ln_pop)
+esttab did did_yfe did_mfe did_myfe did_myfe_control, label se star(* 0.10 ** 0.05 *** 0.01) keep(did treat post mat_hs_v pat_hs_v)
 ```
 We now have a table that actually looks like something you might see in a paper! 
 ![First Table](table_first.png)
+
 ## `estadd` - a very useful addition!
-Say there is some extra information about your model that you want to share in your table. In that case, `estadd` can be incredibly useful. Let's continue with the example regression from part (b).  You would likely want to make it clear to your reader that in this regression, you are using country fixed effects, but not year fixed effects. To do this, you can add a local macro to your stored estimate. This will look something like this:
+Say there is some extra information about your model that you want to share in your table. In that case, `estadd` can be incredibly useful. For example, you may want to make it clear to your reader what fixed effects you are using in a specific regression. To do this, you can add a local macro to your stored estimate. This will look something like this:
 
 ```
-eststo part_b: areg ln_hcount ln_gnppc if povline<50, absorb(ccode) cluster(ccode)
-estadd local fixed_country "Yes", replace
-estadd local fixed_year "No", replace
+eststo did_mfe: reghdfe lbw did post [aweight = weight], absorb(codmpio) vce(cluster codmpio)
+quietly estadd local fixedm "Yes", replace
+quietly estadd local fixedy "No", replace
 ```
-What we have done here is created a local macro named _fixed_country_ that takes value "Yes" for this regression, and similarly _fixed_year_ which takes value "No". We will include these macros in the table as rows later on using esttab. Note that I include `replace` as an option - this is to tell STATA to overwrite anything that is already written in that spot. 
+What we have done here is created a local macro named _fixedm_ that takes value "Yes" for this regression because we are using municipality fixed effects, and similarly _fixedy_ for year fixed effects which takes value "No". We will include these macros in the table as rows later using esttab. Note that I include `replace` as an option - this is to tell STATA to overwrite anything that is already written in that spot. 
 
-In addition to indicating fixed effects, we can use `estadd` to add calculated statistics. This will often be the mean of the dependent variable, but in our case, the required growth rate calculation for part (e) fits here perfectly:
-
-```
-eststo part_b: areg ln_hcount ln_gnppc if povline<50, absorb(ccode) cluster(ccode)
-estadd local fixed_country "Yes", replace
-estadd local fixed_year "No", replace
-estadd scalar growth= log(0.5)/(_b[ln_gnppc]*25)
-```
-where `b[ln_gnnpc]` tells STATA to use the $\beta$ coefficient for _ln_gnnpc_ from the estimate in the calculation. Note that this is a scalar that we are adding, and not a local. 
-
-Once we have run these, we can create a table that includes this additional information. To do this, we use the `scalars` option. We need to list the scalar/locals that we want, and give the rows names using the `label` suboption. There are some scalars that are automatically stored. For example, `N` will give you number of observations. The command will look like this:
+In addition to indicating fixed effects, we can use `estadd` to add calculated statistics. This will often be the mean of the dependent variable, as we will do for these results. Reporting the mean of the dependent variable in a table helps the reader understand the magnitude of a calculated effect. To do this, the command `estadd ysumm` tells stata to store the summary statistics of the outcome variable, to be called upon later.
 
 ```
-esttab part_a part_b part_c1 part_c2, label se star(* 0.10 ** 0.05 *** 0.01) scalars(fixed_country fixed_year N growth,label("Country FE" "Year FE" "Observations" "Annual Growth Needed" ))keep(ln_gnppc ln_pop)
+eststo did_mfe: reghdfe lbw did post [aweight = weight], absorb(codmpio) vce(cluster codmpio)
+quietly estadd local fixedm "Yes", replace
+quietly estadd local fixedy "No", replace 
+estadd ysumm, replace
+```
+
+We can also use `estadd` to add statistics that are calculated from estimate results.
+
+Once we have run these, we can create a table that includes this additional information. To do this, we use the `scalars` option. We need to list the scalar/locals that we want, and give the rows names using the `label` suboption. There are some scalars that are automatically stored. For example, `N` will give you number of observations. `ymean` will call upon the mean of the dependent variable, that we had store using `ysumm`. The command will look like this:
+
+```
+esttab did did_yfe did_mfe did_myfe did_myfe_control using "sample_reg_table.rtf", replace label se star(* 0.10 ** 0.05 *** 0.01)s(fixedm fixedy N ymean,label("Municipality FE" "Year FE" "Observations" "Mean of Dep. Variable")) keep(did treat post mat_hs_v pat_hs_v);
 ```
 **Bonus Tip!!!** This is an unreadably long line... what we can do is change the delimiter to a semicolon. The `#delimit ;` command tells STATA that from that point forward, a line is not over until it has seen a semicolon. When we are done with our absurdly long command, we can make the delimiter a carriage return (what old people call enter because of typewriters) again using the `#delimit cr` command. Much better:
 
 ```
 #delimit ;
-esttab part_a part_b part_c1 part_c2, 
-	label se star(* 0.10 ** 0.05 *** 0.01)
-	scalars(fixed_country fixed_year N growth,
-	label("Country FE" "Year FE" "Observations" "Annual Growth Needed" ))
-	keep(ln_gnppc ln_pop);
+esttab did did_yfe did_mfe did_myfe did_myfe_control using "sample_reg_table.rtf", 
+	replace label se star(* 0.10 ** 0.05 *** 0.01)
+	s(fixedm fixedy N ymean,
+	label("Municipality FE" "Year FE" "Observations" "Mean of Dep. Variable"))
+	keep(did treat post mat_hs_v pat_hs_v);
 #delimit cr
 ```
 This produces the exact table that we want to be showing people. Looks good, huh?
@@ -107,7 +108,7 @@ The real beauty of `esttab` is that it makes it easy to export the table to your
 esttab part_a part_b part_c1 part_c2 using "assignment_1_table.rtf", 
 	replace label se star(* 0.10 ** 0.05 *** 0.01)
 	s(fixed_country fixed_year N growth,
-	label("Country FE" "Year FE" "Observations" "Annual Growth Needed" ))
+	label("Municipality FE" "Year FE" "Observations" "Annual Growth Needed" ))
 	keep(ln_gnppc ln_pop);
 #delimit cr
 ```
@@ -124,7 +125,7 @@ Note that I include the `replace` option. This is so that STATA will overwrite a
 esttab part_a part_b part_c1 part_c2 using "assignment_1_table.tex", 
 	replace label se star(* 0.10 ** 0.05 *** 0.01)
 	s(fixed_country fixed_year N growth,
-	label("Country FE" "Year FE" "Observations" "Annual Growth Needed" ))
+	label("Municipality FE" "Year FE" "Observations" "Annual Growth Needed" ))
 	keep(ln_gnppc ln_pop);
 #delimit cr
 ```
@@ -133,24 +134,33 @@ The output file that this command produces will look like this - much easier tha
 ```
 {
 \def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
-\begin{tabular}{l*{4}{c}}
+\begin{tabular}{l*{5}{c}}
 \hline\hline
-                    &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}\\
-                    &\multicolumn{1}{c}{Log(Poverty Head-Count)}&\multicolumn{1}{c}{Log(Poverty Head-Count)}&\multicolumn{1}{c}{Log(Poverty Head-Count)}&\multicolumn{1}{c}{Log(Poverty Head-Count)}\\
+                    &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}\\
+                    &\multicolumn{1}{c}{Proportion Born Underweight (<2500g)}&\multicolumn{1}{c}{Proportion Born Underweight (<2500g)}&\multicolumn{1}{c}{Proportion Born Underweight (<2500g)}&\multicolumn{1}{c}{Proportion Born Underweight (<2500g)}&\multicolumn{1}{c}{Proportion Born Underweight (<2500g)}\\
 \hline
-Log(GNPpc)          &      -1.052\sym{***}&      -0.731\sym{**} &      -2.411\sym{***}&      -2.640\sym{***}\\
-                    &     (0.159)         &     (0.340)         &     (0.710)         &     (0.669)         \\
+TREAT x POST        &    -0.00406\sym{**} &    -0.00406\sym{**} &    -0.00412\sym{**} &    -0.00412\sym{**} &    -0.00410\sym{**} \\
+                    &   (0.00199)         &   (0.00199)         &   (0.00198)         &   (0.00198)         &   (0.00194)         \\
 [1em]
-Log(Population)     &                     &                     &                     &      -4.866         \\
-                    &                     &                     &                     &     (3.500)         \\
+TREAT               &     -0.0157\sym{**} &     -0.0157\sym{**} &                     &                     &                     \\
+                    &   (0.00645)         &   (0.00646)         &                     &                     &                     \\
+[1em]
+POST                &     0.00478\sym{***}&                     &     0.00475\sym{***}&                     &                     \\
+                    &   (0.00161)         &                     &   (0.00161)         &                     &                     \\
+[1em]
+Prop. Mothers High School Grad.&                     &                     &                     &                     &      0.0112         \\
+                    &                     &                     &                     &                     &    (0.0210)         \\
+[1em]
+Prop. Fathers High School Grad.&                     &                     &                     &                     &    -0.00548         \\
+                    &                     &                     &                     &                     &    (0.0203)         \\
 \hline
-Country FE          &          No         &         Yes         &         Yes         &         Yes         \\
-Year FE             &          No         &          No         &         Yes         &         Yes         \\
-Observations        &         195         &         195         &         195         &         195         \\
-Annual Growth Needed&      0.0263         &      0.0380         &      0.0115         &      0.0105         \\
+Municipality FE     &          No         &          No         &         Yes         &         Yes         &         Yes         \\
+Year FE             &          No         &         Yes         &          No         &         Yes         &         Yes         \\
+Observations        &        3424         &        3424         &        3424         &        3424         &        3417         \\
+Mean of Dep. Variable&      0.0497         &      0.0497         &      0.0497         &      0.0497         &      0.0497         \\
 \hline\hline
-\multicolumn{5}{l}{\footnotesize Standard errors in parentheses}\\
-\multicolumn{5}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
+\multicolumn{6}{l}{\footnotesize Standard errors in parentheses}\\
+\multicolumn{6}{l}{\footnotesize \sym{*} \(p<0.10\), \sym{**} \(p<0.05\), \sym{***} \(p<0.01\)}\\
 \end{tabular}
 }
 
@@ -159,9 +169,9 @@ Annual Growth Needed&      0.0263         &      0.0380         &      0.0115   
 # Sample Code
 ```
 ****************************************************
-*		ECO403 - Development		   *
-*	    	Assignment 1			   *
-*		Sample Code                        *
+*		USING ESTTAB FOR REGRESSION TABLES		   *
+*			   AUTHOR: DARIO TOMAN				   *
+*					Sample Code                    *
 *                                                  *
 ****************************************************
 
@@ -169,123 +179,83 @@ Annual Growth Needed&      0.0263         &      0.0380         &      0.0115   
 
 clear all
 set more off
-cd "G:\----- REDACTED! ------\eco403_bobonis\assignment_1"
+cd "G:\My Drive\U of T\TA\2019-2020\Eco403_bobonis\example_esttab"
 
-use "PSET1.dta"
+*Begin by loading data
+use "Sample_data_FeA.dta"
+
+*Generate variables that are needed for Differences-in-Differences Analysis
+gen treat = (FeA_year_reg==2001)
+gen post = (year > 2000)
+gen did = treat*post
+
+label variable did "TREAT x POST"
+label variable treat "TREAT"
+label variable post "POST"
+
+*Regressions
+eststo did: reghdfe lbw did treat post[aweight = weight], noabsorb vce(cluster codmpio)
+estadd local fixedm "No", replace
+estadd local fixedy "No", replace
+estadd ysumm, replace
+eststo did_yfe: reghdfe lbw did treat [aweight = weight], absorb(year) vce(cluster codmpio)
+quietly estadd local fixedm "No", replace
+quietly estadd local fixedy "Yes", replace
+estadd ysumm, replace
+eststo did_mfe: reghdfe lbw did post [aweight = weight], absorb(codmpio) vce(cluster codmpio)
+quietly estadd local fixedm "Yes", replace
+quietly estadd local fixedy "No", replace
+estadd ysumm, replace
+eststo did_myfe: reghdfe lbw did [aweight = weight], absorb(codmpio year) vce(cluster codmpio)
+quietly estadd local fixedm "Yes", replace
+quietly estadd local fixedy "Yes", replace
+estadd ysumm, replace
+eststo did_myfe_control: reghdfe lbw did mat_hs_v pat_hs_v [aweight = weight], absorb(codmpio year) vce(cluster codmpio)
+quietly estadd local fixedm "Yes", replace
+quietly estadd local fixedy "Yes", replace
+estadd ysumm, replace
 
 
-****************************************************
-*     	 	        Part A	         	   *
-****************************************************
 
-*Generate log(poverty headcount) and log(GNPpc)
-
-gen ln_hcount = log(hcount)
-label variable ln_hcount "Log(Poverty Head-Count)"
-
-gen ln_gnppc = log(gnppc)
-label variable ln_gnppc "Log(GNPpc)"
-
-* Part A regression
-
-eststo part_a: reg ln_hcount ln_gnppc if povline<50, cluster(ccode)
-estadd local fixed_country "No", replace
-estadd local fixed_year "No", replace
-estadd scalar growth= log(0.5)/(_b[ln_gnppc]*25)
-
-
-****************************************************
-*     	 	        Part B	         	   *
-****************************************************
-
-eststo part_b: areg ln_hcount ln_gnppc if povline<50, absorb(ccode) cluster(ccode)
-estadd local fixed_country "Yes", replace
-estadd local fixed_year "No", replace
-estadd scalar growth= log(0.5)/(_b[ln_gnppc]*25)
-
-
-* I am rather partial towards "reghdfe" as a command - you will see why later.
-* It will give you the exact same coefficient estimates, but slightly different
-* standard errors - turns out that "areg" does some things wrong with st. err
-* calculations. In any case, this is the syntax for "reghdfe":
-
-reghdfe ln_hcount ln_gnppc if povline<50, absorb(ccode) vce(cluster ccode)
-
+esttab, label
 
 
 ****************************************************
-*     	 	        Part C	         	   *
-****************************************************
-
-*Part C.1
-
-
-eststo part_c1: areg ln_hcount ln_gnppc i.year if povline<50, absorb(ccode) cluster(ccode)
-estadd local fixed_country "Yes", replace
-estadd local fixed_year "Yes", replace
-estadd scalar growth= log(0.5)/(_b[ln_gnppc]*25)
-
-
-*you can use "areg" with factor notation to include year dummies, since areg 
-*does not allow for more than one fixed effect. Alternatively, "reghdfe" allows 
-*you to very easily include multiple fixed effects, which makes life a lot simpler:
-
-reghdfe ln_hcount ln_gnppc if povline<50, absorb(ccode year) vce(cluster ccode)
-
-
-
-*Part C.2
-
-*Generate Log(Population)
-
-gen ln_pop = log(pop)
-label variable ln_pop "Log(Population)"
-
-*Regression:
-
-eststo part_c2: areg ln_hcount ln_gnppc ln_pop i.year if povline<50, absorb(ccode) cluster(ccode)
-estadd local fixed_country "Yes", replace
-estadd local fixed_year "Yes", replace
-estadd scalar growth= log(0.5)/(_b[ln_gnppc]*25)
-
-
-* Alternatively, using "reghdfe"
-reghdfe ln_hcount ln_gnppc ln_pop if povline<50, absorb(ccode year) vce(cluster ccode)
-
-
-****************************************************
-*	         	TABLE           	   *
+*					TABLE          				   *
 ****************************************************
 
 *I can now use the esttab function to generate one table that will have all of
 *the results. 
 
 #delimit ;
-esttab part_a part_b part_c1 part_c2, label se star(* 0.10 ** 0.05 *** 0.01)
-	s(fixed_country fixed_year N growth,
-	label("Country FE" "Year FE" "Observations" "Annual Growth Needed" ))
-	keep(ln_gnppc ln_pop);
+esttab did did_yfe did_mfe did_myfe did_myfe_control, label se star(* 0.10 ** 0.05 *** 0.01)
+	s(fixedm fixedy N ymean,
+	label("Municipality FE" "Year FE" "Observations" "Mean of Dep. Variable"))
+	keep(did treat post mat_hs_v pat_hs_v);
 #delimit cr
 
 
 * I can export this table to an .rtf file that can be pasted into word 
 
 #delimit ;
-esttab part_a part_b part_c1 part_c2 using "assignment_1_table.rtf", 
+esttab did did_yfe did_mfe did_myfe did_myfe_control using "sample_reg_table.rtf", 
 	replace label se star(* 0.10 ** 0.05 *** 0.01)
-	s(fixed_country fixed_year N growth,
-	label("Country FE" "Year FE" "Observations" "Annual Growth Needed" ))
-	keep(ln_gnppc ln_pop);
+	s(fixedm fixedy N ymean,
+	label("Municipality FE" "Year FE" "Observations" "Mean of Dep. Variable"))
+	keep(did treat post mat_hs_v pat_hs_v);
 #delimit cr
 
 
 * Or LateX if I'm feeling ~*~fancy ~*~
 
 #delimit ;
-esttab part_a part_b part_c1 part_c2 using "assignment_1_table.tex", 
+esttab did did_yfe did_mfe did_myfe did_myfe_control using "sample_reg_table.tex", 
 	replace label se star(* 0.10 ** 0.05 *** 0.01)
-	s(fixed_country fixed_year N growth,
-	label("Country FE" "Year FE" "Observations" "Annual Growth Needed" ))
-	keep(ln_gnppc ln_pop);
+	s(fixedm fixedy N ymean,
+	label("Municipality FE" "Year FE" "Observations" "Mean of Dep. Variable"))
+	keep(did treat post mat_hs_v pat_hs_v);
 #delimit cr
+
+
+
 ```
