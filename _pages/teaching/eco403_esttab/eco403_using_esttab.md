@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "ECO403 - Intro to making Publication Quality Tables Using Esttab"
+title: "Intro to making Publication Style Tables Using Esttab"
 permalink: /teaching/eco403/using_esttab
 author_profile: true 
 ---
@@ -9,7 +9,7 @@ author_profile: true
 # Estimate Tables
 Being able to present regression results in a clean, concise way is a skill almost as important as running the regressions themselves. You will never see a screenshot of STATA in a journal or when an author presents their work. Yet, there isn't a class that will formally teach you how to create publication quality tables. This guide is meant to be a _very_ brief introduction to producing exportable regression tables using STATA. 
 
-For demonstration purposes, I will be estimating a Differences-in-Differences model that aims to measure the effects of the Familias en Accion condition cash transfer Program on neo-natal health in Colombia. The Health Economics literature suggests that low birth weight is a strong predictor of poor human capital development later on in life. As such, policies that improve _in-utero_ health can be very useful (and often cost effective) development programs. You can [download the data here](Sample_data_FeA.dta) to play with and follow along.
+For demonstration purposes, I will be estimating a Differences-in-Differences model that aims to measure the effects of the Familias en Accion condition cash transfer program on neo-natal health in Colombia. The Health Economics literature suggests that low birth weight is a strong predictor of poor human capital development later on in life. As such, policies that improve _in-utero_ health can be very useful (and often cost effective) development programs. You can [download the data here](Sample_data_FeA.dta) to play with and follow along.
 
 _Nota Bene:  This will in no way, shape or form affect your grade, but it is best practice, and will be extremely useful if you go on to do graduate economics. If that is your plan, learning how to make estimate tables is definitely worth the time investment. There are similar workflows for R, but I will stick to STATA since it is most common._
 
