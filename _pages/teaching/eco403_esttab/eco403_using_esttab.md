@@ -9,6 +9,8 @@ author_profile: true
 # Estimate Tables
 Being able to present regression results in a clean, concise way is a skill almost as important as running the regressions themselves. You will never see a screenshot of STATA in a journal or when an author presents their work. Yet, there isn't a class that will formally teach you how to create publication quality tables. This guide is meant to be a _very_ brief introduction to producing exportable regression tables using STATA. 
 
+For demonstration purposes, I will be estimating a Differences-in-Differences model that aims to measure the effects of the Familias en Accion condition cash transfer Program on neo-natal health in Colombia. The Health Economics literature suggests that low birth weight is a strong predictor of poor human capital development later on in life. As such, policies that improve _in-utero_ health can be very useful (and often cost effective) development programs. You can [download the data here](Sample_data_FeA.dta) to play with and follow along.
+
 _Nota Bene:  This will in no way, shape or form affect your grade, but it is best practice, and will be extremely useful if you go on to do graduate economics. If that is your plan, learning how to make estimate tables is definitely worth the time investment. There are similar workflows for R, but I will stick to STATA since it is most common._
 
 # `eststo`/`esttab`/`estout`
@@ -19,7 +21,6 @@ The basic idea of the `eststo`/`esttab`/`estout` workflow is that you "store" es
 
 I will cover the very basics to get you going, but the documentation is available [here.](http://repec.sowi.unibe.ch/stata/estout/) There are tons of things you can do with these commands, and the documentation is fantastic.
 
-For demonstration purposes, I will be estimating a Differences-in-Differences model that aims to measure the effects of the Familias en Accion Condition Cash Transfer Program on neo-natal health. The Health Economics literature suggests that birth weight is a strong predictor of human capital later on in life. As such, policies that improve _in-utero_ health can be very useful (and often cost effective) development programs. You can [download the data here](Sample_data_FeA.dta) to play with and follow along.
 
 ## Installation
 
@@ -30,7 +31,9 @@ ssc install estout
 And you're good to go!
 
 ## Storing Estimates
-To store estimates, we use the `eststo` command. Let's use  as an example. There are two ways to store the estimates using `eststo`:
+To store estimates, we use the `eststo` command. Let's use a differences-in-differences model to with year FE as an example. Note that I am using the `aweight` command to weight the municipality level observations by the the _weight_ variable, which is proportional to the number of births in a municipality. Further, I am clustering the standard errors at the municipality level using `vce(cluster codmpio)`. 
+
+There are two ways to store the estimates using `eststo`:
 
 ```
 reghdfe lbw did treat [aweight = weight], absorb(year) vce(cluster codmpio)
@@ -202,18 +205,22 @@ eststo did: reghdfe lbw did treat post[aweight = weight], noabsorb vce(cluster c
 estadd local fixedm "No", replace
 estadd local fixedy "No", replace
 estadd ysumm, replace
+
 eststo did_yfe: reghdfe lbw did treat [aweight = weight], absorb(year) vce(cluster codmpio)
 quietly estadd local fixedm "No", replace
 quietly estadd local fixedy "Yes", replace
 estadd ysumm, replace
+
 eststo did_mfe: reghdfe lbw did post [aweight = weight], absorb(codmpio) vce(cluster codmpio)
 quietly estadd local fixedm "Yes", replace
 quietly estadd local fixedy "No", replace
 estadd ysumm, replace
+
 eststo did_myfe: reghdfe lbw did [aweight = weight], absorb(codmpio year) vce(cluster codmpio)
 quietly estadd local fixedm "Yes", replace
 quietly estadd local fixedy "Yes", replace
 estadd ysumm, replace
+
 eststo did_myfe_control: reghdfe lbw did mat_hs_v pat_hs_v [aweight = weight], absorb(codmpio year) vce(cluster codmpio)
 quietly estadd local fixedm "Yes", replace
 quietly estadd local fixedy "Yes", replace
