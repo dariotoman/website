@@ -78,9 +78,9 @@ quietly estadd local fixedy "No", replace
 estadd ysumm, replace
 ```
 
-We can also use `estadd` to add statistics that are calculated from estimate results.
+We can also use `estadd` to add statistics that are calculated from estimate results (usually some transformation of $\beta$ coefficients).
 
-Once we have run these, we can create a table that includes this additional information. To do this, we use the `scalars` option. We need to list the scalar/locals that we want, and give the rows names using the `label` suboption. There are some scalars that are automatically stored. For example, `N` will give you number of observations. `ymean` will call upon the mean of the dependent variable, that we had store using `ysumm`. The command will look like this:
+Once we have run these, we can create a table that includes this additional information. To do this, we use the `scalars` option. We need to list the scalar/locals that we want, and give the rows names using the `label` suboption. There are some scalars that are automatically stored. For example, `N` will give you number of observations. `ymean` will call upon the mean of the dependent variable, that we had stored using `ysumm`. The command will look like this:
 
 ```
 esttab did did_yfe did_mfe did_myfe did_myfe_control using "sample_reg_table.rtf", replace label se star(* 0.10 ** 0.05 *** 0.01)s(fixedm fixedy N ymean,label("Municipality FE" "Year FE" "Observations" "Mean of Dep. Variable")) keep(did treat post mat_hs_v pat_hs_v);
@@ -105,11 +105,11 @@ The real beauty of `esttab` is that it makes it easy to export the table to your
 
 ```
 #delimit ;
-esttab part_a part_b part_c1 part_c2 using "assignment_1_table.rtf", 
+esttab did did_yfe did_mfe did_myfe did_myfe_control using "sample_reg_table.rtf", 
 	replace label se star(* 0.10 ** 0.05 *** 0.01)
-	s(fixed_country fixed_year N growth,
-	label("Municipality FE" "Year FE" "Observations" "Annual Growth Needed" ))
-	keep(ln_gnppc ln_pop);
+	s(fixedm fixedy N ymean,
+	label("Municipality FE" "Year FE" "Observations" "Mean of Dep. Variable"))
+	keep(did treat post mat_hs_v pat_hs_v);
 #delimit cr
 ```
 Note that I include the `replace` option. This is so that STATA will overwrite any existing file of that name (otherwise it will yell at you if you run your code more than once). You can also export to Excel, I find that .csv works better than .xls, but to each their own. The table will open up in Word like this:
@@ -122,11 +122,11 @@ Note that I include the `replace` option. This is so that STATA will overwrite a
 
  ```
 #delimit ;
-esttab part_a part_b part_c1 part_c2 using "assignment_1_table.tex", 
+esttab did did_yfe did_mfe did_myfe did_myfe_control using "sample_reg_table.tex", 
 	replace label se star(* 0.10 ** 0.05 *** 0.01)
-	s(fixed_country fixed_year N growth,
-	label("Municipality FE" "Year FE" "Observations" "Annual Growth Needed" ))
-	keep(ln_gnppc ln_pop);
+	s(fixedm fixedy N ymean,
+	label("Municipality FE" "Year FE" "Observations" "Mean of Dep. Variable"))
+	keep(did treat post mat_hs_v pat_hs_v);
 #delimit cr
 ```
 The output file that this command produces will look like this - much easier than manually creating a table in LaTeX. You can also create _booktabs_ tables (simply add the `booktabs` option in the `esttab` command and make sure you are loading the correct packages in your .tex file). _Booktabs_ tables look much nicer than the .tex default.
@@ -169,9 +169,9 @@ Mean of Dep. Variable&      0.0497         &      0.0497         &      0.0497  
 # Sample Code
 ```
 ****************************************************
-*		USING ESTTAB FOR REGRESSION TABLES		   *
-*			   AUTHOR: DARIO TOMAN				   *
-*					Sample Code                    *
+*         USING ESTTAB FOR REGRESSION TABLES       *
+*                 AUTHOR: DARIO TOMAN              *
+*               	Sample Code                *
 *                                                  *
 ****************************************************
 
@@ -179,7 +179,7 @@ Mean of Dep. Variable&      0.0497         &      0.0497         &      0.0497  
 
 clear all
 set more off
-cd "G:\My Drive\U of T\TA\2019-2020\Eco403_bobonis\example_esttab"
+cd "G:\----- REDACTED! ------\Eco403_bobonis\example_esttab"
 
 *Begin by loading data
 use "Sample_data_FeA.dta"
@@ -193,7 +193,9 @@ label variable did "TREAT x POST"
 label variable treat "TREAT"
 label variable post "POST"
 
-*Regressions
+****************************************************
+*                    Regressions       	           *
+****************************************************
 eststo did: reghdfe lbw did treat post[aweight = weight], noabsorb vce(cluster codmpio)
 estadd local fixedm "No", replace
 estadd local fixedy "No", replace
@@ -221,7 +223,7 @@ esttab, label
 
 
 ****************************************************
-*					TABLE          				   *
+*                       TABLE         	           *
 ****************************************************
 
 *I can now use the esttab function to generate one table that will have all of
