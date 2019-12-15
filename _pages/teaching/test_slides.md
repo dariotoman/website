@@ -7,37 +7,9 @@ transition: slide
 permalink: test_slides
 ---
 
-### First Reveal Presentation
+<section data-markdown>
+## Overview
 
-++++
-
-## Slide 1
-content of some sort
-- fdgdfg
-- dfgdfg
-- dfgdfgdfg
-- dfgdfgdfg
-- dfgdfgf
-- dfgdfgdf
-- dfgdgdfgdfg
-- dfgdfgdfd
-+++
-## Nested Slide
-content
-++++
-
-
-
-
-## New Slide - Image
-![testimage](img/example.jpg) 
-+++
-## Math
-`$$y = \beta X + \varepsilon$$`
-sdfsdfds
-
-
-
-
-
-sdfsdfsf
+beautiful interactive slide decks using HTML. This presentation will show you
+how to integrate it with [Jekyll](http://jekyllrb.com/)
+</section>
