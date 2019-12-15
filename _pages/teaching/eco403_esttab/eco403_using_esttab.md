@@ -4,7 +4,7 @@ title: "Intro to making Publication Style Tables Using Esttab"
 permalink: /teaching/eco403/using_esttab
 author_profile: true 
 ---
-[test](reveal.js/index.html)
+
 
 
 # Estimate Tables
