@@ -2,9 +2,10 @@
 layout: slide
 title: Jekyll&#58; Make presentation page with reveal.js
 description: A presentation slide for how to use reveal.js in Jekyll
-theme: black
+theme: white
 transition: slide
 permalink: test_slides
+author_profile: false
 ---
 
 <section data-markdown>
