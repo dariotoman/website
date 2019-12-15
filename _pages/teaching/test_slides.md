@@ -8,10 +8,37 @@ permalink: test_slides
 author_profile: true
 ---
 
-<section data-markdown>
-## Overview
+### First Reveal Presentation
 
-[reveal.js](https://github.com/hakimel/reveal.js/) enables you to create
-beautiful interactive slide decks using HTML. This presentation will show you
-how to integrate it with [Jekyll](http://jekyllrb.com/)
-</section>
+++++
+
+## Slide 1
+content of some sort
+- fdgdfg
+- dfgdfg
+- dfgdfgdfg
+- dfgdfgdfg
+- dfgdfgf
+- dfgdfgdf
+- dfgdgdfgdfg
+- dfgdfgdfd
++++
+## Nested Slide
+content
+++++
+
+
+
+
+## New Slide - Image
+![testimage](img/example.jpg) 
++++
+## Math
+`$$y = \beta X + \varepsilon$$`
+sdfsdfds
+
+
+
+
+
+sdfsdfsf
