@@ -5,7 +5,6 @@ description: A presentation slide for how to use reveal.js in Jekyll
 theme: white
 transition: slide
 permalink: test_slides
-author_profile: true
 ---
 
 ### First Reveal Presentation
