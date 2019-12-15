@@ -6,7 +6,6 @@ theme: white
 transition: slide
 permalink: test_slides
 ---
-<script type="text/template">
 ## Overview tets
 beautiful interactive slide decks using HTML. This presentation will show you
 how to integrate it with [Jekyll](http://jekyllrb.com/)
@@ -17,4 +16,3 @@ how to integrate it with [Jekyll](http://jekyllrb.com/)
 
 beautiful interactive slide decks using HTML. This presentation will show you
 how to integrate it with [Jekyll](http://jekyllrb.com/)
-</script>
