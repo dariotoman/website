@@ -6,9 +6,9 @@ theme: white
 transition: slide
 permalink: test_slides/
 ---
-<section data-separator="++++" data-separator-vertical="+++">
+<section data-markdown data-separator="++++" data-separator-vertical="+++">
 
-## Overview tetseses
+## Overview tetses
 beautiful interactive slide decks using HTML. This presentation will show you
 how to integrate it with [Jekyll](http://jekyllrb.com/)
 
