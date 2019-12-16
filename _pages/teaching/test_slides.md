@@ -6,7 +6,7 @@ theme: white
 transition: slide
 permalink: test_slides/
 ---
-<section data-markdown data-separator="^\r?\n----\r?\n$" data-separator-vertical="^\r?\n--\r?\n$">
+<section data-markdown data-separator="^\r?\n----\r?\n" data-separator-vertical="^\r?\n--\r?\n">
     <script type="text/template">
         ## Demo 2
         Slide 1.1
@@ -20,5 +20,9 @@ permalink: test_slides/
 
         ## Demo 2
         Slide 2
+        
+        --
+        
+        maybe??
     </script>
 </section>
