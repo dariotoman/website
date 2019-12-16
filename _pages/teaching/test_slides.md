@@ -8,7 +8,7 @@ permalink: test_slides/
 ---
 
 ## Demo 2
-Slide 1.1asdasdasd
+Slide 1.1as
 
 --
 
