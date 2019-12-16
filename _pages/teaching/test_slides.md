@@ -6,17 +6,19 @@ theme: white
 transition: slide
 permalink: test_slides/
 ---
-<section data-markdown data-separator="++++" data-separator-vertical="+++">
+<section data-markdown data-separator="^\n---\n$" data-separator-vertical="^\n--\n$">
+    <script type="text/template">
+        ## Demo 2
+        Slide 1.1
 
-## Overview tetses
-beautiful interactive slide decks using HTML. This presentation will show you
-how to integrate it with [Jekyll](http://jekyllrb.com/)
+        --
 
+        ## Demo 2
+        Slide 1.2
 
-+++
-## Overview2
+        ---
 
-beautiful interactive slide decks using HTML. This presentation will show you
-how to integrate it with [Jekyll](http://jekyllrb.com/)
-
+        ## Demo 2
+        Slide 2
+    </script>
 </section>
