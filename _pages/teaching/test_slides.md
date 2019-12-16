@@ -20,9 +20,5 @@ permalink: test_slides/
 
         ## Demo 2
         Slide 2
-        
-        --
-        
-        ### slide 4
     </script>
 </section>
