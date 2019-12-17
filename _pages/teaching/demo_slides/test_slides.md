@@ -13,7 +13,7 @@ permalink: test_slides/
 
 ![U of T Logo](u_of_t_crest.svg)
 
-[Dario Toman](dariotoman.com)
+[Dario Toman](https://dariotoman.com/)
 
 
 
