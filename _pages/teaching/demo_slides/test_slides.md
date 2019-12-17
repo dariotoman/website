@@ -16,7 +16,7 @@ permalink: test_slides/
 ![U of T Logo](u_of_t_crest.svg)
 
 [Dario Toman](https://dariotoman.com/)
-##### dario.toman@mail.utoronto.ca
+###### dario.toman@mail.utoronto.ca
 
 
 --
