@@ -9,6 +9,7 @@ permalink: test_slides/
 <section data-markdown data-separator="^\r?\n----\r?\n" data-separator-vertical="^\r?\n--\r?\n">
 <script type="text/template">
 
+
 ## Presentation Title
 
 <br></br>
@@ -20,6 +21,7 @@ permalink: test_slides/
 
 --
 
+<!-- .slide: style="text-align: left;"> -->  
 ## Demo 2
 Slide 1.2
 
