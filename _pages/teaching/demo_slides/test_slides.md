@@ -9,9 +9,11 @@ permalink: test_slides/
 <section data-markdown data-separator="^\r?\n----\r?\n" data-separator-vertical="^\r?\n--\r?\n">
 <script type="text/template">
 
-## Presentation Title
-<img class="plain"  src="u_of_t_crest.svg"/>
-Dario Toman
+# Presentation Title
+
+![U of T Logo](u_of_t_crest.svg)
+
+### Dario Toman
 
 
 --
