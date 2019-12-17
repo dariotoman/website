@@ -10,7 +10,7 @@ permalink: test_slides/
 <script type="text/template">
 
 ## Presentation Title
-
+<br>
 ![U of T Logo](u_of_t_crest.svg)
 
 [Dario Toman](https://dariotoman.com/)
