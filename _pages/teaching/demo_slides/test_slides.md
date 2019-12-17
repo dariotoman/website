@@ -23,6 +23,7 @@ permalink: test_slides/
 
 <!-- .slide: style="text-align: left;"> -->  
 ## Demo 2
+<!-- .slide: style="text-align: center;"> -->  
 Slide 1.2
 
 ----
