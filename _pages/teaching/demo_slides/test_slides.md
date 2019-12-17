@@ -9,11 +9,13 @@ permalink: test_slides/
 <section data-markdown data-separator="^\r?\n----\r?\n" data-separator-vertical="^\r?\n--\r?\n">
 <script type="text/template">
 
-# Presentation Title
+## Presentation Title
 
 ![U of T Logo](u_of_t_crest.svg)
 
-### Dario Toman
+Dario Toman[^1]
+
+[^1]: dario.toman@mail.utoronto.ca
 
 
 --
