@@ -23,9 +23,11 @@ permalink: /eco368/tutorial_1.html
 ###### dario.toman@mail.utoronto.ca
 
 ----
+<center>
 
 # ![Guernica](img/guernica.jpg)
 
+</center>
 ----
 
 - A layman can identify that the images you've just seen are important. 
@@ -37,7 +39,11 @@ permalink: /eco368/tutorial_1.html
     - The symbolism
     - Who was inspired by it
     - Why we should care!
-    
+
+----
+
+- A fundamental part of your your training as an economist is understanding 
+
 ----
 
 ### The Big Questions
@@ -50,7 +56,7 @@ permalink: /eco368/tutorial_1.html
 - Do you believe the results?
  
 
---
+----
 
 maybe??
 
