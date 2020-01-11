@@ -2,7 +2,7 @@
 layout: slide
 title: ECO368 - Tutorial 1
 description: Reading Emipirical Papers
-theme: white
+theme: blood
 transition: slide
 permalink: /eco368/tutorial_1.html
 ---
