@@ -2,7 +2,7 @@
 layout: slide
 title: ECO368 - Tutorial 1
 description: Reading Emipirical Papers
-theme: blood
+theme: league
 transition: slide
 permalink: /eco368/tutorial_1.html
 ---
@@ -30,13 +30,13 @@ dario.toman@mail.utoronto.ca
 
 - A layman can identify that the images you've just seen are important. 
 - An **art historian** can tell you much more:
-  * The artist
-  * The movement/style
-  * The inspiration/influences of the artist
-  * The techniques used
-  * The symbolism
-  * Who was inspired by it
-  * Why we should care!
+    * The artist
+    * The movement/style
+    * The inspiration/influences of the artist
+    * The techniques used
+    * The symbolism
+    * Who was inspired by it
+    * Why we should care!
 
 ----
 
