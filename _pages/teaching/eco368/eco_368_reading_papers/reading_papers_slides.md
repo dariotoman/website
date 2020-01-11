@@ -50,7 +50,6 @@ tedt
 ### The Big Questions
 
 - Who wrote the paper?
-    - sdfsdf
 - What question are they trying to answer?
 - Why are they asking the question?
 - How are they trying to answer it?
