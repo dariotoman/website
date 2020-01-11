@@ -10,7 +10,7 @@ permalink: /eco368/tutorial_1.html
 <script type="text/template">
 
 
-<!-- .slide: class="center" -->
+
 ## How to Read Economics Papers
 ### ECO368 - Tutorial 1
 
@@ -21,7 +21,7 @@ permalink: /eco368/tutorial_1.html
 dario.toman@mail.utoronto.ca
 
 ----
-<!-- .slide: class="center" -->
+
 
 ![Guernica](img/guernica.jpg)
 
@@ -40,7 +40,7 @@ dario.toman@mail.utoronto.ca
 
 ----
 
-<!-- .slide: class="center" -->
+
 - A fundamental part of your your training as an economist is to learn how speak about economics research in the way that art historians speak about art.
 - Part of this training involve understanding how to analyze the papers you read.
 
