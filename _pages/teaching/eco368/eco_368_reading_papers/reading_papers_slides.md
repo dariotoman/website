@@ -23,9 +23,9 @@ permalink: /eco368/tutorial_1.html
 ###### dario.toman@mail.utoronto.ca
 
 ----
+<!-- .slide: class="center" -->
 
-
-<img src="img/guernica.jpg" class="center">
+![Guernica](img/guernica.jpg)
 
 
 ----
@@ -42,6 +42,7 @@ permalink: /eco368/tutorial_1.html
 
 ----
 
+<!-- .slide: class="center" -->
 - A fundamental part of your your training as an economist is to be able to speak about economics research in the way that art historians speak about art.
 
 ----
