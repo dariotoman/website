@@ -43,7 +43,7 @@ permalink: /eco368/tutorial_1.html
 ----
 
 <!-- .slide: class="center" -->
-- A fundamental part of your your training as an economist is to be able to speak about economics research in the way that art historians speak about art.
+- A fundamental part of your your training as an economist is to learn how speak about economics research in the way that art historians speak about art.
 
 ----
 
