@@ -21,18 +21,23 @@ permalink: /eco368/tutorial_1.html
 ###### dario.toman@mail.utoronto.ca
 
 --
-## Plan for Today
+
+### Plan for Today
 
 
-
---
 
 
 ----
 
-## Demo 2
-Slide 2
+### The Big Questions
 
+ - Who wrote the paper?
+ - What question are they trying to answer?
+ - Why are they asking the question?
+ - How are they trying to answer it?
+ - What are their results?
+ - Do you believe the results?
+ 
 --
 
 maybe??
