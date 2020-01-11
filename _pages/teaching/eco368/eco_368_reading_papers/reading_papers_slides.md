@@ -10,17 +10,17 @@ permalink: /eco368/tutorial_1.html
 <script type="text/template">
 
 
-
+<!-- .slide: class="center" -->
 ## How to Read Economics Papers
 ### ECO368 - Tutorial 1
 
 
 
-# ![U of T Logo](u_of_t_crest.svg)
+![U of T Logo](u_of_t_crest.svg)
 
 
-##### [Dario Toman](https://dariotoman.com/)
-###### dario.toman@mail.utoronto.ca
+[Dario Toman](https://dariotoman.com/)
+dario.toman@mail.utoronto.ca
 
 ----
 <!-- .slide: class="center" -->
@@ -28,7 +28,7 @@ permalink: /eco368/tutorial_1.html
 ![Guernica](img/guernica.jpg)
 
 
-----
+--
 
 - A layman can identify that the images you've just seen are important. 
 - An **art historian** can tell you much more:
@@ -40,12 +40,13 @@ permalink: /eco368/tutorial_1.html
     - Who was inspired by it
     - Why we should care!
 
-----
+--
 
 <!-- .slide: class="center" -->
 - A fundamental part of your your training as an economist is to learn how speak about economics research in the way that art historians speak about art.
+- Part of this training involve understanding how to analyze the papers you read.
 
-----
+--
 
 ### The Big Questions
 
@@ -59,8 +60,7 @@ permalink: /eco368/tutorial_1.html
 
 ----
 
-maybe??
-
+### Who wrote the paper?
 
 
 </script>
