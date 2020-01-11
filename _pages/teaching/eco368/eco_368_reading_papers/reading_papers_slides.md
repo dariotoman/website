@@ -6,7 +6,7 @@ theme: white
 transition: slide
 permalink: /eco368/tutorial_1.html
 ---
-<section data-markdown data-separator="^\r?\n----\r?\n" data-separator-vertical="^\r?\n----\r?\n">
+<section data-markdown data-separator="^\r?\n----\r?\n" data-separator-vertical="^\r?\n--\r?\n">
 <script type="text/template">
 
 
@@ -26,7 +26,7 @@ dario.toman@mail.utoronto.ca
 ![Guernica](img/guernica.jpg)
 
 
-----
+--
 
 - A layman can identify that the images you've just seen are important. 
 - An **art historian** can tell you much more: 
@@ -38,7 +38,7 @@ dario.toman@mail.utoronto.ca
     * Who was inspired by it <!-- .element: class="fragment" data-fragment -->
     * Why we should care! <!-- .element: class="fragment" data-fragment -->
 
-----
+--
 
 
 - A fundamental part of your your training as an economist is to learn how speak about economics research in the way that art historians speak about art.
