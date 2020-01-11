@@ -22,9 +22,9 @@ permalink: /eco368/tutorial_1.html
 ##### [Dario Toman](https://dariotoman.com/)
 ###### dario.toman@mail.utoronto.ca
 
---
+---
 
-### Plan for Today
+# ![Guernica](img/guernica.jpg)
 
 
 ----
