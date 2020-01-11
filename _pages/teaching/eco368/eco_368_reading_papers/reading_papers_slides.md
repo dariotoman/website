@@ -13,6 +13,8 @@ permalink: /eco368/tutorial_1.html
 ## ECO368  - Tutorial 1
 
 <br></br>
+
+<!-- .slide: style="text-align: center;"> -->  
 ![U of T Logo](u_of_t_crest.svg)
 
 [Dario Toman](https://dariotoman.com/)
@@ -25,9 +27,7 @@ dario.toman@mail.utoronto.ca
 
 --
 
-<!-- .slide: style="text-align: left;"> -->  
-## Demo 2
-<!-- .slide: style="text-align: center;"> -->  
+
 Slide 1.2
 
 ----
