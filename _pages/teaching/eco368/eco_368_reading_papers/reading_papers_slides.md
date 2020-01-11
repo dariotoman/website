@@ -10,15 +10,15 @@ permalink: /eco368/tutorial_1.html
 <script type="text/template">
 
 
-## ECO368  - Tutorial 1
 
+## How to Read Economics Papers
+### ECO368 - Tutorial 1
 <br></br>
 
-<!-- .slide: style="text-align: center;"> -->  
-![U of T Logo](u_of_t_crest.svg)
+<center> ![U of T Logo](u_of_t_crest.svg) </center>
 
-[Dario Toman](https://dariotoman.com/)
-dario.toman@mail.utoronto.ca
+##### [Dario Toman](https://dariotoman.com/)
+###### dario.toman@mail.utoronto.ca
 
 --
 ## Plan for Today
