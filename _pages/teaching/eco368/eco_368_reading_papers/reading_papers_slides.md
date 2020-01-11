@@ -27,7 +27,6 @@ dario.toman@mail.utoronto.ca
 
 
 ----
-tedt 
 
 - A layman can identify that the images you've just seen are important. 
 - An **art historian** can tell you much more:
