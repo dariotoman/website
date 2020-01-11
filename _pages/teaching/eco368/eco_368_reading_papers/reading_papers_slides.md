@@ -22,14 +22,14 @@ permalink: /eco368/tutorial_1.html
 ##### [Dario Toman](https://dariotoman.com/)
 ###### dario.toman@mail.utoronto.ca
 
----
+----
 
 # ![Guernica](img/guernica.jpg)
 
----
+----
 
- - A layman can identify that the images you've just seen are important. 
- - An **art historian** can tell you much more:
+- A layman can identify that the images you've just seen are important. 
+- An **art historian** can tell you much more:
     - The artist
     - The movement/style
     - The inspiration/influences of the artist
