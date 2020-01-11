@@ -6,7 +6,7 @@ theme: white
 transition: slide
 permalink: /eco368/tutorial_1.html
 ---
-<section data-markdown data-separator="^\r?\n----\r?\n" data-separator-vertical="^\r?\n----\r?\n">
+<section data-markdown data-separator="^\r?\n----\r?\n" data-separator-vertical="^\r?\n----\r?\n" data-fragment="&&">
 <script type="text/template">
 
 
@@ -30,13 +30,13 @@ dario.toman@mail.utoronto.ca
 
 - A layman can identify that the images you've just seen are important. 
 - An **art historian** can tell you much more: 
-    * The artist  <!-- .element: class="fragment" data-fragment -->
-    * The movement/style  <!-- .element: class="fragment" data-fragment -->
-    * The inspiration/influences of the artist <!-- .element: class="fragment" data-fragment -->
-    * The techniques used <!-- .element: class="fragment" data-fragment -->
-    * The symbolism <!-- .element: class="fragment" data-fragment -->
-    * Who was inspired by it <!-- .element: class="fragment" data-fragment -->
-    * Why we should care! <!-- .element: class="fragment" data-fragment -->
+    * The artist  &&
+    * The movement/style  &&
+    * The inspiration/influences of the artist &&
+    * The techniques used 
+    * The symbolism 
+    * Who was inspired by it 
+    * Why we should care! 
 
 ----
 
