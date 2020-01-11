@@ -237,17 +237,20 @@ body {
 
 .reveal section img.plain {
   border: 0;
-  box-shadow: none; }
+  box-shadow: none;
+  text-align: center;}
 
 .reveal a img {
   -webkit-transition: all .15s linear;
   -moz-transition: all .15s linear;
-  transition: all .15s linear; }
+  transition: all .15s linear;
+  text-align: center;}
 
 .reveal a:hover img {
   background: rgba(255, 255, 255, 0.2);
   border-color: #2a76dd;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.55); }
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.55);
+  text-align: center;}
 
 /*********************************************
  * NAVIGATION CONTROLS
