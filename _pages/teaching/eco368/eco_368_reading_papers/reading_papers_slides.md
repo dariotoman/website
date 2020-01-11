@@ -26,18 +26,25 @@ permalink: /eco368/tutorial_1.html
 
 # ![Guernica](img/guernica.jpg)
 
+---
 
+ - A layman can identify that the images you've just seen are important. 
+ - An **art historian** can tell you much more:
+    - The artist
+    - The movement
+    - The inspiration/influences of the artist
+    - The techniques used
+    - 
 ----
 
 ### The Big Questions
 
-
- - Who wrote the paper?
- - What question are they trying to answer?
- - Why are they asking the question?
- - How are they trying to answer it?
- - What are their results?
- - Do you believe the results?
+- Who wrote the paper?
+- What question are they trying to answer?
+- Why are they asking the question?
+- How are they trying to answer it?
+- What are their results?
+- Do you believe the results?
  
 
 --
