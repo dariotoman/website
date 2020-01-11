@@ -48,12 +48,12 @@ dario.toman@mail.utoronto.ca
 
 ### The Big Questions
 
-- Who wrote the paper?
-- What question are they trying to answer?
-- Why are they asking the question?
-- How are they trying to answer it?
-- What are their results?
-- Do you believe the results?
+- Who wrote the paper? <!-- .element: class="fragment" data-fragment -->
+- What question are they trying to answer? <!-- .element: class="fragment" data-fragment -->
+- Why are they asking the question? <!-- .element: class="fragment" data-fragment -->
+- How are they trying to answer it? <!-- .element: class="fragment" data-fragment -->
+- What are their results? <!-- .element: class="fragment" data-fragment -->
+- Do you believe the results? <!-- .element: class="fragment" data-fragment -->
  
 
 ----
