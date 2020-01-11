@@ -30,15 +30,15 @@ dario.toman@mail.utoronto.ca
 
 ----
 
-- A layman can identify that the images you've just seen are important. 
-- An **art historian** can tell you much more:
-    - The artist
-    - The movement/style
-    - The inspiration/influences of the artist
-    - The techniques used
-    - The symbolism
-    - Who was inspired by it
-    - Why we should care!
+ - A layman can identify that the images you've just seen are important. 
+ - An **art historian** can tell you much more:
+     - The artist
+     - The movement/style
+     - The inspiration/influences of the artist
+     - The techniques used
+     - The symbolism
+     - Who was inspired by it
+     - Why we should care!
 
 ------
 
