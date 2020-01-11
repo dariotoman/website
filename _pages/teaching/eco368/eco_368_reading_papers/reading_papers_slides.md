@@ -48,7 +48,7 @@ dario.toman@mail.utoronto.ca
 
 ### The Big Questions
 
-- Who wrote the paper? <!-- .element: class="fragment" data-fragment -->
+- Who wrote the paper? When? <!-- .element: class="fragment" data-fragment -->
 - What question are they trying to answer? <!-- .element: class="fragment" data-fragment -->
 - Why are they asking the question? <!-- .element: class="fragment" data-fragment -->
 - How are they trying to answer it? <!-- .element: class="fragment" data-fragment -->
@@ -60,9 +60,19 @@ dario.toman@mail.utoronto.ca
 
 ### Who wrote the paper?
 
+- What is the author's research agenda? <!-- .element: class="fragment" data-fragment -->
+- Are there other authors that they are debating in the literature? <!-- .element: class="fragment" data-fragment -->
+- We typically refer to papers by _Author Last Name, YYYY_ in economics. <!-- .element: class="fragment" data-fragment -->
+    - For example: Sambanis, 2004 <!-- .element: class="fragment" data-fragment -->
+    - not: ~~What Is Civil War? Conceptual and Empirical Complexities of an Operational Definition~~ <!-- .element: class="fragment" data-fragment -->
+
 ----
 
 ### What question are they trying to answer?
+
+- This _should_ be fairly clear from the abstract <!-- .element: class="fragment" data-fragment -->
+- Explicitly identifying the question will help you focus your analysis as you read the paper <!-- .element: class="fragment" data-fragment -->
+
 
 ----
 
