@@ -41,7 +41,7 @@ permalink: /eco368/tutorial_1.html
     - Why we should care!
 
 ----
-<br>
+
 - A fundamental part of your your training as an economist is to be able to speak about economics research in the way that art historians speak about art.
 
 ----
