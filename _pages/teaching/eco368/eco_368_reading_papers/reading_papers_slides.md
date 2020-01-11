@@ -27,11 +27,10 @@ permalink: /eco368/tutorial_1.html
 ### Plan for Today
 
 
-
-
 ----
 
 ### The Big Questions
+
 
  - Who wrote the paper?
  - What question are they trying to answer?
@@ -40,6 +39,7 @@ permalink: /eco368/tutorial_1.html
  - What are their results?
  - Do you believe the results?
  
+
 --
 
 maybe??
