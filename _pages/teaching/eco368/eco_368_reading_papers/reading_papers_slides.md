@@ -28,8 +28,6 @@ permalink: /eco368/tutorial_1.html
 --
 
 
-Slide 1.2
-
 ----
 
 ## Demo 2
