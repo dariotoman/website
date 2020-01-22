@@ -54,11 +54,13 @@ dario.toman@mail.utoronto.ca
 - How are they trying to answer it? <!-- .element: class="fragment" data-fragment -->
 - What are their results? <!-- .element: class="fragment" data-fragment -->
 - Do you believe the results? <!-- .element: class="fragment" data-fragment -->
- 
+- Implications? <!-- .element: class="fragment" data-fragment -->
 
 ----
 
 ### Who wrote the paper?
+
+--
 
 - What is the author's research agenda?
 - Are there other authors that they are debating in the literature? 
@@ -70,6 +72,8 @@ dario.toman@mail.utoronto.ca
 
 ### What question are they trying to answer?
 
+--
+
 - This _should_ be fairly clear from the abstract 
 - Explicitly identifying the question will help you focus your analysis as you read the paper 
 
@@ -78,9 +82,31 @@ dario.toman@mail.utoronto.ca
 
 ### Why are they asking the question?
 
+--
+
+- This is a slighly more nuanced question. We are interested in:
+    - Motivation
+    - State of the literature
+
 ----
 
 ### How are they trying to answer it?
+
+--
+
+- This will vary based on the type of paper you are reading:
+    - Theory
+    - Literature review / meta-analysis
+    - Empirical Study
+    
+-- 
+
+**For Empirical Studies:**
+- What is the setting and context?
+- What kind of model are they using?
+    - What assumptions does this model require?
+    
+
 
 ----
 
