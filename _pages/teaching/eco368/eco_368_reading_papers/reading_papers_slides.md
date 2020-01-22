@@ -98,19 +98,20 @@ dario.toman@mail.utoronto.ca
     - Theory
     - Literature review / meta-analysis
     - Empirical Study
+
     
 -- 
+
 
 **For Empirical Studies:**
 - What is the setting and context?
 - What kind of model are they using?
-    - What assumptions does this model require?
-    
-
+    - What assumptions does this model require?    
 
 ----
 
 ### What are their results?
+
 
 
 
