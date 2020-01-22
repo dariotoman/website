@@ -139,7 +139,7 @@ Economists tend to talk about 2 "kinds" of _validity_?
 
 --
 
-- What policy impliations do the results have?
+- What policy implications do the results have?
 - Is there a mechanism/topic that we need more research on?
 
 
