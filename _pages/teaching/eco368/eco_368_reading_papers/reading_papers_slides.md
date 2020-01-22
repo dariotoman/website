@@ -133,6 +133,15 @@ Economists tend to talk about 2 "kinds" of _validity_?
 **External Validity**
 - Is it reasonable to believe that the results will hold in other settings?
 
+----
+
+### Implications?
+
+--
+
+- What policy impliations do the results have?
+- Is there a mechanism/topic that we need more research on?
+
 
 
 </script>
