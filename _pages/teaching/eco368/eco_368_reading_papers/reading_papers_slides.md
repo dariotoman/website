@@ -100,7 +100,7 @@ dario.toman@mail.utoronto.ca
     - Empirical Study
 
     
--- 
+--
 
 
 **For Empirical Studies:**
@@ -112,7 +112,26 @@ dario.toman@mail.utoronto.ca
 
 ### What are their results?
 
+--
 
+- What do they report?
+- Anything surprising?
+- Does this support predictions from economic theory?
+
+----
+
+### Do you believe the results?
+
+--
+
+Economists tend to talk about 2 "kinds" of _validity_?
+
+**Internal Validity:**
+- Are the assumptions of the model being used met?
+    - The answer is usually no. How do these failed assumptions affect interpretation of results?
+
+**External Validity**
+- Is it reasonable to believe that the results will hold in other settings?
 
 
 
