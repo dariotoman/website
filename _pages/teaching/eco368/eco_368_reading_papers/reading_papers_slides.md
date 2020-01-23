@@ -84,7 +84,7 @@ dario.toman@mail.utoronto.ca
 
 --
 
-- This is a slighly more nuanced question. We are interested in:
+- This is a slightly more nuanced question. We are interested in:
     - Motivation
     - State of the literature
 
@@ -99,10 +99,7 @@ dario.toman@mail.utoronto.ca
     - Literature review / meta-analysis
     - Empirical Study
 
-
-    
 ----
-
 
 **For Empirical Studies:**
 
