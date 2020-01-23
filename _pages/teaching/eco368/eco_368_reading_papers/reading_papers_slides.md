@@ -103,7 +103,7 @@ dario.toman@mail.utoronto.ca
 
 **For Empirical Studies:**
 
-Economists usually talk about the _Empirical Strategy"
+Economists usually talk about the _Empirical Strategy_
 - What is the setting and context?
 - What kind of model are they using?
     - What assumptions does this model require?
