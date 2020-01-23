@@ -98,16 +98,19 @@ dario.toman@mail.utoronto.ca
     - Theory
     - Literature review / meta-analysis
     - Empirical Study
-        - For Empirical papers, economists talk about the _Empirical Strategy_.
+
 
     
---
+----
 
 
 **For Empirical Studies:**
+
+Economists usually talk about the _Empirical Strategy"
 - What is the setting and context?
 - What kind of model are they using?
-    - What assumptions does this model require?    
+    - What assumptions does this model require?
+- What data do they use?    
 
 ----
 
@@ -142,6 +145,15 @@ Economists tend to talk about 2 "kinds" of _validity_?
 
 - What policy implications do the results have?
 - Is there a mechanism/topic that we need more research on?
+
+----
+
+
+## Reading Regression Tables
+
+----
+
+$$ y = \beta X + \varepsilon$$
 
 
 
