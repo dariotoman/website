@@ -28,7 +28,7 @@ dario.toman@mail.utoronto.ca
 
 --
 
-- A layman can identify that the images you've just seen are important. 
+- A layman can identify that the image you've just seen is important. 
 - An **art historian** can tell you much more: 
     * The artist  <!-- .element: class="fragment" data-fragment -->
     * The movement/style  <!-- .element: class="fragment" data-fragment -->
