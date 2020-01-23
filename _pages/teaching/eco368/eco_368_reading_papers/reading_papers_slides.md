@@ -99,7 +99,7 @@ dario.toman@mail.utoronto.ca
     - Literature review / meta-analysis
     - Empirical Study
 
-----
+--
 
 **For Empirical Studies:**
 
@@ -125,7 +125,7 @@ Economists usually talk about the _Empirical Strategy_
 
 --
 
-Economists tend to talk about 2 "kinds" of _validity_?
+Economists tend to talk about two kinds of _validity_?
 
 **Internal Validity:**
 - Are the assumptions of the model being used met?
@@ -150,7 +150,7 @@ Economists tend to talk about 2 "kinds" of _validity_?
 
 ----
 
-$$ y = \beta X + \varepsilon$$
+$$ y = \beta \mathbf{X} + \varepsilon$$
 
 
 
