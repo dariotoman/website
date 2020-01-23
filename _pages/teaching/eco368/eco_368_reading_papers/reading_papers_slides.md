@@ -98,6 +98,7 @@ dario.toman@mail.utoronto.ca
     - Theory
     - Literature review / meta-analysis
     - Empirical Study
+        - For Empirical papers, economists talk about the _Empirical Strategy_.
 
     
 --
