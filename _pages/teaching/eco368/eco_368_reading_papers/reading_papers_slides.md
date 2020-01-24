@@ -163,15 +163,17 @@ Economists tend to talk about two kinds of _validity_:
 
 $$ y_i =\alpha + \beta x_i + \varepsilon_i$$
 
-Where:
-- $y_i$ and $x_i$ are the dependent and independent variables
+
+- Where $y_i$ and $x_i$ are the dependent and independent variables
 - $\beta$ is the parameter we are interested in.
 - Why?
 
-Notice:
-$$ \frac{\partial y}{\partial X} = \beta$$
+Notice:<!-- .element: class="fragment" data-fragment -->
+$$ \frac{\partial y}{\partial X} = \beta$$<!-- .element: class="fragment" data-fragment -->
 
+--
 
+![OLS](img/OLS.png)
 
 </script>
 </section>
