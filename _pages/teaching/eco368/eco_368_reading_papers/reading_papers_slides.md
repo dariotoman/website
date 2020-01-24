@@ -18,7 +18,7 @@ permalink: /eco368/tutorial_1.html
 
 [Dario Toman](https://dariotoman.com/)
 
-dario.toman@mail.utoronto.ca
+dario.toman@utoronto.ca
 
 ----
 
@@ -30,13 +30,13 @@ dario.toman@mail.utoronto.ca
 
 - A layman can identify that the image you've just seen is important. 
 - An **art historian** can tell you much more: 
-    * The artist  <!-- .element: class="fragment" data-fragment -->
-    * The movement/style  <!-- .element: class="fragment" data-fragment -->
-    * The inspiration/influences of the artist <!-- .element: class="fragment" data-fragment -->
-    * The techniques used <!-- .element: class="fragment" data-fragment -->
-    * The symbolism <!-- .element: class="fragment" data-fragment -->
-    * Who was inspired by it <!-- .element: class="fragment" data-fragment -->
-    * Why we should care! <!-- .element: class="fragment" data-fragment -->
+    * The artist  
+    * The movement/style  
+    * The inspiration/influences of the artist
+    * The techniques used
+    * The symbolism
+    * Who was inspired by it
+    * Why we should care!
 
 --
 
@@ -125,7 +125,7 @@ Economists usually talk about the _Empirical Strategy_
 
 --
 
-Economists tend to talk about two kinds of _validity_?
+Economists tend to talk about two kinds of _validity_:
 
 **Internal Validity:**
 - Are the assumptions of the model being used met?
@@ -146,11 +146,24 @@ Economists tend to talk about two kinds of _validity_?
 ----
 
 
-## Reading Regression Tables
+# Reading Regression Tables
 
 ----
 
-$$ y = \beta \mathbf{X} + \varepsilon$$
+### The Regression Framework
+
+- Regression analysis allows us to estimate relationships in data, under a set of assumptions.
+
+- For example, we might assume that the relationship between two variables is 
+
+
+
+----
+
+
+$$ y = \beta X + \varepsilon$$
+
+$$ \frac{\partial y}{\partial X} = \beta$$
 
 
 
