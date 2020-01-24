@@ -175,5 +175,9 @@ $$ \frac{\partial y}{\partial x} = \beta$$<!-- .element: class="fragment" data-f
 
 ![OLS](img/OLS.png)
 
+--
+
+![Table](table.png)
+
 </script>
 </section>
