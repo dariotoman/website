@@ -179,5 +179,10 @@ $$ \frac{\partial y}{\partial x} = \beta$$<!-- .element: class="fragment" data-f
 
 ![Table](img/table.png)
 
+--
+
+![Table_2](img/table_2.png)
+
+
 </script>
 </section>
