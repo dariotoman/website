@@ -177,7 +177,7 @@ $$ \frac{\partial y}{\partial x} = \beta$$<!-- .element: class="fragment" data-f
 
 --
 
-![Table](table.png)
+![Table](img/table.png)
 
 </script>
 </section>
