@@ -187,6 +187,13 @@ $$ \frac{\partial y}{\partial x} = \beta$$<!-- .element: class="fragment" data-f
 
 ![Table_3](img/table_3.png)
 
+----
+
+### Some great resources for applied econometrics:
+
+- _Mostly Harmless Economerics_ (Angrist, 2008)
+- [Causal Inference: A Mixtape](https://scunning.com/cunningham_mixtape.pdf) (Cunningham, 2020)
+
 --
 
 ### Questions?
