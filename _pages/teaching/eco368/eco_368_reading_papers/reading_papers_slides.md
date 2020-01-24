@@ -165,9 +165,10 @@ $$ y_i =\alpha + \beta x_i + \varepsilon_i$$
 
 Where:
 - $y_i$ and $x_i$ are the dependent and independent variables
-- $\beta$ is the variable of interest
+- $\beta$ is the parameter we are interested in.
+- Why?
 
-
+Notice:
 $$ \frac{\partial y}{\partial X} = \beta$$
 
 
