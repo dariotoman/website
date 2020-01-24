@@ -169,7 +169,7 @@ $$ y_i =\alpha + \beta x_i + \varepsilon_i$$
 - Why?
 
 Notice:<!-- .element: class="fragment" data-fragment -->
-$$ \frac{\partial y}{\partial X} = \beta$$<!-- .element: class="fragment" data-fragment -->
+$$ \frac{\partial y}{\partial x} = \beta$$<!-- .element: class="fragment" data-fragment -->
 
 --
 
