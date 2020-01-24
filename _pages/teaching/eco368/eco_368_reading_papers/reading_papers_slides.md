@@ -183,6 +183,13 @@ $$ \frac{\partial y}{\partial x} = \beta$$<!-- .element: class="fragment" data-f
 
 ![Table_2](img/table_2.png)
 
+--
+
+![Table_3](img/table_3.png)
+
+--
+
+
 
 </script>
 </section>
