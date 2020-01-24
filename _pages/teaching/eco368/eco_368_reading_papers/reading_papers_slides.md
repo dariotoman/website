@@ -154,14 +154,19 @@ Economists tend to talk about two kinds of _validity_:
 
 - Regression analysis allows us to estimate relationships in data, under a set of assumptions.
 
-- For example, we might assume that the relationship between two variables is 
+- For example, we might assume that the relationship between two variables is linear, and use _Ordinary Least Squares_ to estimate the relationship
 
 
 
 ----
 
 
-$$ y = \beta X + \varepsilon$$
+$$ y_i =\alpha + \beta x_i + \varepsilon_i$$
+
+Where:
+- $y_i$ and $x_i$ are the dependent and independent variables
+- $\beta$ is the variable of interest
+
 
 $$ \frac{\partial y}{\partial X} = \beta$$
 
