@@ -189,7 +189,9 @@ $$ \frac{\partial y}{\partial x} = \beta$$<!-- .element: class="fragment" data-f
 
 --
 
-
+### Questions?
+ 
+(Reminder - I have OH after tutorial)
 
 </script>
 </section>
