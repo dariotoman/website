@@ -143,9 +143,27 @@ $$ P(y=1|\mathbf{x})= \frac{e^{\beta_0 + \beta_1 x_1 + ... + \beta_k x_k}}{1+e^{
 
 ![Logit_scatter](img/sambanis_scatter_logit.png)
 
+--
+
+### So why not always use Probit/Logit?
+- Computationally intensive
+- Picking between Probit vs Logit is non-trivial
+- Interpreting the coefficients is hard!
+    - Remember, we transformed the right hand side!
+    - Some math can show that the coefficients in the Logit model give the marginal effect on the _log-odds-ratio_ (which is not very useful...)
+
+--
+
+- STATA is able to recover more traditional marginal effects
+
+![logit_margin](img/logit_margin.png)
+
+- Nota Bene: This is just the **avergage** marginal effect!
+
 ----
 
 ### Questions?
+
  
 (Reminder - I have OH after tutorial)
 
