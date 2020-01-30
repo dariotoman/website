@@ -69,16 +69,17 @@ $$ P(y=1|\mathbf{x})= =\beta_0 + \beta_1 x_1 + ... + \beta_k x_k $$
 
 --
 
+ 
 ![Sambnis Data](img/sambanis_data.png)
 
 --
 
+ 
 ![Sambanis_Scatter](img/sambanis_scatter.png)
 
 -- 
 
 We can easily estimate a linear probability model in STATA:
-
 ![Sambanis_linreg](img/sambanis_linreg.png)
 
 --
