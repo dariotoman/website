@@ -91,7 +91,7 @@ We can easily estimate a linear probability model in STATA:
 
 **Notice any issues?**
 - Negative predicted probabilities....
-- 
+- Constant effect at all levels of $x$
 ----
 
 ### Questions?
