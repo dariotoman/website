@@ -51,7 +51,8 @@ $$y =\beta_0 + \beta_1 x_1 + ... + \beta_k x_k + \varepsilon$$
 $$ E[y|\mathbf{x}]= =\beta_0 + \beta_1 x_1 + ... + \beta_k x_k $$
 <br></br>
 
-
+- If we have a binary outcome, consider $P(y=1|\mathbf{x})=E[y|\mathbf{x}]$:
+$$ P(y=1|\mathbf{x})= =\beta_0 + \beta_1 x_1 + ... + \beta_k x_k $$
 
 
 
