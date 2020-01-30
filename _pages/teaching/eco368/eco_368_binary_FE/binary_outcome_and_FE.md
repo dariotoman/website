@@ -22,7 +22,7 @@ dario.toman@utoronto.ca
 
 ----
 ### Binary Outcome Models
-(Source: Woolridge: Introductory Econometrics)
+(Source: Woolridge - Introductory Econometrics)
 
 ----
 
@@ -36,6 +36,20 @@ dario.toman@utoronto.ca
 - **Recall from last time:** We can deal with including these as regressors fairly easily
 - Using them as outcome variables requires some changes to our regression framework
 
+----
+
+#### Baseline Model:
+### Linear Probability Model
+
+--
+
+### Linear Probability Model
+
+- **Recall:** Ordinary Least Squares Model
+$$y =\beta_0 + \beta_1 x_1 + ... + \beta_k x_k + \varepsilon$$
+- Assuming zero conditional mean (MLR.4):
+$$ E[y|\mathbf{x}]= =\beta_0 + \beta_1 x_1 + ... + \beta_k x_k $$
+<br></br>
 
 
 
