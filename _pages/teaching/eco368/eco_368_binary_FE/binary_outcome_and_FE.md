@@ -84,9 +84,14 @@ We can easily estimate a linear probability model in STATA:
 
 --
 
+ 
 ![Sambanis_lpm](img/sambanis_scatter_lpm.png)
 
+--
 
+**Notice any issues?**
+- Negative predicted probabilities....
+- 
 ----
 
 ### Questions?
