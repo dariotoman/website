@@ -21,7 +21,7 @@ permalink: /eco368/tutorial_2.html
 dario.toman@utoronto.ca
 
 ----
-### Binary Outcome Models
+## Binary Outcome Models
 (Source: Woolridge - Introductory Econometrics)
 
 ----
@@ -48,7 +48,7 @@ dario.toman@utoronto.ca
 - **Recall:** Ordinary Least Squares Model
 $$y =\beta_0 + \beta_1 x_1 + ... + \beta_k x_k + \varepsilon$$
 - Assuming zero conditional mean (MLR.4):
-$$ E[y|\mathbf{x}]= =\beta_0 + \beta_1 x_1 + ... + \beta_k x_k $$
+$$ E[y|\mathbf{x}]= \beta_0 + \beta_1 x_1 + ... + \beta_k x_k $$
 
 --
 ### Linear Probability Model
@@ -95,7 +95,21 @@ We can easily estimate a linear probability model in STATA:
 
 ----
 
+### Probit and Logit Models
 
+--
+
+- Probit and Logit models aim to provide a solution to the issues that arise in the linear probability model
+
+--
+
+
+
+--
+
+![Logit_scatter](img/sambanis_scatter_logit.png)
+
+----
 
 ### Questions?
  
