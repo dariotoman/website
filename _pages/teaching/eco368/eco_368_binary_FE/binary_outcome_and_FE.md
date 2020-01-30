@@ -49,12 +49,23 @@ dario.toman@utoronto.ca
 $$y =\beta_0 + \beta_1 x_1 + ... + \beta_k x_k + \varepsilon$$
 - Assuming zero conditional mean (MLR.4):
 $$ E[y|\mathbf{x}]= =\beta_0 + \beta_1 x_1 + ... + \beta_k x_k $$
-<br></br>
+
+--
+### Linear Probability Model
 
 - If we have a binary outcome, consider $P(y=1|\mathbf{x})=E[y|\mathbf{x}]$:
 $$ P(y=1|\mathbf{x})= =\beta_0 + \beta_1 x_1 + ... + \beta_k x_k $$
 
+- This equation tells us that the _probability of success_ $p(\mathbf{x}) = P(y=1|\mathbf{x})$ is a linear function of our explanatory variables.
+- $P(y=1|\mathbf{x})$ is often called the **response probability**
 
+-- 
+
+#### Let's take this regression model to the data!
+
+- I will be using data from Sambanis (2004)
+    - Nota Bene: Replication Data for papers is often publicly available!
+- You can access his replication folder from his [website](http://web.sas.upenn.edu/sambanis/research/articles-on-civil-war/).
 
 ----
 ### Questions?
