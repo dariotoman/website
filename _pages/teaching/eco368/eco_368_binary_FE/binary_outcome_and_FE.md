@@ -69,30 +69,33 @@ $$ P(y=1|\mathbf{x})= =\beta_0 + \beta_1 x_1 + ... + \beta_k x_k $$
 
 --
 
-### Data
+
 ![Sambnis Data](img/sambanis_data.png)
 
 --
 
-### Scatter Plot
+
 ![Sambanis_Scatter](img/sambanis_scatter.png)
 
 --
 
+We can easily estimate a linear probability model in STATA:
 ![Sambanis_linreg](img/sambanis_linreg.png)
 
 --
 
-### Plotted Regression Results
+
 ![Sambanis_lpm](img/sambanis_scatter_lpm.png)
 
 --
 
-**Notice any issues?**
+### Notice any issues?
 - Negative predicted probabilities....
 - Constant effect at all levels of $x$
 
 ----
+
+
 
 ### Questions?
  
