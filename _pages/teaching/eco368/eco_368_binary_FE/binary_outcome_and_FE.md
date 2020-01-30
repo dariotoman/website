@@ -203,7 +203,9 @@ $$ P(y=1|\mathbf{x})= \frac{e^{\beta_0 + \beta_1 x_1 + ... + \beta_k x_k}}{1+e^{
 
 --
     
-Why wrong?
+- Why might using cross-sectional data like this cause biased estimates?
+
+- What if we had _panel data_?
 
 --
 
@@ -211,7 +213,18 @@ Why wrong?
 
 --
 
+- Panel data tracks a sample over time.
+    - The sample could be individuals, municipalities, countries, etc.
+- By tracking observations over time, we can identify variation _within_ the observation.
+- This allows us to control for unobserved characteristics that are time-invariant.
+
+--
+
 ![FE](img/FE.png)
+
+--
+
+To be continued....
 
 ----
 
