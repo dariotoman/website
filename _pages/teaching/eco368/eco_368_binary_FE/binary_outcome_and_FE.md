@@ -162,6 +162,26 @@ $$ P(y=1|\mathbf{x})= \frac{e^{\beta_0 + \beta_1 x_1 + ... + \beta_k x_k}}{1+e^{
 
 ----
 
+### So, which model should we use?
+
+- Remember that there are always trade-offs:
+- **Linear Probability Model**
+    - **Pro:** Simple to estimate, easy to interpret
+    - **Con:** Inflexible, some impossible predictions
+- **Logit/Probit**
+    - **Pro:** Bounded by 0/1, more flexible
+    - **Con:** Difficult to interpret, requires assumptions about functional form
+
+--
+
+### So, which model should we use?
+
+- Authors should look at both!
+- Estimates are actually very similar when mean probabilities are close to 0.5
+    - As a rule of thumb, the models only diverge when the baseline probability is $<0.2$ and $>0.8$
+
+----
+
 ### Questions?
 
  
