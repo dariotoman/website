@@ -116,7 +116,7 @@ $$ P(y=1|\mathbf{x})= =G(\beta_0 + \beta_1 x_1 + ... + \beta_k x_k) $$
 
 --
 
-## Probit Model
+### Probit Model
 
 - The Probit Model uses the CDF of the standard normal distribution as the $G()$ function:
 $$ G(z) = \Phi (z) $$
@@ -127,13 +127,19 @@ $$ P(y=1|\mathbf{x})= \Phi(\beta_0 + \beta_1 x_1 + ... + \beta_k x_k) $$
 
 --
 
+### Logit Model
 - The Logit Model uses the _logistic_ function for $G()$:
 $$G(z)=\Lambda(z)=\frac{e^z}{1+e^z}$$
 so 
 $$ P(y=1|\mathbf{x})= \frac{e^{\beta_0 + \beta_1 x_1 + ... + \beta_k x_k}}{1+e^{\beta_0 + \beta_1 x_1 + ... + \beta_k x_k}}$$
 - This function is also bounded by 0 and 1
 
+--
 
+- These models are also easy to estimate in STATA:
+![Logit_Stata](img/logit.png)
+
+--
 
 ![Logit_scatter](img/sambanis_scatter_logit.png)
 
