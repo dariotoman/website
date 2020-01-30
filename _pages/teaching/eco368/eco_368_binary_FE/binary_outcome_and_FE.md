@@ -54,7 +54,7 @@ $$ E[y|\mathbf{x}]= \beta_0 + \beta_1 x_1 + ... + \beta_k x_k $$
 ### Linear Probability Model
 
 - If we have a binary outcome, consider $P(y=1|\mathbf{x})=E[y|\mathbf{x}]$:
-$$ P(y=1|\mathbf{x})= =\beta_0 + \beta_1 x_1 + ... + \beta_k x_k $$
+$$ P(y=1|\mathbf{x})=\beta_0 + \beta_1 x_1 + ... + \beta_k x_k $$
 
 - This equation tells us that the _probability of success_ $p(\mathbf{x}) = P(y=1|\mathbf{x})$ is a linear function of our explanatory variables.
 - $P(y=1|\mathbf{x})$ is often called the **response probability**
@@ -99,13 +99,41 @@ We can easily estimate a linear probability model in STATA:
 
 --
 
-- Probit and Logit models aim to provide a solution to the issues that arise in the linear probability model
+### Probit and Logit Models
+- Probit and Logit models aim to provide a solution to the issues that arise in the linear probability model. 
+- We still are interested in the response probability $P(y=1|\mathbf{x})$, but now:
+$$ P(y=1|\mathbf{x})= =G(\beta_0 + \beta_1 x_1 + ... + \beta_k x_k) $$
+- Notice that we are applying a transformation to the right hand side using the function $G()$
 
 --
 
+### Probit and Logit Models
 
+- What properties do we want $G()$ to have?
+    - Bounded by 0 and 1
+    - Hopefully not linear...
+- Can you think of any such functions?
 
 --
+
+## Probit Model
+
+- The Probit Model uses the CDF of the standard normal distribution as the $G()$ function:
+$$ G(z) = \Phi (z) $$
+so
+$$ P(y=1|\mathbf{x})= \Phi(\beta_0 + \beta_1 x_1 + ... + \beta_k x_k) $$
+
+- **Recall:** The standard CDF is bounded by 0 and 1 
+
+--
+
+- The Logit Model uses the _logistic_ function for $G()$:
+$$G(z)=\Lambda(z)=\frac{e^z}{1+e^z}$$
+so 
+$$ P(y=1|\mathbf{x})= \frac{e^{\beta_0 + \beta_1 x_1 + ... + \beta_k x_k}}{1+e^{\beta_0 + \beta_1 x_1 + ... + \beta_k x_k}}$$
+- This function is also bounded by 0 and 1
+
+
 
 ![Logit_scatter](img/sambanis_scatter_logit.png)
 
