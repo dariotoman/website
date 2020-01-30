@@ -67,7 +67,27 @@ $$ P(y=1|\mathbf{x})= =\beta_0 + \beta_1 x_1 + ... + \beta_k x_k $$
     - Nota Bene: Replication Data for papers is often publicly available!
 - You can access his replication folder from his [website](http://web.sas.upenn.edu/sambanis/research/articles-on-civil-war/).
 
+--
+
+![Sambnis Data](img/sambanis_data.png)
+
+--
+
+![Sambanis_Scatter](img/sambanis_scatter.png)
+
+-- 
+
+We can easily estimate a linear probability model in STATA:
+
+![Sambanis_linreg](img/sambanis_linreg.png)
+
+--
+
+![Sambanis_lpm](img/sambanis_scatter_lpm.png)
+
+
 ----
+
 ### Questions?
  
 (Reminder - I have OH after tutorial)
