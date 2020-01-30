@@ -59,7 +59,7 @@ $$ P(y=1|\mathbf{x})= =\beta_0 + \beta_1 x_1 + ... + \beta_k x_k $$
 - This equation tells us that the _probability of success_ $p(\mathbf{x}) = P(y=1|\mathbf{x})$ is a linear function of our explanatory variables.
 - $P(y=1|\mathbf{x})$ is often called the **response probability**
 
--- 
+--
 
 #### Let's take this regression model to the data!
 
@@ -77,9 +77,8 @@ $$ P(y=1|\mathbf{x})= =\beta_0 + \beta_1 x_1 + ... + \beta_k x_k $$
 ### Scatter Plot
 ![Sambanis_Scatter](img/sambanis_scatter.png)
 
--- 
+--
 
-We can easily estimate a linear probability model in STATA:
 ![Sambanis_linreg](img/sambanis_linreg.png)
 
 --
