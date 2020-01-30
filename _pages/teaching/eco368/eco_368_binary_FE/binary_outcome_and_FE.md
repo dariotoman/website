@@ -102,7 +102,7 @@ We can easily estimate a linear probability model in STATA:
 ### Probit and Logit Models
 - Probit and Logit models aim to provide a solution to the issues that arise in the linear probability model. 
 - We still are interested in the response probability $P(y=1|\mathbf{x})$, but now:
-$$ P(y=1|\mathbf{x})= =G(\beta_0 + \beta_1 x_1 + ... + \beta_k x_k) $$
+$$ P(y=1|\mathbf{x}) =G(\beta_0 + \beta_1 x_1 + ... + \beta_k x_k) $$
 - Notice that we are applying a transformation to the right hand side using the function $G()$
 
 --
