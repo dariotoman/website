@@ -191,6 +191,12 @@ $$ P(y=1|\mathbf{x})= \frac{e^{\beta_0 + \beta_1 x_1 + ... + \beta_k x_k}}{1+e^{
 
 --
 
+- One of our primary concerns when doing regression analysis is _endogeneity_
+    - If the zero conditional mean assumption fails ($E[\varepsilon | \mathbf{x}]\neq 0$), our estimates of $\beta$ are biased.
+- This concern is especially valid when dealing with cross-sectional data. 
+- To illustrate this consider the following (hypothetical) data.
+
+    
 
 
 
