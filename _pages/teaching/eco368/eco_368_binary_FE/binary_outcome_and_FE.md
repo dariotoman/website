@@ -187,6 +187,7 @@ $$ P(y=1|\mathbf{x})= \frac{e^{\beta_0 + \beta_1 x_1 + ... + \beta_k x_k}}{1+e^{
 ----
 
 ![Collier_fe](img/collier_FE.png)
+
 (Source: _Collier, 2009_)
 
 --
