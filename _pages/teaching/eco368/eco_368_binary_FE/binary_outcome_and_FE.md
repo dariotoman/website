@@ -21,9 +21,27 @@ permalink: /eco368/tutorial_2.html
 dario.toman@utoronto.ca
 
 ----
+### Binary Outcome Models
+(Source: Woolridge: Introductory Econometrics)
 
---
+----
 
+#### What does it mean for a variable to be "Binary"?
+
+- A variable is considered binary if it can only take on values of 0 or 1.
+- Examples:
+    - Civil War Onset
+    - Civil War Incidence
+    - Civil War Termination
+- **Recall from last time:** We can deal with including these as regressors fairly easily
+- Using them as outcome variables requires some changes to our regression framework
+
+
+
+
+
+
+----
 ### Questions?
  
 (Reminder - I have OH after tutorial)
