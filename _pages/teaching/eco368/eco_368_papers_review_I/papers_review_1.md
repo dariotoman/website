@@ -26,7 +26,12 @@ dario.toman@utoronto.ca
 
 ----
 
+### "Greed and Grievances"
+**Greed**
+- Armed conflict is motivated by a "cost-benefit analysis" that insurgents make, evaluating their welfare under rebellion and peace.
 
+**Grievance**
+- Armed conflict is a result of rebellion over issues related to identity (ethnicity, race, class), not economics.
 
 ### Questions?
  
