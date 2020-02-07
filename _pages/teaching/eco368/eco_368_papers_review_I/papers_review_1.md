@@ -75,7 +75,7 @@ Main Conclusions
  
  TABLE 
  
- --
+--
  
 **Some Select Results**
 - Civil war tends to occur in places with low GDP.
@@ -110,7 +110,7 @@ $$ y = \beta \hat{x} +\varepsilon $$
 --
 
 ### Discussion:
-## Why do Fearon+Laitin and Collier+co. have "different" findings?
+## Why do Fearon+Laitin and Collier+Hoeffler+Rohner have "different" findings?
 
 ----
 
