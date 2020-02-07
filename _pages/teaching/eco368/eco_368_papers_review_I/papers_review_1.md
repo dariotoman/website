@@ -134,12 +134,19 @@ TABLE
 **Spurious Correlation**  (OVB)
 - It is possible that a third variable affects both the size of the resource sector and civil war
     - Think: property rights, weak rule of law
+
+<br></br>
+- To deal with these issues, Ross uses better data on resources 
     
 --
 
-### Concerns About Mechanisms
+### Mechanisms
+- Ross raises the concern that very little is known about the mechanisms that link resources to civil war
+-Suggests that resource wealth:
+    - Increases the value of the state as a target
+    - Increases value of sovereignty in resource rich regions [1]
 
-
+[1] Asside: see Sanchez de la Sierra's work in the DRC if you're interested in this
 ### Questions?
  
 (Reminder - I have OH after tutorial)
