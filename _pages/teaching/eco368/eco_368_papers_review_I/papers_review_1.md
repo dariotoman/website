@@ -53,7 +53,7 @@ dario.toman@utoronto.ca
 
 --
 
-TABLE
+![fl](img/fl.png)
 
 --
 
@@ -72,8 +72,8 @@ Main Conclusions
     - Maintain that the "Greed" argument holds, with some "weak" evidence for the feasibility hypothesis
 
 --
- 
- TABLE 
+
+![c_results](img/collier_results.png) 
  
 --
  
@@ -83,12 +83,13 @@ Main Conclusions
 - The effect of primary commodity exports has an "inverted U shape"
     - How do they conclude this?
     - Interpretation?
-
+    - Does this hold up in robustness checks?
+    
 --
 
 ### Robustness Checks
 
-TABLE
+![c_rob](img/collier_robust.png)
 
 --
 
