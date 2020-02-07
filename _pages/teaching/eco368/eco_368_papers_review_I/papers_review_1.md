@@ -137,7 +137,7 @@ TABLE
 
 <br></br>
 - To deal with these issues, Ross uses better data on resources 
-    
+
 --
 
 ### Mechanisms
@@ -145,7 +145,10 @@ TABLE
 -Suggests that resource wealth:
     - Increases the value of the state as a target
     - Increases value of sovereignty in resource rich regions [1]
-    - 
+    - Funds rebel organization
+    - Weakens the state
+    - Increases risk of conflict due to trade shocks
+    - Lengthens civil war
 
 [1] Aside: see Sanchez de la Sierra's work in the DRC if you're interested in this
 ### Questions?
