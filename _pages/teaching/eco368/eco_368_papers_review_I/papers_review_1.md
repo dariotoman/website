@@ -126,6 +126,12 @@ TABLE
 
 --
 
+### Endogeneity of "Resources to GDP"
+
+**Reverse Cauality** Civil War $\rightarrow$ GDP
+- 
+
+**Spurious Correlation** 
    
 
 
