@@ -120,6 +120,10 @@ TABLE
 - Fearon and Laitin (2003) and Collier (2004, 2009) already address resources
     - What is the issue?
 
+>This “resource exports to GDP” measure was originally developed by
+>Sachs & Warner (1995) and later adopted by Collier & Hoeffler (1998) and many
+>others—including, regrettably, me (Ross 2001a).
+
 --
 
    
