@@ -106,6 +106,12 @@ $$ y = \beta \hat{x} +\varepsilon $$
 - Instrument is exogenous
 - _Exclusion Restriction Condition_
 
+--
+
+### Discussion:
+## Why do Fearon+Laitin and Collier+co. have "different" findings?
+
+----
 
 
 ----
