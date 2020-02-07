@@ -128,7 +128,7 @@ TABLE
 
 ### Endogeneity of "Resources to GDP"
 
-**Reverse Cauality** Civil War $\rightarrow$ GDP
+**Reverse Causality** Civil War $\rightarrow$ GDP
 - This is an endogeneity issue where civil war affects non-resource sector
 
 **Spurious Correlation**  (OVB)
