@@ -149,8 +149,12 @@ TABLE
     - Weakens the state
     - Increases risk of conflict due to trade shocks
     - Lengthens civil war
+<br></br>
 
 [1] Aside: see Sanchez de la Sierra's work in the DRC if you're interested in this
+
+----
+
 ### Questions?
  
 (Reminder - I have OH after tutorial)
