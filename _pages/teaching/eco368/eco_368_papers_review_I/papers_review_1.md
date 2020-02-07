@@ -69,15 +69,44 @@ Main Conclusions
 - In this paper, Collier, Hoeffler, and Rohner expand on their original work
     - Include more recent data
     - Address some of the concerns raised by others (including some of Fearon and Laitin's concerns)
-    - Maintain that the "Greed" argument holds
+    - Maintain that the "Greed" argument holds, with some "weak" evidence for the feasibility hypothesis
 
- --
+--
  
  TABLE 
  
- --
+--
  
- 
+**Some Select Results**
+- Civil war tends to occur in places with low GDP.
+    - How do they interpret this?
+- The effect of primary commodity exports has an "inverted U shape"
+    - How do they conclude this?
+    - Interpretation?
+
+--
+
+### Robustness Checks
+
+TABLE
+
+--
+
+### Quick Metrics Recap: 2SLS
+
+- Goal: solving endogeneity problem
+**Estimation:**
+- Step 1: Regress
+$$ x = \gamma z + u $$
+- Step 2: Regress
+$$ y = \beta \hat{x} +\varepsilon $$
+
+**Assumptions:**
+- Instrument is relevant
+- Instrument is exogenous
+- _Exclusion Restriction Condition_
+
+
 
 ----
 ### Questions?
