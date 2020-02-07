@@ -55,8 +55,29 @@ dario.toman@utoronto.ca
 
 TABLE
 
--- 
-    
+--
+
+Main Conclusions
+
+
+----
+
+## Collier, Hoeffler, and Rohner(2009)
+
+--
+
+- In this paper, Collier, Hoeffler, and Rohner expand on their original work
+    - Include more recent data
+    - Address some of the concerns raised by others (including some of Fearon and Laitin's concerns)
+    - Maintain that the "Greed" argument holds
+
+ --
+ 
+ TABLE 
+ 
+ --
+ 
+ 
 
 ----
 ### Questions?
