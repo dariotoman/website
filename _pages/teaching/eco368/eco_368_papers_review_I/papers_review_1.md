@@ -42,7 +42,23 @@ dario.toman@utoronto.ca
 
 ----
 
+## Fearon and Laitin (2003)
 
+--
+
+- Fearon and Laitin are concerned with prevalence of civil war since 1990
+    - They argue that these insurgencies occur where they are feasible
+    - They view insurgency as a "technology" - what do they mean by this?
+- Main Hypothesis: Weak governments provide good settings for insurgency
+
+--
+
+TABLE
+
+-- 
+    
+
+----
 ### Questions?
  
 (Reminder - I have OH after tutorial)
