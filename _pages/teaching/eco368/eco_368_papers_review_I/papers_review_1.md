@@ -76,7 +76,7 @@ Main Conclusions
 ![c_results](img/collier_results.png) 
  
 --
- 
+
 **Some Select Results**
 - Civil war tends to occur in places with low GDP.
     - How do they interpret this?
