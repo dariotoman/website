@@ -145,8 +145,9 @@ TABLE
 -Suggests that resource wealth:
     - Increases the value of the state as a target
     - Increases value of sovereignty in resource rich regions [1]
+    - 
 
-[1] Asside: see Sanchez de la Sierra's work in the DRC if you're interested in this
+[1] Aside: see Sanchez de la Sierra's work in the DRC if you're interested in this
 ### Questions?
  
 (Reminder - I have OH after tutorial)
