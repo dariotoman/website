@@ -75,7 +75,7 @@ Main Conclusions
  
  TABLE 
  
---
+ --
  
 **Some Select Results**
 - Civil war tends to occur in places with low GDP.
@@ -95,6 +95,7 @@ TABLE
 ### Quick Metrics Recap: 2SLS
 
 - Goal: solving endogeneity problem
+
 **Estimation:**
 - Step 1: Regress
 $$ x = \gamma z + u $$
