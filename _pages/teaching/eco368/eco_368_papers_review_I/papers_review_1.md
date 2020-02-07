@@ -57,7 +57,16 @@ dario.toman@utoronto.ca
 
 --
 
-Main Conclusions
+**Key Results:**
+- Conflict occurs in "weak" states:
+    - Poor
+    - "New"
+    - "Unstable"
+    - Oil Exporters
+    - Anocracy
+- Little evidence oto support grievances
+    
+
 
 
 ----
