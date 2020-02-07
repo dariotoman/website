@@ -33,6 +33,16 @@ dario.toman@utoronto.ca
 **Grievance**
 - Armed conflict is a result of rebellion over issues related to identity (ethnicity, race, class), not economics.
 
+--
+
+- The debate over "Greed and Grievances" was largely sparked by a report written by Paul Collier and Anke Hoeffler in 2000
+- In this report, the authors made a strong case for the "Greed" case
+    - They find that civil war is correlated with factors related to greed, rather than grievances
+- This model and its conclusions drew lots of criticism
+
+----
+
+
 ### Questions?
  
 (Reminder - I have OH after tutorial)
