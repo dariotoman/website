@@ -74,7 +74,7 @@ Main Conclusions
 --
 
 ![c_results](img/collier_results.png) 
- 
+
 --
 
 **Some Select Results**
