@@ -153,6 +153,16 @@ TABLE
 
 [1] Aside: see Sanchez de la Sierra's work in the DRC if you're interested in this
 
+--
+
+### Main Conclusions
+- Exogenous measures of resources robustly correlated with onset of civil war
+- Oil and diamond production lead to civil wars through:
+    - promoting insurgency in resource rich areas
+    - Trade shocks
+- Conflict duration is linked to contraband:
+    - Gemstones, timber, narcotics
+
 ----
 
 ### Questions?
