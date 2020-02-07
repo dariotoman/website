@@ -175,7 +175,7 @@ dario.toman@utoronto.ca
 
 ----
 
-### So, do you believe be "greed" argument?
+### So, do you believe the "greed" argument?
 
 ----
 
