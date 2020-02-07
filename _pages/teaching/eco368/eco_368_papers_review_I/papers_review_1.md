@@ -97,10 +97,8 @@ TABLE
 - Goal: solving endogeneity problem
 
 **Estimation:**
-- Step 1: Regress
-$$ x = \gamma z + u $$
-- Step 2: Regress
-$$ y = \beta \hat{x} +\varepsilon $$
+- Step 1: Regress $ x = \gamma z + u $
+- Step 2: Regress $ y = \beta \hat{x} +\varepsilon $
 
 **Assumptions:**
 - Instrument is relevant
@@ -114,8 +112,19 @@ $$ y = \beta \hat{x} +\varepsilon $$
 
 ----
 
+## Ross (2006)
 
-----
+--
+
+- Ross (2006) focus on "resource" curses as the reason for civil conflict
+- Fearon and Laitin (2003) and Collier (2004, 2009) already address resources
+    - What is the issue?
+
+--
+
+   
+
+
 ### Questions?
  
 (Reminder - I have OH after tutorial)
