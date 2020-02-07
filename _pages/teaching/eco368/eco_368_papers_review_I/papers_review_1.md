@@ -64,7 +64,7 @@ dario.toman@utoronto.ca
     - "Unstable"
     - Oil Exporters
     - Anocracy
-- Little evidence oto support grievances
+- Little evidence to support grievances
     
 
 
