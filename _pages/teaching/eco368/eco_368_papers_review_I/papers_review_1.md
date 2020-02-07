@@ -175,8 +175,10 @@ TABLE
     - **Vertical Inequality:** Inequality between individuals
     - **Horizontal Inequality:** Inequality between groups
     - See Frances Stewart's work if you are interested in this
-    
+
+
 ----
+
 
 ### Questions?
  
