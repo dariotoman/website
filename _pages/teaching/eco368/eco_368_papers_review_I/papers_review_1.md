@@ -165,6 +165,19 @@ TABLE
 
 ----
 
+### So, do you believe be "greed" argument?
+
+----
+
+- This debate is still not settled
+    - "Grievances" are somewhat harder to measure than "greed"
+- One of the leading theories for the grievances side is _horizontal inequality_
+    - **Vertical Inequality:** Inequality between individuals
+    - **Horizontal Inequality:** Inequality between groups
+    - See Frances Stewart's work if you are interested in this
+    
+----
+
 ### Questions?
  
 (Reminder - I have OH after tutorial)
