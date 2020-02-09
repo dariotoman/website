@@ -23,7 +23,7 @@ Education
 
 Experience
 ======
-**University of Toronto,** _Toronto, Ontario (2019)_ <br>
+**University of Toronto,** _Toronto, Ontario (2019 - )_ <br>
 Research Assistant, Support: Gustavo Bobonis
 
 **Global Public Policy Institute,** _Berlin, Germany (2017)_ <br>
