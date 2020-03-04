@@ -154,8 +154,11 @@ Y_{0i} &\text{ if not treated } (D_i=0)
 
 --
  
-\begin{align} \mathbb{E}[Y_i | D_i=1] - \mathbb{E}[Y_i | D_i=0] &= \color{red}{{\mathbb{E}[Y_{1i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=1]}} \\\\ 
-& \qquad + \mathbb{E}[Y_{0i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=0] \end{align}
+\begin{align} \mathbb{E}[Y_i | D_i=1] - \mathbb{E}[Y_i | D_i=0] &= \overbrace{\mathbb{E}[Y_{1i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=1]} \\\\ 
+& \qquad + \underbrace{\mathbb{E}[Y_{0i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=0]} \\\\
+&= \text{Average Treatment Effect on the Treated} \\\\
+& \qquad + \text{Selection Bias}
+ \end{align}
 
 
 ----
