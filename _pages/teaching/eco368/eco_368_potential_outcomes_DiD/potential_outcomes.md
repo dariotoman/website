@@ -107,6 +107,7 @@ $$ \mathbb{E}[\text{Height} | \text{Occupation = Firefighter}]$$
 ## Potential Outcome Notation
 
 - We will denote treatment of individual using $D_i = {0,1}$ : 
+ 
  \begin{equation} D_i =
  \begin{cases}  
  1 & \text{if treated} \\\\
@@ -114,10 +115,12 @@ $$ \mathbb{E}[\text{Height} | \text{Occupation = Firefighter}]$$
  \end{cases}
 \end{equation}
 - We think of each individual $i$ having _latent_ potential outcome $Y_i$:
-$$ Y_i= \begin{cases}
+$$ 
+Y_i= \begin{cases}
 Y_{1i} \text{if treated }(D_i=1) \\
 Y_{0i} \text{if not treated} (D_i=0) 
-\end{cases} $$
+\end{cases} 
+$$
 
 
 ----
