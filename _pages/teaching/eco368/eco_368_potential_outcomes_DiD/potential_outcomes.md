@@ -125,6 +125,7 @@ Y_{0i} \text{if not treated} (D_i=0)
 \end{equation}
 
 
+--
 
 
 ----
