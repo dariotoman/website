@@ -77,7 +77,15 @@ $$ \mathbb{E}[\text{Height} | \text{Occupation = Firefighter}]$$
 </tbody>
 </table>
 
+--
 
+### Do hospitals make people healthier?
+
+- A Naïve comparison of averages will lead you to conclude that hospitals make people sicker! 
+- Why is this the case?
+    - Clearly, the people who go to hospitals are very different from people who don't...
+        - Typically people who choose to go to a hospital are already sick.
+- Simply comparing the _treated_ population to the _untreated_ population will introduce **Selection Bias**
 ----
 
 ### Questions?
