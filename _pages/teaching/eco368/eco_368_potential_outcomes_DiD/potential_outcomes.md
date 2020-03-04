@@ -32,9 +32,11 @@ dario.toman@mail.utoronto.ca
 
 $$ \mathbb{E}[X|Y=y] $$
 
-- Example: $ \mathbb{E}[\text{Height} | \text{Occupation = Firefighter}]$
+- Example: 
+$$ \mathbb{E}[\text{Height} | \text{Occupation = Firefighter}]$$
 
 ----
+
 
 ### Questions?
 
