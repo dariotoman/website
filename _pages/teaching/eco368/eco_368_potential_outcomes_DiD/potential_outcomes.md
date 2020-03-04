@@ -117,12 +117,12 @@ $$ \mathbb{E}[\text{Height} | \text{Occupation = Firefighter}]$$
 
 - We think of each individual $i$ having _latent_ potential outcome $Y_i$:
 
-\begin{equation} Y_i= 
-\begin{cases}
-Y_{1i} & \text{ if treated }(D_i=1) \\\\
-Y_{0i} &\text{ if not treated } (D_i=0) 
-\end{cases} 
-\end{equation}
+ \begin{equation} Y_i= 
+ \begin{cases}
+ Y_{1i} & \text{ if treated }(D_i=1) \\\\
+ Y_{0i} & \text{ if not treated } (D_i=0) 
+ \end{cases} 
+ \end{equation}
 
 - NOTE: For any individual we can only observe $Y_{1i}$ **OR** $Y_{0i}$ !!!
 
@@ -171,7 +171,17 @@ $$ \mathbb{E}[Y_{0i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=0] = 0 $$
 
 - Randomization does not allow for selection into treatment, so we are able to eliminate any selection bias.
     - The "Randomista Movement" has largely been built on this principle (See Nobel Prize winners Duflo, Banerjee, and Kremer)
+    
+--
 
+### What if we can't randomize
+
+- Sometimes randomization is not feasible.
+    - It could be too costly
+    - Ethical Issues
+- In these cases we are able to use models that are able to account for the selection bias in some way (usually by assumption)
+    - Regression Discontinuity (RD)
+    - Differences in Differences (DiD)
 
 ----
 
