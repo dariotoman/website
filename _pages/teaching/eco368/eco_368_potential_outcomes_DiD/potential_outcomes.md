@@ -141,6 +141,21 @@ Y_{0i} &\text{ if not treated } (D_i=0)
     - John Smith's health in the world where he goes to the hospital, and
     - John Smith's health in the world where he does not got to the hospital.
 
+--
+
+### Selection Bias
+
+**What went wrong in our hospital example?**
+
+- We did a Naïve comparison of averages:
+
+\begin{equation}
+    \begin{align}
+        \mathbb{E}[Y_i | D_i=1] - \mathbb{E}[Y_i | D_i=0] & = \mathbb{E}[Y_{1i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=0] \\\\
+                                                          & = \mathbb{E}[Y_{1i} | D_i=1] + \mathbb{E}[Y_{1i} | D_i=1] - \mathbb{E}[Y_{1i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=0]
+    \end{align}
+\end{equation}
+
 ----
 
 ### Questions?
