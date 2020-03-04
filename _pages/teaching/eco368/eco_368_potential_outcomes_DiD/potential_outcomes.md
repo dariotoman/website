@@ -28,10 +28,11 @@ dario.toman@mail.utoronto.ca
 
 ### Probability Recap
 
-To understand this tutorial, it is crucial that you understand conditional expectations:
+- To understand this tutorial, it is crucial that you understand conditional expectations:
 
 $$ \mathbb{E}[X|Y=y] $$
 
+- Example: $ \mathbb{E}[\text{Height} | \text{Occupation = Firefighter}]$
 
 ----
 
