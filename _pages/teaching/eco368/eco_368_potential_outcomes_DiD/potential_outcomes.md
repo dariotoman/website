@@ -154,14 +154,28 @@ Y_{0i} &\text{ if not treated } (D_i=0)
 
 --
  
-\begin{align} \mathbb{E}[Y_i | D_i=1] - \mathbb{E}[Y_i | D_i=0] &= \overbrace{\mathbb{E}[Y_{1i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=1]} \\\\ 
-& \qquad + \underbrace{\mathbb{E}[Y_{0i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=0]} \\\\
+\begin{align} \mathbb{E}[Y_i | D_i=1] - \mathbb{E}[Y_i | D_i=0] &= \mathbb{E}[Y_{1i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=1] \\\\ 
+& \qquad + \mathbb{E}[Y_{0i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=0] \\\\
 &= \text{Average Treatment Effect on the Treated} \\\\
 & \qquad + \text{Selection Bias}
  \end{align}
 
+--
+
+### The Ideal Experiment
+
+- Our goal in is to somehow eliminate the selection bias, so that we can estimate the Average Treatment Effect
+- One way we can do this is through randomization! If we are able to properly randomize, we get:
+
+$$ \mathbb{E}[Y_{0i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=0] = 0 $$
+
+- Randomization does not allow for selection into treatment, so we are able to eliminate any selection bias.
+    - The "Randomista Movement" has largely been built on this principle (See Nobel Prize winners Duflo, Banerjee, and Kremer)
+
 
 ----
+
+
 
 ### Questions?
 
