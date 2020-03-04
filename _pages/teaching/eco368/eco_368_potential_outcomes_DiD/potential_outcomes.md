@@ -154,7 +154,7 @@ Y_{0i} &\text{ if not treated } (D_i=0)
 
 --
  
-\begin{align} \mathbb{E}[Y_i | D_i=1] - \mathbb{E}[Y_i | D_i=0] &= \underset{\mathbb{E}[Y_{1i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=1]}_{\text{asdfadsf}} \\\\ 
+\begin{align} \mathbb{E}[Y_i | D_i=1] - \mathbb{E}[Y_i | D_i=0] &= \color{red}{{\mathbb{E}[Y_{1i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=1]}} \\\\ 
 & \qquad + \mathbb{E}[Y_{0i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=0] \end{align}
 
 
