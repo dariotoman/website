@@ -104,9 +104,9 @@ $$ \mathbb{E}[\text{Height} | \text{Occupation = Firefighter}]$$
 
 --
 
-## Potential Outcome Notation
+### Potential Outcome Notation
 
-- We will denote treatment of individual using $D_i = {0,1}$ : 
+- We will denote treatment of individual using $D_i = \{0,1\}$ : 
  
  \begin{equation} D_i =
  \begin{cases}  
@@ -125,10 +125,19 @@ Y_{0i} \text{ if not treated } (D_i=0)
 \end{cases} 
 \end{equation}
 
-**NOTE: For any individual we can only observe** $Y_{1i}$ **OR** $Y_{0i}$ **!!!**
+- **NOTE: For any individual we can only observe** $Y_{1i}$ **OR** $Y_{0i}$ **!!!**
 
 --
 
+### The Problem of Causal Inference
+
+- We would like to know:
+    - The causal effect of $D_i$ for individual $i$: $Y_{1i}-Y{0i}$
+    - The average causal effect: $ \mathbb{E}[Y_{1i}-Y_{0i}] $
+- **But** it is impossible to observe both $Y_{1i}$ and $Y_{0i}$
+- In the hospital problem, you would need to know:
+    - John Smith's health in the world where he goes to the hospital, and
+    - John Smith's health in the world where he does not got to the hospital.
 
 ----
 
