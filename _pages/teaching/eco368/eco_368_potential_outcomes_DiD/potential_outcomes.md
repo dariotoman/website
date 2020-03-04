@@ -106,7 +106,7 @@ $$ \mathbb{E}[\text{Height} | \text{Occupation = Firefighter}]$$
 
 ## Potential Outcome Notation
 
-- We will denote treatment of individual using $D_i = {0,1}$ :
+- We will denote treatment of individual using $D_i = {0,1}$ : 
  
  \begin{cases} 
  1 & \text{if treated}
