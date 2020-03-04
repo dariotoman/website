@@ -132,7 +132,7 @@ Y_{0i} &\text{ if not treated } (D_i=0)
 ### The Problem of Causal Inference
 
 - We would like to know:
-    - The causal effect of $D_i$ for individual $i$: $Y_{1i}-Y{0i}$
+    - The causal effect of $D_i$ for individual $i$: $Y_{1i}-Y_{0i}$
     - The average causal effect: $ \mathbb{E}[Y_{1i}-Y_{0i}] $
 - **But** it is impossible to observe both $Y_{1i}$ and $Y_{0i}$
 <br></br>
