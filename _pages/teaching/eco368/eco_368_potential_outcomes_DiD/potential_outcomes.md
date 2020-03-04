@@ -147,7 +147,7 @@ Y_{0i} &\text{ if not treated } (D_i=0)
 
 **What went wrong in our hospital example?**
 
-- We did a Naïve comparison of averages:
+- We did a Naïve comparison of averages: 
 
 $$    
 \begin{align}
