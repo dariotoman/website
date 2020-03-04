@@ -85,7 +85,18 @@ $$ \mathbb{E}[\text{Height} | \text{Occupation = Firefighter}]$$
 - Why is this the case?
     - Clearly, the people who go to hospitals are very different from people who don't...
         - Typically people who choose to go to a hospital are already sick.
-- Simply comparing the _treated_ population to the _untreated_ population will introduce **Selection Bias**
+- Simply comparing the _treated_ population to the _untreated_ or _control_ population will introduce **Selection Bias**
+
+--
+
+## Potential Outcome Models
+
+- Potential Outcome primarily aim to address this issue of selection bias when estimating the _causal effect_ of a treatment. 
+- In this context **treatment** refers to some kind of intervention. Could be:
+    - A hospital visit
+    - Implementation of an aid program
+    - Exposure to conflict
+
 ----
 
 ### Questions?
