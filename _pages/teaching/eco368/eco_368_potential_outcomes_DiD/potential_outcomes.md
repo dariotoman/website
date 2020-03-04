@@ -136,7 +136,7 @@ Y_{0i} \text{ if not treated } (D_i=0)
     - The causal effect of $D_i$ for individual $i$: $Y_{1i}-Y{0i}$
     - The average causal effect: $ \mathbb{E}[Y_{1i}-Y_{0i}] $
 - **But** it is impossible to observe both $Y_{1i}$ and $Y_{0i}$
-<br><\br>
+<br></br>
 
 - In the hospital problem, you would need to know:
     - John Smith's health in the world where he goes to the hospital, and
