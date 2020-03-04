@@ -119,10 +119,11 @@ $$ \mathbb{E}[\text{Height} | \text{Occupation = Firefighter}]$$
 \begin{equation}
 Y_i= 
 \begin{cases}
-Y_{1i} \text{if treated }(D_i=1) \\
+Y_{1i} \text{if treated }(D_i=1) \\\\
 Y_{0i} \text{if not treated} (D_i=0) 
 \end{cases} 
 \end{equation}
+
 
 
 
