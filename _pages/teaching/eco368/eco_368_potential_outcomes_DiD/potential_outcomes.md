@@ -52,29 +52,33 @@ $$ \mathbb{E}[\text{Height} | \text{Occupation = Firefighter}]$$
 
 --
 
-<table>
-<thead>
-<tr>
-<th>Group</th>
-<th>Sample Size</th>
-<th>Mean Health Status</th>
-<th>Std. Error</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Hospital</td>
-<td>7,774</td>
-<td>3.21</td>
-<td>0.014</td>
-</tr>
-<tr>
-<td>No Hospital</td>
-<td>90,049</td>
-<td>3.93</td>
-<td>0.003</td>
-</tr>
-</tbody>
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-ur59{border-color:#343434;text-align:left;vertical-align:top}
+.tg .tg-a072{font-weight:bold;border-color:#343434;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-ur59"></th>
+    <th class="tg-a072">Sample Size</th>
+    <th class="tg-a072">Mean Health Status</th>
+    <th class="tg-a072">Std. Error</th>
+  </tr>
+  <tr>
+    <td class="tg-a072">Hospital</td>
+    <td class="tg-ur59">7,774</td>
+    <td class="tg-ur59">3.21</td>
+    <td class="tg-ur59">0.014</td>
+  </tr>
+  <tr>
+    <td class="tg-a072">No Hospital</td>
+    <td class="tg-ur59">90,049</td>
+    <td class="tg-ur59">3.93</td>
+    <td class="tg-ur59">0.003</td>
+  </tr>
 </table>
 
 --
@@ -96,6 +100,10 @@ $$ \mathbb{E}[\text{Height} | \text{Occupation = Firefighter}]$$
     - A hospital visit
     - Implementation of an aid program
     - Exposure to conflict
+    
+--
+
+
 
 ----
 
