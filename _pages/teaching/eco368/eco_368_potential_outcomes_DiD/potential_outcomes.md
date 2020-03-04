@@ -51,13 +51,15 @@ $$ \mathbb{E}[\text{Height} | \text{Occupation = Firefighter}]$$
     - "Would you say your health in general is excellent, very good, good, fair, or poor?"
 - This data allows you to identify individuals who visit hospitals, and their health.
 
-----
+--
 
 | Group       | Sample Size | Mean Health Status | Std. Error |
 |-------------|-------------|--------------------|------------|
 | Hospital    | 7,774       | 3.21               | 0.014      |
 | No Hospital | 90,049      | 3.93               | 0.003      |
 
+
+----
 
 ### Questions?
 
