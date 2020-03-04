@@ -54,9 +54,10 @@ $$ \mathbb{E}[\text{Height} | \text{Occupation = Firefighter}]$$
 
 
 <style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg  {border-collapse:collapse;border-spacing:0;border-width:1px;border-style:solid;border-color:#ccc;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:17px 15px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:17px 15px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
+.tg .tg-76mh{font-size:medium;border-color:#343434;text-align:left;vertical-align:top}
 .tg .tg-ur59{border-color:#343434;text-align:left;vertical-align:top}
 .tg .tg-a072{font-weight:bold;border-color:#343434;text-align:left;vertical-align:top}
 </style>
@@ -77,10 +78,9 @@ $$ \mathbb{E}[\text{Height} | \text{Occupation = Firefighter}]$$
     <td class="tg-a072">No Hospital</td>
     <td class="tg-ur59">90,049</td>
     <td class="tg-ur59">3.93</td>
-    <td class="tg-ur59">0.003</td>
+    <td class="tg-76mh">0.003</td>
   </tr>
 </table>
-
 --
 
 ### Do hospitals make people healthier?
@@ -103,6 +103,9 @@ $$ \mathbb{E}[\text{Height} | \text{Occupation = Firefighter}]$$
     
 --
 
+## Potential Outcome Notation
+
+We will denote treatment of individual using
 
 
 ----
