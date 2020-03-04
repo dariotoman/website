@@ -52,10 +52,30 @@ $$ \mathbb{E}[\text{Height} | \text{Occupation = Firefighter}]$$
 
 --
 
-| Group       | Sample Size | Mean Health Status | Std. Error |
-|-------------|-------------|--------------------|------------|
-| Hospital    | 7,774       | 3.21               | 0.014      |
-| No Hospital | 90,049      | 3.93               | 0.003      |
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>Sample Size</th>
+<th>Mean Health Status</th>
+<th>Std. Error</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hospital</td>
+<td>7,774</td>
+<td>3.21</td>
+<td>0.014</td>
+</tr>
+<tr>
+<td>No Hospital</td>
+<td>90,049</td>
+<td>3.93</td>
+<td>0.003</td>
+</tr>
+</tbody>
+</table>
 
 
 ----
