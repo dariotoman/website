@@ -81,6 +81,7 @@ $$ \mathbb{E}[\text{Height} | \text{Occupation = Firefighter}]$$
     <td class="tg-76mh">0.003</td>
   </tr>
 </table>
+
 --
 
 ### Do hospitals make people healthier?
@@ -100,7 +101,7 @@ $$ \mathbb{E}[\text{Height} | \text{Occupation = Firefighter}]$$
     - A hospital visit
     - Implementation of an aid program
     - Exposure to conflict
-    
+
 --
 
 ## Potential Outcome Notation
