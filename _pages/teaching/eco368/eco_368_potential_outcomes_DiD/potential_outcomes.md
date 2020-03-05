@@ -224,8 +224,8 @@ $$ \mathbb{E}[\delta_i] = \mathbb{E}[M_{1i}-M_{0i}] $$
 ### Motivational Example: Erotic Services
 
 - In order to calculate $\mathbb{E}[M_{1i}-M_{0i}] $ we need to see
-    - $\M_{1i}$ is the number of murdered women in SF with the classifieds
-    - $\M_{0i}$ is the number of murdered women in SF without the classifieds
+    - $M_{1i}$ is the number of murdered women in SF with the classifieds
+    - $M_{0i}$ is the number of murdered women in SF without the classifieds
 - We only ever observe one of these two outcomes at any given time.
 
 --
@@ -234,7 +234,29 @@ $$ \mathbb{E}[\delta_i] = \mathbb{E}[M_{1i}-M_{0i}] $$
     - **No!** There might be an existing trend in murders that was happening regardless of the classifieds
     - By comparing the _Pre_ and _Post_ periods, we cannot seperate the time trend ($T$) from the treatment effect $\delta$
 
-
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;border-width:1px;border-style:solid;border-color:#ccc;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:17px 15px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:17px 15px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
+.tg .tg-9h7x{font-size:32px;border-color:#343434;text-align:center;vertical-align:top}
+.tg .tg-qvc6{font-size:32px;border-color:#343434;text-align:right;vertical-align:top}
+.tg .tg-lw9u{font-weight:bold;font-size:32px;border-color:#343434;text-align:center;vertical-align:top}
+.tg .tg-zzuf{font-weight:bold;font-size:32px;border-color:#343434;text-align:right;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-qvc6"></th>
+    <th class="tg-lw9u">Pre</th>
+    <th class="tg-lw9u">Post</th>
+    <th class="tg-lw9u">Difference</th>
+  </tr>
+  <tr>
+    <td class="tg-zzuf">San Francisco</td>
+    <td class="tg-9h7x">M = SF</td>
+    <td class="tg-9h7x">M = SF + T + 𝛿</td>
+    <td class="tg-9h7x">T + 𝛿</td>
+  </tr>
+</table>
 
 ----
 
