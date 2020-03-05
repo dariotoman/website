@@ -230,33 +230,73 @@ $$ \mathbb{E}[\delta_i] = \mathbb{E}[M_{1i}-M_{0i}] $$
 
 --
 
+### Difference 1
+
+- Can we simply Compare SF to a different city? Say New York, where there weren't such classifieds?
+    - **NO!** New York City and San Francisco are very different, so we have selection bias!
+    - By comparing the SF and NYC, we cannot separate the treatment effect $\delta$ from the effect of the city.
+    
+<br></br>
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:17px 15px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:17px 15px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
+.tg .tg-scg7{font-weight:bold;font-size:32px;background-color:#f0f0f0;border-color:#000000;text-align:right;vertical-align:top}
+.tg .tg-k3hh{font-weight:bold;font-size:32px;background-color:#ffffff;border-color:#000000;text-align:right;vertical-align:top}
+.tg .tg-lm3l{font-weight:bold;font-size:32px;border-color:#000000;text-align:center;vertical-align:top}
+.tg .tg-gzlc{font-size:32px;border-color:#000000;text-align:center;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-k3hh"></th>
+    <th class="tg-lm3l">Outcome</th>
+  </tr>
+  <tr>
+    <td class="tg-scg7">San Francisco</td>
+    <td class="tg-gzlc">M= SF</td>
+  </tr>
+  <tr>
+    <td class="tg-scg7">New York</td>
+    <td class="tg-gzlc">M= NYC</td>
+  </tr>
+  <tr>
+    <td class="tg-scg7">Difference</td>
+    <td class="tg-lm3l">SF-NYC</td>
+  </tr>
+</table>
+
+--
+
+### Difference 2
+
 - Can we simply compare SF before and after the introduction?
-    - **No!** There might be an existing trend in murders that was happening regardless of the classifieds
-    - By comparing the _Pre_ and _Post_ periods, we cannot seperate the time trend ($T$) from the treatment effect $\delta$
+    - **NO!** There might be an existing trend in murders that was happening regardless of the classifieds
+    - By comparing the _Pre_ and _Post_ periods, we cannot separate the time trend ($T$) from the treatment effect $\delta$
 
 <br></br>
 
 <style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;border-width:1px;border-style:solid;border-color:#ccc;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:17px 15px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:17px 15px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
-.tg .tg-9h7x{font-size:32px;border-color:#343434;text-align:center;vertical-align:top}
-.tg .tg-qvc6{font-size:32px;border-color:#343434;text-align:right;vertical-align:top}
-.tg .tg-lw9u{font-weight:bold;font-size:32px;border-color:#343434;text-align:center;vertical-align:top}
-.tg .tg-zzuf{font-weight:bold;font-size:32px;border-color:#343434;text-align:right;vertical-align:top}
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:17px 15px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:17px 15px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
+.tg .tg-scg7{font-weight:bold;font-size:32px;background-color:#f0f0f0;border-color:#000000;text-align:right;vertical-align:top}
+.tg .tg-k3hh{font-weight:bold;font-size:32px;background-color:#ffffff;border-color:#000000;text-align:right;vertical-align:top}
+.tg .tg-lm3l{font-weight:bold;font-size:32px;border-color:#000000;text-align:center;vertical-align:top}
+.tg .tg-gzlc{font-size:32px;border-color:#000000;text-align:center;vertical-align:top}
 </style>
 <table class="tg">
   <tr>
-    <th class="tg-qvc6"></th>
-    <th class="tg-lw9u">Pre</th>
-    <th class="tg-lw9u">Post</th>
-    <th class="tg-lw9u">Difference</th>
+    <th class="tg-k3hh"></th>
+    <th class="tg-lm3l">Pre</th>
+    <th class="tg-lm3l">Post</th>
+    <th class="tg-lm3l">Difference</th>
   </tr>
   <tr>
-    <td class="tg-zzuf">San Francisco</td>
-    <td class="tg-9h7x">M = SF</td>
-    <td class="tg-9h7x">M = SF + T + 𝛿</td>
-    <td class="tg-9h7x">T + 𝛿</td>
+    <td class="tg-scg7">San Francisco</td>
+    <td class="tg-gzlc">M= SF</td>
+    <td class="tg-gzlc">M = SF + T + 𝛿</td>
+    <td class="tg-lm3l">T + 𝛿</td>
   </tr>
 </table>
 
@@ -269,26 +309,26 @@ $$ \mathbb{E}[\delta_i] = \mathbb{E}[M_{1i}-M_{0i}] $$
 .tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
 .tg td{font-family:Arial, sans-serif;font-size:14px;padding:17px 15px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
 .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:17px 15px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
-.tg .tg-grl2{font-weight:bold;font-size:32px;border-color:#000000;text-align:right;vertical-align:top}
 .tg .tg-scg7{font-weight:bold;font-size:32px;background-color:#f0f0f0;border-color:#000000;text-align:right;vertical-align:top}
+.tg .tg-k3hh{font-weight:bold;font-size:32px;background-color:#ffffff;border-color:#000000;text-align:right;vertical-align:top}
 .tg .tg-lm3l{font-weight:bold;font-size:32px;border-color:#000000;text-align:center;vertical-align:top}
 .tg .tg-gzlc{font-size:32px;border-color:#000000;text-align:center;vertical-align:top}
 </style>
 <table class="tg">
   <tr>
-    <th class="tg-grl2">City</th>
+    <th class="tg-k3hh"></th>
     <th class="tg-lm3l">Pre</th>
     <th class="tg-lm3l">Post</th>
     <th class="tg-lm3l">Difference</th>
   </tr>
   <tr>
-    <td class="tg-grl2">San Francisco</td>
+    <td class="tg-scg7">San Francisco</td>
     <td class="tg-gzlc">M= SF</td>
     <td class="tg-gzlc">M = SF + T + 𝛿</td>
     <td class="tg-lm3l">T + 𝛿</td>
   </tr>
   <tr>
-    <td class="tg-grl2">New York</td>
+    <td class="tg-scg7">New York</td>
     <td class="tg-gzlc">M= NYC</td>
     <td class="tg-gzlc">M = NYC + T</td>
     <td class="tg-lm3l">T</td>
