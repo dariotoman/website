@@ -211,8 +211,8 @@ $$ \mathbb{E}[\delta_i] = \mathbb{E}[M_{1i}-M_{0i}] $$
 
 - Where:
     - $\delta_i$ is the treatment effect on individual $i$
-    - $\M_{1i}$ is the number of murdered women in SF with the classifieds
-    - $\M_{0i}$ is the number of murdered women in SF without the classifieds
+    - $M_{1i}$ is the number of murdered women in SF with the classifieds
+    - $M_{0i}$ is the number of murdered women in SF without the classifieds
 - Can we calculate this?
 
 --
@@ -230,9 +230,11 @@ $$ \mathbb{E}[\delta_i] = \mathbb{E}[M_{1i}-M_{0i}] $$
 
 --
 
--Can we simply compare SF before and after the introduction?
+- Can we simply compare SF before and after the introduction?
     - **No!** There might be an existing trend in murders that was happening regardless of the classifieds
     - By comparing the _Pre_ and _Post_ periods, we cannot seperate the time trend ($T$) from the treatment effect $\delta$
+
+<br></br>
 
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;border-width:1px;border-style:solid;border-color:#ccc;}
