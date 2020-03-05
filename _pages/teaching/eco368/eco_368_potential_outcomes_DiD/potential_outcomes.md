@@ -258,6 +258,49 @@ $$ \mathbb{E}[\delta_i] = \mathbb{E}[M_{1i}-M_{0i}] $$
   </tr>
 </table>
 
+
+--
+
+--
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:17px 15px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:17px 15px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
+.tg .tg-grl2{font-weight:bold;font-size:32px;border-color:#000000;text-align:right;vertical-align:top}
+.tg .tg-scg7{font-weight:bold;font-size:32px;background-color:#f0f0f0;border-color:#000000;text-align:right;vertical-align:top}
+.tg .tg-lm3l{font-weight:bold;font-size:32px;border-color:#000000;text-align:center;vertical-align:top}
+.tg .tg-gzlc{font-size:32px;border-color:#000000;text-align:center;vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-grl2">City</th>
+    <th class="tg-lm3l">Pre</th>
+    <th class="tg-lm3l">Post</th>
+    <th class="tg-lm3l">Difference</th>
+  </tr>
+  <tr>
+    <td class="tg-grl2">San Francisco</td>
+    <td class="tg-gzlc">M= SF</td>
+    <td class="tg-gzlc">M = SF + T + 𝛿</td>
+    <td class="tg-lm3l">T + 𝛿</td>
+  </tr>
+  <tr>
+    <td class="tg-grl2">New York</td>
+    <td class="tg-gzlc">M= NYC</td>
+    <td class="tg-gzlc">M = NYC + T</td>
+    <td class="tg-lm3l">T</td>
+  </tr>
+  <tr>
+    <td class="tg-scg7">Difference</td>
+    <td class="tg-lm3l">SF-NYC</td>
+    <td class="tg-lm3l">SF - NYC + 𝛿</td>
+    <td class="tg-lm3l">𝛿</td>
+  </tr>
+</table>
+
+--
+
 ----
 
 ### Questions?
