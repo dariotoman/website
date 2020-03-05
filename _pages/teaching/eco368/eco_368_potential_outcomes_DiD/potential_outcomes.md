@@ -57,28 +57,29 @@ $$ \mathbb{E}[\text{Height} | \text{Occupation = Firefighter}]$$
 .tg  {border-collapse:collapse;border-spacing:0;border-width:1px;border-style:solid;border-color:#ccc;}
 .tg td{font-family:Arial, sans-serif;font-size:14px;padding:17px 15px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
 .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:17px 15px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
-.tg .tg-76mh{font-size:medium;border-color:#343434;text-align:left;vertical-align:top}
-.tg .tg-ur59{border-color:#343434;text-align:left;vertical-align:top}
-.tg .tg-a072{font-weight:bold;border-color:#343434;text-align:left;vertical-align:top}
+.tg .tg-9h7x{font-size:32px;border-color:#343434;text-align:center;vertical-align:top}
+.tg .tg-qvc6{font-size:32px;border-color:#343434;text-align:right;vertical-align:top}
+.tg .tg-lw9u{font-weight:bold;font-size:32px;border-color:#343434;text-align:center;vertical-align:top}
+.tg .tg-zzuf{font-weight:bold;font-size:32px;border-color:#343434;text-align:right;vertical-align:top}
 </style>
 <table class="tg">
   <tr>
-    <th class="tg-ur59"></th>
-    <th class="tg-a072">Sample Size</th>
-    <th class="tg-a072">Mean Health Status</th>
-    <th class="tg-a072">Std. Error</th>
+    <th class="tg-qvc6"></th>
+    <th class="tg-lw9u">Sample Size</th>
+    <th class="tg-lw9u">Mean Health Status</th>
+    <th class="tg-lw9u">Std. Error</th>
   </tr>
   <tr>
-    <td class="tg-a072">Hospital</td>
-    <td class="tg-ur59">7,774</td>
-    <td class="tg-ur59">3.21</td>
-    <td class="tg-ur59">0.014</td>
+    <td class="tg-zzuf">Hospital</td>
+    <td class="tg-9h7x">7,774</td>
+    <td class="tg-9h7x">3.21</td>
+    <td class="tg-9h7x">0.014</td>
   </tr>
   <tr>
-    <td class="tg-a072">No Hospital</td>
-    <td class="tg-ur59">90,049</td>
-    <td class="tg-ur59">3.93</td>
-    <td class="tg-ur59">0.003</td>
+    <td class="tg-zzuf">No Hospital</td>
+    <td class="tg-9h7x">90,049</td>
+    <td class="tg-9h7x">3.93</td>
+    <td class="tg-9h7x">0.003</td>
   </tr>
 </table>
 
