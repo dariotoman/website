@@ -55,8 +55,8 @@ $$ \mathbb{E}[\text{Height} | \text{Occupation = Firefighter}]$$
 
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;border-width:1px;border-style:solid;border-color:#ccc;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:17px 15px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:17px 15px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
+.tg td{font-family:Arial, sans-serif;font-size:25px;padding:17px 15px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
+.tg th{font-family:Arial, sans-serif;font-size:25px;font-weight:normal;padding:17px 15px;border-style:solid;border-width:0px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#f0f0f0;}
 .tg .tg-76mh{font-size:medium;border-color:#343434;text-align:left;vertical-align:top}
 .tg .tg-ur59{border-color:#343434;text-align:left;vertical-align:top}
 .tg .tg-a072{font-weight:bold;border-color:#343434;text-align:left;vertical-align:top}
