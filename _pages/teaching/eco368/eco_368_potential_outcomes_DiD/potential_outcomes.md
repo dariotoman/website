@@ -170,9 +170,10 @@ $$ \mathbb{E}[\text{Height} | \text{Occupation = Firefighter}]$$
 $$ \mathbb{E}[Y_{0i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=0] = 0 $$
 
 - Randomization does not allow for selection into treatment, so we are able to eliminate any selection bias.
-    - The "Randomista Movement" has largely been built on this principle (See Nobel Prize winners Duflo, Banerjee, and Kremer)
-    
+    - The "Randomista Movement" has largely been built on this principle (See Nobel Prize winners Duflo, Banerjee, and Kremer) 
+
 --
+
 
 ### What if we can't randomize
 
