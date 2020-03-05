@@ -188,7 +188,55 @@ $$ \mathbb{E}[Y_{0i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=0] = 0 $$
 
 ----
 
+## Differences in Differences 
+(Reference: Cunningham - _Causal Inference: The Mixtape (V1.7)_ )
 
+----
+
+### Motivational Example: Erotic Services
+
+- In 2002, Craigslist opened a section on its classifieds website called "Erotic Services" (ERS)
+- The introduction of the section caused debate over its effects
+    - Sex workers argued it made them safer (working from home instead of streets)
+    - Activists and law enforcement argued it would facilitate sex trafficking and violence against women
+- This is an empirical question that we have tools to try and address!
+
+--
+
+### Motivational Example: Erotic Services
+
+- In the language of our Potential Outcomes model, we are trying to estimate the average treatment effect:
+
+$$ \mathbb{E}[\delta_i] = \mathbb{E}[M_{1i}-M_{0i}] $$
+
+- Where:
+    - $\delta_i$ is the treatment effect on individual $i$
+    - $\M_{1i}$ is the number of murdered women in SF with the classifieds
+    - $\M_{0i}$ is the number of murdered women in SF without the classifieds
+- Can we calculate this?
+
+--
+
+## NO!
+
+--
+
+### Motivational Example: Erotic Services
+
+- In order to calculate $\mathbb{E}[M_{1i}-M_{0i}] $ we need to see
+    - $\M_{1i}$ is the number of murdered women in SF with the classifieds
+    - $\M_{0i}$ is the number of murdered women in SF without the classifieds
+- We only ever observe one of these two outcomes at any given time.
+
+--
+
+-Can we simply compare SF before and after the introduction?
+    - **No!** There might be an existing trend in murders that was happening regardless of the classifieds
+    - By comparing the _Pre_ and _Post_ periods, we cannot seperate the time trend ($T$) from the treatment effect $\delta$
+
+
+
+----
 
 ### Questions?
 
