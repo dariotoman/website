@@ -303,6 +303,9 @@ $$ \mathbb{E}[\delta_i] = \mathbb{E}[M_{1i}-M_{0i}] $$
 
 --
 
+### Difference in Differences
+Differences in Differences combine these two sources of variation to estimate $\delta$
+
 --
 
 <style type="text/css">
