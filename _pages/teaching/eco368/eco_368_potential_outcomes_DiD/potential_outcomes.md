@@ -348,13 +348,17 @@ Differences in Differences combine these two sources of variation to estimate $\
 
 ### Assumptions in Differences in Differences
 - What assumptions have we implicitly made here?
-    1. The effect of time in SF, $T_{SF}$ is the same as that in NYC $T_{NYC}$.
-    2. $SF - NYC$ in the Pre period is the same as $SF - NYC$ in the post period.
-- Formally, these make up what is commonly called the parallel trends assumption.
+    1. The effect of time in San Francisco, $T_{SF}$,  is the same as that in New York, $T_{NYC}$.
+    2. $SF_{PRE} - NYC_{PRE}$ in the Pre period is the same as $SF_{POST} - NYC_{POST}$ in the post period.
+- Formally, these make up what is commonly called the **parallel trends** assumption.
 
 --
 
-    
+
+
+
+
+
 ----
 
 ### Questions?
