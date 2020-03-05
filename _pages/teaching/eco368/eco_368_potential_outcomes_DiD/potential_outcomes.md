@@ -303,7 +303,7 @@ $$ \mathbb{E}[\delta_i] = \mathbb{E}[M_{1i}-M_{0i}] $$
 
 --
 
-### Difference in Differences
+### Differences in Differences
 Differences in Differences combine these two sources of variation to estimate $\delta$
 
 --
@@ -351,6 +351,9 @@ Differences in Differences combine these two sources of variation to estimate $\
     1. The effect of time in SF, $T_{SF}$ is the same as that in NYC $T_{NYC}$.
     2. $SF - NYC$ in the Pre period is the same as $SF - NYC$ in the post period.
 - Formally, these make up what is commonly called the parallel trends assumption.
+
+--
+
     
 ----
 
