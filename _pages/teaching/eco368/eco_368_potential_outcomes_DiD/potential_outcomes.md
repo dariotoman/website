@@ -160,6 +160,14 @@ $$ \mathbb{E}[\text{Height} | \text{Occupation = Firefighter}]$$
 
 --
 
+--
+ 
+`\begin{align} \mathbb{E}[Y_i | D_i=1] - \mathbb{E}[Y_i | D_i=0] &= \mathbb{E}[Y_{1i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=1] \\\\ 
+& \qquad + \underbrace{\mathbb{E}[Y_{0i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=0]}_{\text{Selection Bias}}
+ \end{align}`
+
+--
+
 ### The Ideal Experiment
 
 - Our goal in is to somehow eliminate the selection bias, so that we can estimate the Average Treatment Effect
