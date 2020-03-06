@@ -354,7 +354,9 @@ Differences in Differences combine these two sources of variation to estimate $\
 
 --
 
- 
+![Parallel](img/parallel.jpeg)
+
+--
 
 
 
