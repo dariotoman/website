@@ -122,7 +122,7 @@ $$ \mathbb{E}[\text{Height} | \text{Occupation = Firefighter}]$$
  \end{cases} 
  \end{equation}
 
-- NOTE: For any individual we can only observe $Y_{1i}$ **OR** $Y_{0i}$ !!!
+- NOTE: For any individual we can only observe one of these two!!!
 
 
 --
@@ -219,8 +219,8 @@ $$ \mathbb{E}[\delta_i] = \mathbb{E}[M_{1i}-M_{0i}] $$
 ### Motivational Example: Erotic Services
 
 - In order to calculate $\mathbb{E}[M_{1i}-M_{0i}] $ we need to see
-    - $M_{1i}$ is the number of murdered women in SF with the classifieds
-    - $M_{0i}$ is the number of murdered women in SF without the classifieds
+    - $M_{1i}$ - the number of murdered women in SF with the classifieds
+    - $M_{0i}$ - the number of murdered women in SF without the classifieds
 - We only ever observe one of these two outcomes at any given time.
 
 --
@@ -266,6 +266,7 @@ $$ \mathbb{E}[\delta_i] = \mathbb{E}[M_{1i}-M_{0i}] $$
 - Can we simply compare SF before and after the introduction?
     - **NO!** There might be an existing trend in murders that was happening regardless of the classifieds
     - By comparing the _Pre_ and _Post_ periods, we cannot separate the time trend ($T$) from the treatment effect $\delta$
+    
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
 .tg td{font-family:Arial, sans-serif;font-size:14px;padding:17px 15px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
@@ -352,7 +353,7 @@ Differences in Differences combine these two sources of variation to estimate $\
 
 - The Parallel Trends Assumption is that we assume that in the absence of treatment, the treated group would follow the same trend as the control group.
     - We effectively assume that the selection bias is constant, and that we can thus account for it
-- This is an assumption that ** is not testable!!** Why?
+- This is an assumption that **is not testable!!** Why?
     - Papers will argue why the assumption is reasonable. 
     - Typically they will show that trends prior to treatment were always parallel.
 
@@ -372,6 +373,17 @@ Differences in Differences combine these two sources of variation to estimate $\
 - The DiD estimate is then:
 \begin{align} (&\text{Treated, Post }-\text{ Treated, Pre}) \\\\ -&(\text{Control, Post } - \text{ Control, Pre}) \\\\ =&\delta \end{align}
 
+--
+
+### DiD Example : Akresh (2011)
+
+![Akresh Graph](img/akresh_graph.png)
+
+--
+
+### DiD Example : Akresh (2011)
+
+![Akresh Table](img/akresh_table.png)
 
 ----
 
