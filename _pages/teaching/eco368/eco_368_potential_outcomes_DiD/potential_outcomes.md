@@ -150,19 +150,10 @@ $$ \mathbb{E}[\text{Height} | \text{Occupation = Firefighter}]$$
 \begin{align} \mathbb{E}[Y_i | D_i=1] - \mathbb{E}[Y_i | D_i=0] & = \mathbb{E}[Y_{1i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=0] \\\\ 
 & = \mathbb{E}[Y_{1i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=1] \\\\ & \qquad + \mathbb{E}[Y_{0i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=0] \end{align}
 
---
- 
-\begin{align} \mathbb{E}[Y_i | D_i=1] - \mathbb{E}[Y_i | D_i=0] &= \mathbb{E}[Y_{1i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=1] \\\\ 
-& \qquad + \mathbb{E}[Y_{0i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=0] \\\\
-&= \text{Average Treatment Effect on the Treated} \\\\
-& \qquad + \text{Selection Bias}
- \end{align}
-
---
 
 --
  
-`\begin{align} \mathbb{E}[Y_i | D_i=1] - \mathbb{E}[Y_i | D_i=0] &= \mathbb{E}[Y_{1i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=1] \\\\ 
+`\begin{align} \mathbb{E}[Y_i | D_i=1] - \mathbb{E}[Y_i | D_i=0] &= \overbrace{\mathbb{E}[Y_{1i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=1]}^{\text{Average Treatment Effect on the Treated}} \\\\ 
 & \qquad + \underbrace{\mathbb{E}[Y_{0i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=0]}_{\text{Selection Bias}}
  \end{align}`
 
