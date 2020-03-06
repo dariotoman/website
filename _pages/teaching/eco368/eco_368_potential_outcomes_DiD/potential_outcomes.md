@@ -364,11 +364,9 @@ Differences in Differences combine these two sources of variation to estimate $\
 
 --
 
-### Differences in Differences in a Regression Framework
+### DiD Regression Framework
 
-sdf
-
-$$Y_{igt} = \alpha + \beta \text{Treated}_{g} + \gamma \text{Post}_t + \delta \text{Treated} \text{Post}_{gt} +\varepsilon_{igt}$$
+$$Y_{igt}$$
 
 - This equation takes values:
     - **Control, Pre:** $\alpha $
