@@ -187,7 +187,7 @@ $$ \mathbb{E}[Y_{0i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=0] = 0 $$
 
 ### Motivational Example: Erotic Services
 
-- In 2002, Craigslist opened a section on its classifieds website called "Erotic Services" (ERS)
+- In 2002, Craigslist opened a section on its San Francisco classifieds website called "Erotic Services" (ERS)
 - The introduction of the section caused debate over its effects
     - Sex workers argued it made them safer (working from home instead of streets)
     - Activists and law enforcement argued it would facilitate sex trafficking and violence against women
@@ -244,7 +244,7 @@ $$ \mathbb{E}[\delta_i] = \mathbb{E}[M_{1i}-M_{0i}] $$
   </tr>
   <tr>
     <td class="tg-scg7">San Francisco</td>
-    <td class="tg-gzlc">M= SF</td>
+    <td class="tg-gzlc">M= SF + 𝛿</td>
   </tr>
   <tr>
     <td class="tg-scg7">New York</td>
@@ -252,7 +252,7 @@ $$ \mathbb{E}[\delta_i] = \mathbb{E}[M_{1i}-M_{0i}] $$
   </tr>
   <tr>
     <td class="tg-scg7">Difference</td>
-    <td class="tg-lm3l">SF-NYC</td>
+    <td class="tg-lm3l">SF - NYC + 𝛿</td>
   </tr>
 </table>
 
