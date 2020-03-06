@@ -359,7 +359,7 @@ Differences in Differences combine these two sources of variation to estimate $\
 
 --
 
-### DiD Regression Framework
+### DiD Regression Framework 
 
 $$Y_{igt}= \alpha + \beta \text{ Treated}_{g}+ \gamma \text{ Post}_t + \delta \text{ Treated}_{gt}$$
 
