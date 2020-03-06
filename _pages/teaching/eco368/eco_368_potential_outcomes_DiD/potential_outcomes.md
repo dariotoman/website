@@ -31,18 +31,14 @@ $$ \mathbb{E}[X|Y=y] $$
 - Example: 
 $$ \mathbb{E}[\text{Height} | \text{Occupation = Firefighter}]$$
 
---
-
-### Numerical Example
-
-
 ----
+
 ## Potential Outcome Models
 (Reference: Angrist & Pischke - _Mostly Harmless Econometrics_)
 
 ----
 
-### Motivation: The health effects of hospital visits
+### Motivation: The Health Effects of Hospital Visits
 
 - Suppose you are interested in studying the health effects of hospital visits, and have access to data from the National Health Interview Survey (NHIS)
 - This data has 2 questions that may be helpful in your analysis:
@@ -358,7 +354,27 @@ Differences in Differences combine these two sources of variation to estimate $\
 
 --
 
+### The Parallel Trends Assumption
 
+- The Parallel Trends Assumption is that we assume that in the absence of treatment, the treated group would follow the same trend as the control group.
+    - We effectively assume that the selection bias is constant, and that we can thus account for it
+- This is an assumption that ** is not testable!!** Why?
+    - Papers will argue why the assumption is reasonable. 
+    - Typically they will show that trends prior to treatment were always parallel.
+
+--
+
+### Differences in Differences in a Regression Framework
+
+$$ Y_{igt} = \alpha + \beta * \text{Treated}_{g} + \gamma \text{Post}_t + \delta \text{Treated} \times \text{Post}_{gt} +\varepsilon_{igt} $$
+
+- This equation takes values:
+    - **Control, Pre:** $\alpha $
+    - **Control, Post:** $\alpha + \gamma$
+    - **Treated, Pre:** $\alpha + \beta$
+    - **Treated, Post:** $\alpha + \beta + \gamma + \delta$
+- The DiD estimate is then:
+$$ (\text{Treated, Post }-{ Treated, Pre})-(\text{Control, Post } - \text{ Control, Pre})=\delta $$
 
 
 ----
