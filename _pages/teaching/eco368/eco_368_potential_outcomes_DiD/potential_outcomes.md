@@ -361,7 +361,7 @@ Differences in Differences combine these two sources of variation to estimate $\
 
 ### DiD Regression Framework 
 
-$$Y_{igt}= \alpha + \beta \text{ Treated}_{g}+ \gamma \text{ Post}_t + \delta \text{ Treated*Post} + \varepsilon_{igt}$$
+Consider: $Y_{igt}= \alpha + \beta \text{ Treated}_{g}+ \gamma \text{ Post}_t + \delta \text{ Treated*Post} + \varepsilon_{igt}$
 
 - This equation takes values:
     - **Control, Pre:** $\alpha $
