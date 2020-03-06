@@ -366,7 +366,9 @@ Differences in Differences combine these two sources of variation to estimate $\
 
 ### Differences in Differences in a Regression Framework
 
-$$ Y_{igt} = \alpha + \beta \text{Treated}_{g} + \gamma \text{Post}_t + \delta \text{Treated} \times \text{Post}_{gt} +\varepsilon_{igt} $$
+sdf
+
+$$Y_{igt} = \alpha + \beta \text{Treated}_{g} + \gamma \text{Post}_t + \delta \text{Treated} \times \text{Post}_{gt} +\varepsilon_{igt}$$
 
 - This equation takes values:
     - **Control, Pre:** $\alpha $
