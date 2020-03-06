@@ -371,7 +371,7 @@ Differences in Differences combine these two sources of variation to estimate $\
     - **Treated, Pre:** $\alpha + \beta$
     - **Treated, Post:** $\alpha + \beta + \gamma + \delta$
 - The DiD estimate is then:
-\begin{align} (&\text{Treated, Post }-{ Treated, Pre}) \\\\ -&(\text{Control, Post } - \text{ Control, Pre}) \\\\ =&\delta \end{align}
+\begin{align} (&\text{Treated, Post }-\text{ Treated, Pre}) \\\\ -&(\text{Control, Post } - \text{ Control, Pre}) \\\\ =&\delta \end{align}
 
 
 ----
