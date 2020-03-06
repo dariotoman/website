@@ -368,7 +368,7 @@ Differences in Differences combine these two sources of variation to estimate $\
 
 sdf
 
-$$Y_{igt} = \alpha + \beta \text{Treated}_{g} + \gamma \text{Post}_t + \delta \text{Treated} \times \text{Post}_{gt} +\varepsilon_{igt}$$
+$$Y_{igt} = \alpha + \beta \text{Treated}_{g} + \gamma \text{Post}_t + \delta \text{Treated} \text{Post}_{gt} +\varepsilon_{igt}$$
 
 - This equation takes values:
     - **Control, Pre:** $\alpha $
@@ -376,7 +376,7 @@ $$Y_{igt} = \alpha + \beta \text{Treated}_{g} + \gamma \text{Post}_t + \delta \t
     - **Treated, Pre:** $\alpha + \beta$
     - **Treated, Post:** $\alpha + \beta + \gamma + \delta$
 - The DiD estimate is then:
-$$ (\text{Treated, Post }-{ Treated, Pre})-(\text{Control, Post } - \text{ Control, Pre})=\delta $$
+\begin{align} (&\text{Treated, Post }-{ Treated, Pre}) \\\\ -&(\text{Control, Post } - \text{ Control, Pre}) \\\\ =&\delta \end{align}
 
 
 ----
