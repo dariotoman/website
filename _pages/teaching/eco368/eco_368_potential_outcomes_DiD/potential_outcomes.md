@@ -141,9 +141,8 @@ $$ \mathbb{E}[\text{Height} | \text{Occupation = Firefighter}]$$
 
 ### Selection Bias
 
-#### What went wrong in our hospital example?
-
-- We did a Naïve comparison of averages: 
+- What went wrong in our hospital example?
+    - We did a Naïve comparison of averages: 
 
 `\begin{align} \mathbb{E}[Y_i | D_i=1] - \mathbb{E}[Y_i | D_i=0] & = \mathbb{E}[Y_{1i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=0] \\\\ 
 & = \mathbb{E}[Y_{1i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=1] \\\\ & \qquad + \mathbb{E}[Y_{0i} | D_i=1] - \mathbb{E}[Y_{0i} | D_i=0] \end{align}`
