@@ -232,8 +232,6 @@ $$ \mathbb{E}[\delta_i] = \mathbb{E}[M_{1i}-M_{0i}] $$
     - **NO!** New York City and San Francisco are very different, so we have selection bias!
     - By comparing the SF and NYC, we cannot separate the treatment effect $\delta$ from the effect of the city.
     
-<br></br>
-
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
 .tg td{font-family:Arial, sans-serif;font-size:14px;padding:17px 15px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
@@ -269,9 +267,6 @@ $$ \mathbb{E}[\delta_i] = \mathbb{E}[M_{1i}-M_{0i}] $$
 - Can we simply compare SF before and after the introduction?
     - **NO!** There might be an existing trend in murders that was happening regardless of the classifieds
     - By comparing the _Pre_ and _Post_ periods, we cannot separate the time trend ($T$) from the treatment effect $\delta$
-
-<br></br>
-
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;border-color:#ccc;}
 .tg td{font-family:Arial, sans-serif;font-size:14px;padding:17px 15px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#ccc;color:#333;background-color:#fff;}
@@ -366,7 +361,7 @@ Differences in Differences combine these two sources of variation to estimate $\
 
 ### DiD Regression Framework
 
-$$Y_{igt}= \alpha + \beta \text{ Treated}_{g}+ \gamma \text{Post}_t + \delta$$
+$$Y_{igt}= \alpha + \beta \text{ Treated}_{g}+ \gamma \text{ Post}_t + \delta\text{ Treated} \text{*Post}_{gt}$$
 
 - This equation takes values:
     - **Control, Pre:** $\alpha $
