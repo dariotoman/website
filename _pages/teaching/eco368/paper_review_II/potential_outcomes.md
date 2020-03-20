@@ -83,7 +83,7 @@ dario.toman@mail.utoronto.ca
 - These negative effects are persistent!
     - Fetal Origins Hypothesis: Barker posits that adult human capital is highly affected by fetal health
     - Almond (2006) find that in-utero exposure to the 1918 Spanish Flu reduces education, income, SES
-    
+
 --
 
 ### Identification Strategy
