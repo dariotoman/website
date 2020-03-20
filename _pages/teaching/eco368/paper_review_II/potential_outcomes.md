@@ -25,11 +25,12 @@ dario.toman@mail.utoronto.ca
 
 ## Differences in Differencs Recap
 
---
+----
 
 - Differences in Differences can be used in quasi-experimental settings to estimate average treatment effects.
 - Using Differences in Differences, we are able to construct a counterfactual to treatment, under certain assumptions.
 - In this way, we can account for selection-bias that may otherwise contaminate our results. 
+
 --
 
 ![Parallel](img/parallel.jpeg)
@@ -91,16 +92,41 @@ dario.toman@mail.utoronto.ca
     - Difference 1: Birth Location
     - Difference 2: Birth Cohort
 
+--
 
-### DiD Example : Akresh (2011)
+![Akresh Table](img/akresh_t2.png)
+
+--
+
+![Akresh Table](img/akresh_t3.png)
+
+--
+
+![Akresh Table](img/akresh_table.png)
+
+--
+
+### Assessing the Assumptions
+
+- Remember, there are a few assumptions that we make for when doing diff-in-diff
+    - Parallel Trends
+    - No Spillovers
+    - No other Treatments
+
+--
+
+## Parallel Trends
 
 ![Akresh Graph](img/akresh_graph.png)
 
 --
 
-### DiD Example : Akresh (2011)
+### Spillovers
 
-![Akresh Table](img/akresh_table.png)
+- The Stable Unit of Treatment Value tells us that those who are treated must be remain in our treatment group!
+    - In the context of the Akresh et al. paper, we might be worried about migration. 
+    - How might migration bias their results? Why?
+
 
 ----
 
