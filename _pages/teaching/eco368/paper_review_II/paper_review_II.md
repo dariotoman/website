@@ -137,7 +137,54 @@ dario.toman@mail.utoronto.ca
 
 ----
 
-## 
+## Bellows and Miguel (2009)
+
+----
+
+### Motivation 
+
+- Economists often think of civil war as development in reverse - yet, a number of rapid growth success stories following civil war (Uganda and Mozambique) suggest that war is not necessarily only negative.
+- Historical evidence suggests that wars play an important role in state formation and creation of institutions
+- **Goal:** To assess effects of conflict exposure on individuals’ participation in collective action and aggregate community-level economic outcomes following conflict
+
+
+--
+
+- Bellows and Miguel Consider two levels of analysis
+    - Individual Level:
+    - Chiefdom Level: Use outcomes at a higher level of aggregation than the household to see if there are changes in social norms and institutions as a result of the conflict.
+
+-- 
+
+### Chiefdom Level Identification Strategy
+
+- A chiefdom is an administrative unit of about 20,000 people. They are quite salient - individuals usually refer to their residence location by chiefdom.
+- Bellows and Miguel estimate effects by comparing 152 chiefdoms that were exposed to different levels of conflict instensity
+- Control for local characteristics to isolate variation in conflict:
+    - Diamond mines
+    - Roads
+    - Population density
+    - Prewar socioeconomic measures
+- Use district Fixed Effects to account for unobserved regional variation.
+
+--
+
+### Bellows and Miguel are using a fixed-effects model - what is the identifying assumption? What should we be concerned about?
+
+--
+
+![BM Table](img/bm_t7.png)
+
+--
+
+![BM Table](img/bm_t8.png)
+
+--
+
+![BM Table](img/bm_t9.png)
+
+--
+
 
 
 
