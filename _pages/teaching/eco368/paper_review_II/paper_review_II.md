@@ -76,7 +76,7 @@ dario.toman@mail.utoronto.ca
 
 --
 
-### Why Should we care?
+### Why Should We Care?
 
 - Exposure to shocks in-utero has strong effects on health and human capital outcomes.
     - Camacho (2008) finds that conflict-induced stress has negative effects on birth weight.
