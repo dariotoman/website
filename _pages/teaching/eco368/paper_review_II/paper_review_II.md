@@ -65,7 +65,7 @@ dario.toman@mail.utoronto.ca
 
 ----
 
-## Akresh et. Al (2011)
+## Akresh et. al (2011)
 
 ----
 
@@ -151,8 +151,20 @@ dario.toman@mail.utoronto.ca
 --
 
 - Bellows and Miguel Consider two levels of analysis
-    - Individual Level:
+    - Individual Level: Look at individual's exposure to conflict to see how his predicts political and collective action behaviour of the individuals.
     - Chiefdom Level: Use outcomes at a higher level of aggregation than the household to see if there are changes in social norms and institutions as a result of the conflict.
+
+--
+
+### Individual Level - Summary 
+
+- Bellows and Miguel use a fixed effects (enumeration area) regression, to compare individuals within villages
+    - Identifying assumption: Variation of conflict exposure within village, conditional on observables, is as good as random.
+- We may be concerned that individuals "select" into victimization.
+    - Bellows and Miguel argue this is not the case:
+        - Follow Altonji et al. (2005)
+        - Restrict sample to groups where targeting is unlikely.
+- **Results:** Individuals exposed to conflict are more likely to be engaged in community and politics.
 
 --
 
@@ -185,7 +197,13 @@ dario.toman@mail.utoronto.ca
 
 --
 
+### Conclusions
 
+- Individual level results show that exposure to violence increases political participation. Individuals are more likely to:
+    - Attend community meetings
+    - Join political parties
+    - Vote
+- Fail to reject the null hypothesis for Chiefdom level effects
 
 
 ----
