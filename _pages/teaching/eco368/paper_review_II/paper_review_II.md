@@ -154,7 +154,7 @@ dario.toman@mail.utoronto.ca
     - Individual Level:
     - Chiefdom Level: Use outcomes at a higher level of aggregation than the household to see if there are changes in social norms and institutions as a result of the conflict.
 
--- 
+--
 
 ### Chiefdom Level Identification Strategy
 
@@ -169,7 +169,7 @@ dario.toman@mail.utoronto.ca
 
 --
 
-### Bellows and Miguel are using a fixed-effects model - what is the identifying assumption? What should we be concerned about?
+### Bellows and Miguel are using a fixed-effects model. What is the identifying assumption? What should we be concerned about?
 
 --
 
