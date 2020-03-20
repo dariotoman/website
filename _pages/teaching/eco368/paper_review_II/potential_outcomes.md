@@ -127,6 +127,12 @@ dario.toman@mail.utoronto.ca
     - In the context of the Akresh et al. paper, we might be worried about migration. 
     - How might migration bias their results? Why?
 
+--
+
+## Robustness Checks
+
+![Akresh Table](img/akresh_t6.png)
+
 
 ----
 
