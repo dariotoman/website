@@ -115,7 +115,7 @@ dario.toman@mail.utoronto.ca
 
 --
 
-## Parallel Trends
+### Parallel Trends
 
 ![Akresh Graph](img/akresh_graph.png)
 
@@ -126,12 +126,19 @@ dario.toman@mail.utoronto.ca
 - The Stable Unit of Treatment Value tells us that those who are treated must be remain in our treatment group!
     - In the context of the Akresh et al. paper, we might be worried about migration. 
     - How might migration bias their results? Why?
+    - They also do not observe children who died before their survey in 1992. How might this bias the results?
 
 --
 
-## Robustness Checks
+### Robustness Checks
 
 ![Akresh Table](img/akresh_t6.png)
+
+
+----
+
+## 
+
 
 
 ----
