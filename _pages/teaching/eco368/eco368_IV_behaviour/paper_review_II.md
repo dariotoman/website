@@ -106,9 +106,54 @@ $$Cov(D_i, u_{it})=0$$
 
 --
 
+### Exclusion Restriction
 
+- The exclusion restriction is **not a testable assumption**, instead authors must argue that it holds. 
+- Intuitively, the exclusion restriction says that the instrument must not influence the outcome variable in any way, other than through the endogenous variable. 
 
+--
 
+### Common Issues with IV
+
+- Endogenous Instruments
+    - If the Instrument you use fails the Exclusion Restriction, you have not fixed the problem
+- Weak Instrument Bias
+- IV estimates the Local Average Treatment Effect (LATE)
+
+--
+
+## Examples of IV
+
+--
+
+## Example of IV: Voors et al. (2012)
+
+- **Goal:** Assess the effect of conflict exposure on behaviour
+- **Potential Endogeneity:** Exposure to conflict may be correlated with unobserved characteristics
+<br></br>
+- **Proposed IV**: Distance from capital city
+
+--
+
+### What are the assumptions?
+
+1. **Relevance:**
+
+<br></br>
+
+2. **Exclusion Restriction:**
+
+--
+
+### Assessing the Assumtions
+
+1. **Relevance:** We can test the "First Stage" of the IV using an F-Test.
+
+<br></br>
+
+2. **Exclusion Restriction:** Can you think of way how distance from capital city may affect behaviour other than conflict?
+
+--
 
 
 
