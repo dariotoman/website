@@ -87,6 +87,14 @@ $$Cov(D_i, u_{it})=0$$
 
 --
 
+### IV Approach: Veteran Earnings
+
+- The RSN you get is random - it is assigned randomly based on date of birth, and thus should not be correlated with any individual characteristics. 
+- So, if we compare individuals with low RSNs to individuals with high RSNs, any changes in long-term income must be an effect of the military service. 
+- Angrist does this, and finds that white men who served in Vietnam earn 15% less than those that did not.
+
+--
+
 ### Instrumental Variable
 
 - An Instrument ($Z_i$) has 2 key properties:
