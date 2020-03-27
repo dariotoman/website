@@ -47,9 +47,9 @@ dario.toman@mail.utoronto.ca
 
 ### Example: Callen et al. (2014)
 
-**Goal:** Assess the effect of exposure to violence on individuals' risk preferences - in particular their **certainty premium**. 
+- **Goal:** Assess the effect of exposure to violence on individuals' risk preferences - in particular their **certainty premium**. 
 
-**Definition:** Certainty Premium is the cost you are willing to pay to have a certain outcome, rather than an uncertain outcome, relative to what an expected utility model predicts.
+- **Definition:** Certainty Premium is the cost you are willing to pay to have a certain outcome, rather than an uncertain outcome, relative to what an expected utility model predicts.
 
 --
 
