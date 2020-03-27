@@ -27,6 +27,43 @@ dario.toman@mail.utoronto.ca
 
 ----
 
+### Behavioural Responses to Conflict
+
+- We have already talked about how conflict influences collective action following the conclusion of civil war
+    - Bellows and Miguel (2009), Blattman (2009)
+    
+- It is natural to ask if individual's preferences are affected by exposure to conflict
+
+--
+
+### Behavioural Responses to Conflict
+
+- To asses the effect of conflict on individuals preferences, we use methods imported from Behavioural/Experimental Economics
+- Using experiments, we can estimate certain characteristics of individuals preferences.
+    - For example: Risk preferences
+- We can then use conflict data to see if exposure to violence predicts respondents' preferences.
+
+--
+
+### Example: Callen et al. (2014)
+
+**Goal:** Assess the effect of exposure to violence on individuals' risk preferences - in particular their **certainty premium**. 
+
+**Definition:** Certainty Premium is the cost you are willing to pay to have a certain outcome, rather than an uncertain outcome, relative to what an expected utility model predicts.
+
+--
+
+### Callen et al. (2014) - Experiment
+
+![Callen](img/callen_experiment.png)
+
+--
+
+### Callen et al. (2014)
+
+- Using the experimental results, Callen et al. can back out the certainty premium
+
+
 ----
 
 ## Instrumental Variables 
