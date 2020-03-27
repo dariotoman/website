@@ -62,6 +62,7 @@ dario.toman@mail.utoronto.ca
 ### Callen et al. (2014)
 
 - Using the experimental results, Callen et al. can back out the certainty premium
+- They then use exposure to conflict to try and explain variation in the estimated certainty premium
 
 
 ----
