@@ -113,6 +113,18 @@ $$Cov(D_i, u_{it})=0$$
 
 --
 
+### Estimation of IV (2SLS)
+
+- Say we want to estimate the effect of $x$ on $y$, and have an instrument $z$:
+
+**First stage:**
+$$ x = \gamma_0 + \gamma_1 z + \eta $$
+
+**Second stage:**
+$$ y = \beta_0 + \beta_1 \hat{x} + \varepsilon$$
+
+--
+
 ### Common Issues with IV
 
 - Endogenous Instruments
@@ -129,7 +141,7 @@ $$Cov(D_i, u_{it})=0$$
 ## Example of IV: Voors et al. (2012)
 
 - **Goal:** Assess the effect of conflict exposure on behaviour
-- **Potential Endogeneity:** Exposure to conflict may be correlated with unobserved characteristics
+- **Endogeneity Problem:** Exposure to conflict may be correlated with unobserved characteristics
 <br></br>
 - **Proposed IV**: Distance from capital city
 
@@ -155,8 +167,45 @@ $$Cov(D_i, u_{it})=0$$
 
 --
 
+## Example of IV: Miguel et al. (2004) + Others!
 
+**Goal:** Estimate the effect on income on civil war prevalence
+**Endogeneity Problem:** Civil War decreases income (reverse causality), income may be correlated with unobserved variables that also affect conflict (OVB)
+<br></br>
+- **Proposed IV**: Rainfall Shocks
 
+--
+
+### What are the assumptions?
+
+1. **Relevance:**
+
+<br></br>
+
+2. **Exclusion Restriction:**
+
+--
+
+### Does rainfall pass the Exclusion Restriction Assumption?
+
+--
+
+### Critique of Rainfall as an instrument (Sarsons, 2015)
+
+- Heather Sarsons provides evidence that the rainfall IV should be questioned!
+- In her paper, Sarsons looks at the effect of rainfall on rioting in India
+- She compares the effect of rainfall on riots in "Dam-fed" and "Non-Dam-Fed" districts.
+- **What would we expect if the Exclusion Restriction Assumption" were valid?**
+
+--
+
+### Critique of Rainfall as an instrument (Sarsons, 2015)
+
+- If rainfall only affects rioting through the income channel, we would expect to see the "Dam-fed" region's rioting to be less affected by rainfall.
+    - Damns provide protection from rain shocks, so the shocks should not affect income in these regions
+- She reports that positive rainfall shocks reduce riots in dam-fed regions.
+- There must be some mechanism other than income through which rainfall affects riots!
+ 
 ----
 
 ### Questions?
