@@ -243,7 +243,7 @@ $$ y = \beta_0 + \beta_1 \hat{x} + \varepsilon$$
     - Damns provide protection from rain shocks, so the shocks should not affect income in these regions
 - She reports that positive rainfall shocks reduce riots in dam-fed regions.
 - There must be some mechanism other than income through which rainfall affects riots!
- 
+
 ----
 
 ### Questions?
