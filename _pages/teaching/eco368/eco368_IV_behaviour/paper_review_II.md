@@ -73,20 +73,24 @@ $$Cov(D_i, u_{it})=0$$
 ### The IV Approach
 
 - The basic idea of the instrumental variable approach is to try and isolate _random variation_ in the _endogenous variable._
-- If we study the effect of just this random compontent of the variation, we can unbiasedly estimate changes in the outcome associated with it. 
+- If we study the effect of just this random component of the variation, we can unbiasedly estimate changes in the outcome associated with it. 
 
 --
 
 ### IV Approach: Veteran Earnings
 
 - During the Vietnam War, there was a draft lottery
-- People's draft eligibility was assigned using
+- People's draft eligibility was assigned using a formal lottery for each draft-eligible year:
+    - Each man was assigned a "Random Sequence Number" (RSN)  between 1 and 365 based on their date of birth
+    - RSN 001 would be first to be drafted first, followed by 002, ...
+- Clearly, the probability of service decreases with RSN
 
 --
 
 ### Instrumental Variable
 
-- An Instrument (Z_i) has 2 key properties:
+- An Instrument ($Z_i$) has 2 key properties:
+
 1. **Relevance:** The instrument must be correlated with the causal (endogenous) variable of interest:
     $$ Cov(Z_i, X_i)=0 $$
 2. **Exclusion Restriction:** The instrument must be uncorrelated with any other determinants of the dependent variable.
