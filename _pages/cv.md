@@ -45,6 +45,10 @@ Editor-in-Chief (2018 Issue),  Managing Editor (2017 issue), Editor (2016 issue)
 ## Programing:
 STATA, R, Python, Visual Basic, LaTeX, Gephi, ArcGIS
 
+Awards
+======
+**Social Sciences and Humanities Research Council (SSHRC) Doctoral Fellowship** _(2021- )_ <br>
+
 Personal
 =========
 
