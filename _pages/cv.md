@@ -53,7 +53,7 @@ Personal
 =========
 
 **Languages:** <br>
-_Fluent_: English, French, Bosnian-Serbian-Croatian, Hungarian. _Intermediate_: German. 
+_Fluent_: English, French, Bosnian-Serbian-Croatian, Hungarian. _Intermediate_: German. _Beginner:_ Spanish.
 
 **Citizenships:**<br>
 Canadian, Hungarian, Serbian
