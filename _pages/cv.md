@@ -49,13 +49,17 @@ STATA, R, Python, Visual Basic, LaTeX, Gephi, ArcGIS
 Awards
 ======
 **Social Sciences and Humanities Research Council (SSHRC) Doctoral Fellowship** <br>_(Awarded 4 years, held: 2021- )_ <br>
+
 **Mobilizing Insights in Defence and
-Security (MINDS) Doctoral Award** <br>_(2020-2021)_ <br>
+Security (MINDS) Doctoral Award** <br> _(2020-2021)_ <br>
+
 Personal
 =========
 
 **Languages:** <br>
-_Fluent_: English, French, Bosnian-Serbian-Croatian, Hungarian. _Intermediate_: German. _Beginner:_ Spanish.
+_Fluent_: English, French, Bosnian-Serbian-Croatian, Hungarian. <br>
+_Intermediate_: German. <br>
+_Beginner:_ Spanish.<br>
 
 **Citizenships:**<br>
 Canadian, Hungarian, Serbian
