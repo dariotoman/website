@@ -36,10 +36,11 @@ Editor-in-Chief (2018 Issue),  Managing Editor (2017 issue), Editor (2016 issue)
 **ECO403 - Topics in Development** Fall 2018, Fall 2019 <br>
 **ECO324 - Economic Development** Fall 2019 <br> 
 **ECO368 - Economics of Conflict** Winter 2020 <br>
+**PCJ460 - Causes and Consequences of Civil War** Winter 2020 <br>
 **ECO334 - Political Economy** Winter 2019 <br>
 **ECO320 – Economics and the Law** Winter 2019  <br>
 **ECO101 - Principles of Microeconomics** Fall 2018 <br>
-**ECO102 - Principles of Macroeconomics** Winter 2020 [Head TA - 1200 students] <br>
+**ECO102 - Principles of Macroeconomics** Winter 2020 [Head TA - 1200 students] ,  Winter 2021 [Head TA - 2000 students] <br>
 
 
 ## Programing:
@@ -47,8 +48,9 @@ STATA, R, Python, Visual Basic, LaTeX, Gephi, ArcGIS
 
 Awards
 ======
-**Social Sciences and Humanities Research Council (SSHRC) Doctoral Fellowship** _(2021- )_ <br>
-
+**Social Sciences and Humanities Research Council (SSHRC) Doctoral Fellowship** <br>_(Awarded 4 years, held: 2021- )_ <br>
+**Mobilizing Insights in Defence and
+Security (MINDS) Doctoral Award** <br>_(2020-2021)_ <br>
 Personal
 =========
 
