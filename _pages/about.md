@@ -8,6 +8,9 @@ redirect_from:
   - /about.html
 ---
 
+table {
+border: none;
+}
 
 <table>
 <colgroup>
