@@ -14,7 +14,7 @@ redirect_from:
     I am a PhD student at the University of Toronto studying Economics. My research interests lie in applied microeconometrics, with a particular focus on the nexus of political economy of development and violence.
   </div>
   <div class="column">
-      <img src='/images/profile.png'>
+      <img src='/images/profile.png' width = 300>
   </div>
 </div> 
 
