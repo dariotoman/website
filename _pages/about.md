@@ -9,4 +9,4 @@ redirect_from:
 ---
 
 I am a PhD student at the University of Toronto studying Economics. My research interests lie in applied microeconometrics, with a particular focus on the nexus of political economy of development and violence.
-<img src='/images/rowing_toronto.jpg' width='600px'>
+<img src='/images/rowing_toronto.jpg'>
