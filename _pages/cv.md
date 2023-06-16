@@ -9,5 +9,5 @@ redirect_from:
 
 {% include base_path %}
 
-<object data="../assets/dario_toman_cv_20221103.pdf" width="1000" height="1200" type='application/pdf'></object>
+<object data="../assets/dario_toman_2023-06-16.pdf" width="1000" height="1200" type='application/pdf'></object>
 
