@@ -82,7 +82,7 @@ analytics:
 author:
   name             : "Dario Toman"
   avatar           : "profile.png"
-  bio              : "I am a PhD student at the University of Toronto studying Economics. My research interests lie in applied microeconomics, with a particular focus on the nexus of political economy of development and violence."
+  bio              : "I am a PhD student at the University of Toronto studying Economics. My research interests lie in applied microeconomics, with a particular focus on political economy and development."
   location         : "Toronto, Ontario"
   employer         : "University of Toronto"
   pubmed           :
@@ -109,7 +109,7 @@ author:
   stackoverflow    :
   steam            :
   tumblr           :
-  twitter          : "DarioToman"
+  twitter          : 
   vine             :
   weibo            :
   xing             :
