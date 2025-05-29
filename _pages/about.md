@@ -8,5 +8,5 @@ redirect_from:
   - /about.html
 ---
 
-I am a PhD student at the University of Toronto studying Economics. My research interests lie in applied microeconomics, with a particular focus on the nexus of political economy of development and violence. 
+I am a PhD student at the University of Toronto studying Economics. My research interests lie in applied microeconomics, with a particular focus on political economy and development. 
 <img src='/images/rowing_toronto.jpg'>
