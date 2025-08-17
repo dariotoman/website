@@ -8,16 +8,23 @@ author_profile: true
 
 # Working Papers
 
-## Electoral Cycles in Female Sterilization 
-*With [Simeon Nichter](https://sites.google.com/site/simeonnichter/home)*. *Under Review* [[Draft](adsf.com)]
+**Electoral Cycles in Female Sterilization** *Under Review* [[Draft](adsf.com)]
+*With [Simeon Nichter](https://sites.google.com/site/simeonnichter/home)*
+<details>
+  <summary><strong>Abstract</strong> (click to expand)</summary>
 
 Many women across the world face substantial challenges in obtaining access to family planning — an important problem emphasized by the Sustainable Development Goals. The present study explores electoral cycles in female sterilization, the most prevalent contraceptive method in the world. We focus on Brazil, a country where many women have unmet demands for sterilization and often queue for many months or even years for their surgeries. Qualitative evidence suggests that local politicians manipulate the provision of publicly funded tubal ligation surgeries for political purposes. We analyze the universe of tubal ligation surgeries performed by the public health system, using regression analysis to examine variation across Brazilian municipalities in 1998-2019.  We find that female sterilizations increase 8.8% during municipal election years. Moreover, they surge during electoral campaigns:  female sterilizations increase 30.5% in the three months before municipal elections.  Findings are similar when adjusting for overall hospitalizations, which rise less than 1% during municipal elections. Female sterilizations have more pronounced electoral cycles than do other elective surgeries (including vasectomies), and no cycles are detected for emergency surgeries. Electoral cycles in female sterilization are concentrated among nonwhite Brazilians, who face substantial health disparities. Female sterilizations increase far more during municipal than national elections, and they spike especially in poor municipalities and in the Northeast region.  More broadly, our findings suggest that Brazilian politicians distort the public provision of contraception, a crucial problem not least because family planning is widely deemed a basic human right.
 
-## Improving Access to Justice for Victims of Intimate Partner Violence: Specialized Domestic Violence Courts in Puerto Rico
-*With [Carolina Arteaga](https://www.carolinaarteaga.com/), [Gustavo Bobonis](https://www.economics.utoronto.ca/gustavo.bobonis), and [Paola Salardi](https://sites.google.com/site/paolasalardi/home?authuser=0).* Draft coming soon.
+</details>
 
+**Improving Access to Justice for Victims of Intimate Partner Violence: Specialized Domestic Violence Courts in Puerto Rico** Draft coming soon.
+*With [Carolina Arteaga](https://www.carolinaarteaga.com/), [Gustavo Bobonis](https://www.economics.utoronto.ca/gustavo.bobonis), and [Paola Salardi](https://sites.google.com/site/paolasalardi/home?authuser=0).* 
+<details>
+  <summary><strong>Abstract</strong> (click to expand)</summary>
+  
 We study the large-scale implementation of a system of specialized domestic violence courts (SDVCs), an innovation in access to justice programs for potential victims of intimate partner violence (IPV) and offenders. Using individual-level administrative data from the universe of civil domestic violence cases in Puerto Rico during the period 2014-2021, we leverage the staggered opening of SDVCs across judicial regions to examine the consequences for victims' judicial protection as well as offender recidivism. Access to SDVCs leads to a considerable 8 percentage points increase in the probability that judges issue a protection order and a 1.7 percentage point (15 percent) decrease in victim and offender reappearance rates within one year of the start of the case. Effects are more pronounced for cases in which parties have children in common and in which access to SDVCs is more limited. Linking the case data to administrative and survey data on judges, we show that the priorities of judges assigned to SDVCs play a prominent role in explaining these outcomes.
 
+</details>
 
 # Published Non-Refereed Work
 
