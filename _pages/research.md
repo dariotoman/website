@@ -1,33 +1,27 @@
 ---
 layout: archive
 title: "Research"
-permalink: /publications/
+permalink: /research/
 author_profile: true
 ---
 
 
-Working Papers
-============
+# Working Papers
 
-### The Effects of Conditional Cash Transfers on Conflict Dynamics in Colombia _(2019_)
-With civil war being a common curse of underdeveloped economies, understanding the effects of aid 
-on armed conflict is of paramount importance in forming development aid policy. In this paper, I 
-consider the effects of the Familias en Acción conditional cash transfer program on conflict dynamics 
-in early 2000s Colombia. By exploiting spatial and temporal heterogeneity in the implementation of the 
-CCT, I am able to recover a differences-in-differences estimate of treatment effect. My results indicate
- that the intervention caused a short-term increase in conflict intensity in municipalities that receive
-  the cash transfer, characterized by more frequent clashes between rebel groups and government forces. 
-  In distinguishing between guerilla-side and government-side mechanisms, I find suggestive evidence that
-   guerilla-side mechanisms are salient, consistent with increased rent-seeking activities, but no conclusive support for the 
-   "Hearts and Minds'' hypothesis.
-   
- [Access Here](https://drive.google.com/file/d/1LFhjJlpNK1urOol5-CCED-2reZm5VfLw/view?usp=sharing)
- 
+## Electoral Cycles in Female Sterilization 
+*With [Simeon Nichter](https://sites.google.com/site/simeonnichter/home)*. *Under Review* [[Draft](adsf.com)]
+
+Many women across the world face substantial challenges in obtaining access to family planning — an important problem emphasized by the Sustainable Development Goals. The present study explores electoral cycles in female sterilization, the most prevalent contraceptive method in the world. We focus on Brazil, a country where many women have unmet demands for sterilization and often queue for many months or even years for their surgeries. Qualitative evidence suggests that local politicians manipulate the provision of publicly funded tubal ligation surgeries for political purposes. We analyze the universe of tubal ligation surgeries performed by the public health system, using regression analysis to examine variation across Brazilian municipalities in 1998-2019.  We find that female sterilizations increase 8.8% during municipal election years. Moreover, they surge during electoral campaigns:  female sterilizations increase 30.5% in the three months before municipal elections.  Findings are similar when adjusting for overall hospitalizations, which rise less than 1% during municipal elections. Female sterilizations have more pronounced electoral cycles than do other elective surgeries (including vasectomies), and no cycles are detected for emergency surgeries. Electoral cycles in female sterilization are concentrated among nonwhite Brazilians, who face substantial health disparities. Female sterilizations increase far more during municipal than national elections, and they spike especially in poor municipalities and in the Northeast region.  More broadly, our findings suggest that Brazilian politicians distort the public provision of contraception, a crucial problem not least because family planning is widely deemed a basic human right.
+
+## Improving Access to Justice for Victims of Intimate Partner Violence: Specialized Domestic Violence Courts in Puerto Rico
+*With [Carolina Arteaga](https://www.carolinaarteaga.com/), [Gustavo Bobonis](https://www.economics.utoronto.ca/gustavo.bobonis), and [Paola Salardi](https://sites.google.com/site/paolasalardi/home?authuser=0).* Draft coming soon.
+
+We study the large-scale implementation of a system of specialized domestic violence courts (SDVCs), an innovation in access to justice programs for potential victims of intimate partner violence (IPV) and offenders. Using individual-level administrative data from the universe of civil domestic violence cases in Puerto Rico during the period 2014-2021, we leverage the staggered opening of SDVCs across judicial regions to examine the consequences for victims' judicial protection as well as offender recidivism. Access to SDVCs leads to a considerable 8 percentage points increase in the probability that judges issue a protection order and a 1.7 percentage point (15 percent) decrease in victim and offender reappearance rates within one year of the start of the case. Effects are more pronounced for cases in which parties have children in common and in which access to SDVCs is more limited. Linking the case data to administrative and survey data on judges, we show that the priorities of judges assigned to SDVCs play a prominent role in explaining these outcomes.
 
 
-Published Work
-==============
-### Toman, D. and Gaus A. (2018). #AUEU: A Twitter analysis of the AU-EU summit 2017. _African Policy Circle_. [Policy Paper]
+# Published Non-Refereed Work
+
+## Toman, D. and Gaus A. (2018). #AUEU: A Twitter analysis of the AU-EU summit 2017. _African Policy Circle_. [Policy Paper]
 
 This paper presents a Twitter analysis of the African Union-European Union Summit (AU-EU Summit), which took place on November 29 and 30, 2017, in Abidjan, Ivory Coast. An analysis of Twitter data offers the opportunity to determine the views of individuals and groups around certain issues. Moreover, it can offer a window into public debates held over social media, how these debates change over time, which communities share what information, and to what extent filter bubbles and insular groups within and across larger communities exist. 
 Examining 46,000 tweets, this Twitter analysis of the 2017 AU-EU Summit shows an engaged but relatively modest online community consisting of core opinion-leaders mainly from Europe who drive the discourse. Moreover, we see a set of self-referencing communities operating on the fringes and with little to no impact on the mainstream discourse. 
