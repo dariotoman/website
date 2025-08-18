@@ -18,7 +18,7 @@ Many women across the world face substantial challenges in obtaining access to f
 </details>
 
 
-**[Improving Access to Justice for Victims of Intimate Partner Violence: Specialized Domestic Violence Courts in Puerto Rico]([..](https://dariotoman.com)/assets/ABST_SDVC_IPV.pdf)**  
+**[Improving Access to Justice for Victims of Intimate Partner Violence: Specialized Domestic Violence Courts in Puerto Rico](https://dariotoman.com)/assets/ABST_SDVC_IPV.pdf)**  
 With [Carolina Arteaga](https://www.carolinaarteaga.com/), [Gustavo Bobonis](https://www.economics.utoronto.ca/gustavo.bobonis), and [Paola Salardi](https://sites.google.com/site/paolasalardi/home?authuser=0).* 
 <details>
   <summary><strong>Abstract</strong> (click to expand)</summary>
