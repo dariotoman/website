@@ -5,10 +5,10 @@ permalink: /research/
 author_profile: true
 ---
 
-<h3 style="margin-top:40px;">Working Papers</h3>
+<h2 style="margin-top:40px;">Working Papers</h2>
 
 **[Partisanship, Electoral Competition, and Candidate Selection](dariotoman.com)** - *Draft coming very soon*  
-*Job Market Paper*<br>
+*Job Market Paper*  
 <details>
   <summary>Abstract (click to expand)</summary>
 
@@ -18,7 +18,7 @@ _COMING VERY SOON_
 
 
 **[Electoral Cycles in Female Sterilization](https://dariotoman.com/assets/nichter_toman_electoral_cycles_sterilizaiton.pdf)** - *Under Review*  
-*With [Simeon Nichter](https://sites.google.com/site/simeonnichter/home)*<br>
+*With [Simeon Nichter](https://sites.google.com/site/simeonnichter/home)*  
 <details>
   <summary>Abstract (click to expand)</summary>
 
@@ -28,7 +28,7 @@ Many women across the world face substantial challenges in obtaining access to f
 
 
 **[Improving Access to Justice for Victims of Intimate Partner Violence: Specialized Domestic Violence Courts in Puerto Rico](https://dariotoman.com/assets/ABST_SDVC_IPV.pdf)**  
-*With [Carolina Arteaga](https://www.carolinaarteaga.com/), [Gustavo Bobonis](https://www.economics.utoronto.ca/gustavo.bobonis), and [Paola Salardi](https://sites.google.com/site/paolasalardi/home?authuser=0).* 
+*With [Carolina Arteaga](https://www.carolinaarteaga.com/), [Gustavo Bobonis](https://www.economics.utoronto.ca/gustavo.bobonis), and [Paola Salardi](https://sites.google.com/site/paolasalardi/home?authuser=0).*  
 <details>
   <summary>Abstract(click to expand)</summary>
   
@@ -39,7 +39,7 @@ We study the large-scale implementation of a system of specialized domestic viol
 
 
 
-<h3 style="margin-top:40px;">Published Non-Refereed Work</h3>
+<h2 style="margin-top:40px;">Published Non-Refereed Work</h2>
 
 **[Local Manufacturing in a Conflict Zone: Lessons from the White Helmets’ PPE Project](https://reachalliance.org/case-study/syrian-white-helmets-manufacturing-ppe-in-a-conflict-zone/) (_Reach Alliance_, 2022)**  
 *With Carolina Canepari, Isabel Davis, Kristyn Lee, and [Stanley Zlotkin](https://www.sickkids.ca/en/staff/z/stanley-zlotkin/)*<br>
