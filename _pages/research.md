@@ -5,8 +5,7 @@ permalink: /research/
 author_profile: true
 ---
 
-
-# Working Papers
+<h3 style="margin-top:40px;">Working Papers</h3>
 
 **[Partisanship, Electoral Competition, and Candidate Selection](dariotoman.com)** - *Draft coming very soon*  
 *Job Market Paper*<br>
@@ -40,7 +39,7 @@ We study the large-scale implementation of a system of specialized domestic viol
 
 
 
-# Published Non-Refereed Work
+<h3 style="margin-top:40px;">Published Non-Refereed Work</h3>
 
 **[Local Manufacturing in a Conflict Zone: Lessons from the White Helmets’ PPE Project](https://reachalliance.org/case-study/syrian-white-helmets-manufacturing-ppe-in-a-conflict-zone/) (_Reach Alliance_, 2022)**  
 *With Carolina Canepari, Isabel Davis, Kristyn Lee, and [Stanley Zlotkin](https://www.sickkids.ca/en/staff/z/stanley-zlotkin/)*<br>
