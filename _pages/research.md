@@ -12,7 +12,7 @@ author_profile: true
 <details>
   <summary>Abstract (click to expand)</summary>
 
-_COMING VERY SOON_
+*COMING VERY SOON*
 
 </details>
 
@@ -41,7 +41,7 @@ We study the large-scale implementation of a system of specialized domestic viol
 
 <h2 style="margin-top:40px;">Published Non-Refereed Work</h2>
 
-**[Local Manufacturing in a Conflict Zone: Lessons from the White Helmets’ PPE Project](https://reachalliance.org/case-study/syrian-white-helmets-manufacturing-ppe-in-a-conflict-zone/) (_Reach Alliance_, 2022)**  
+**[Local Manufacturing in a Conflict Zone: Lessons from the White Helmets’ PPE Project](https://reachalliance.org/case-study/syrian-white-helmets-manufacturing-ppe-in-a-conflict-zone/) (*Reach Alliance*, 2022)**  
 *With Carolina Canepari, Isabel Davis, Kristyn Lee, and [Stanley Zlotkin](https://www.sickkids.ca/en/staff/z/stanley-zlotkin/)*<br>
 <details>
   <summary>Executive Summary (click to expand)</summary>
@@ -54,7 +54,7 @@ We examine how the White Helmets’ local manufacturing project enabled them to 
 
 </details>
 
-**[#AUEU: A Twitter Analysis of the AU-EU Summit 2017](https://www.gppi.net/media/APC_2018__AUEU_Twitter_Analysis.pdf) (_African Policy Circle_, 2018)**  
+**[#AUEU: A Twitter Analysis of the AU-EU Summit 2017](https://www.gppi.net/media/APC_2018__AUEU_Twitter_Analysis.pdf) (*African Policy Circle*, 2018)**  
 *With Alexander Gaus*
 <details>
   <summary> Summary (click to expand)</summary>
