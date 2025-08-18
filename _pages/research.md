@@ -8,7 +8,7 @@ author_profile: true
 
 # Working Papers
 
-**[Electoral Cycles in Female Sterilization](asdf)** - *Under Review*  
+**[Electoral Cycles in Female Sterilization](www.dariotoman.com/assets/nichter_toman_electoral_cycles_sterilizaiton.pdf)** - *Under Review*  
 *With [Simeon Nichter](https://sites.google.com/site/simeonnichter/home)*<br>
 <details>
   <summary>Abstract (click to expand)</summary>
@@ -18,7 +18,7 @@ Many women across the world face substantial challenges in obtaining access to f
 </details>
 
 
-**Improving Access to Justice for Victims of Intimate Partner Violence: Specialized Domestic Violence Courts in Puerto Rico** [Draft coming soon]  
+**[Improving Access to Justice for Victims of Intimate Partner Violence: Specialized Domestic Violence Courts in Puerto Rico](www.dariotoman.com/assets/ABST_SDVC_IPV.pdf)** 
 *With [Carolina Arteaga](https://www.carolinaarteaga.com/), [Gustavo Bobonis](https://www.economics.utoronto.ca/gustavo.bobonis), and [Paola Salardi](https://sites.google.com/site/paolasalardi/home?authuser=0).* 
 <details>
   <summary><strong>Abstract</strong> (click to expand)</summary>
