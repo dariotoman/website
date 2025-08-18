@@ -8,6 +8,16 @@ author_profile: true
 
 # Working Papers
 
+**[Electoral Cycles in Female Sterilization](dariotoman.com)** - *Draft coming very soon*  
+*Job Market Paper*<br>
+<details>
+  <summary>Abstract (click to expand)</summary>
+
+_COMING VERY SOON_
+
+</details>
+
+
 **[Electoral Cycles in Female Sterilization](https://dariotoman.com/assets/nichter_toman_electoral_cycles_sterilizaiton.pdf)** - *Under Review*  
 *With [Simeon Nichter](https://sites.google.com/site/simeonnichter/home)*<br>
 <details>
@@ -45,7 +55,7 @@ We examine how the White Helmets’ local manufacturing project enabled them to 
 
 </details>
 
-**[#AUEU: A Twitter Analysis of the AU-EU Summit 2017](https://www.gppi.net/media/APC_2018__AUEU_Twitter_Analysis.pdf) (*_African Policy Circle_, 2018)**  
+**[#AUEU: A Twitter Analysis of the AU-EU Summit 2017](https://www.gppi.net/media/APC_2018__AUEU_Twitter_Analysis.pdf) (_African Policy Circle_, 2018)**  
 *With Alexander Gaus*
 <details>
   <summary> Summary (click to expand)</summary>
