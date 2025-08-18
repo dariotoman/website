@@ -21,15 +21,18 @@ Many women across the world face substantial challenges in obtaining access to f
 **[Improving Access to Justice for Victims of Intimate Partner Violence: Specialized Domestic Violence Courts in Puerto Rico](https://dariotoman.com/assets/ABST_SDVC_IPV.pdf)**  
 *With [Carolina Arteaga](https://www.carolinaarteaga.com/), [Gustavo Bobonis](https://www.economics.utoronto.ca/gustavo.bobonis), and [Paola Salardi](https://sites.google.com/site/paolasalardi/home?authuser=0).* 
 <details>
-  <summary><strong>Abstract</strong> (click to expand)</summary>
+  <summary>Abstract(click to expand)</summary>
   
 We study the large-scale implementation of a system of specialized domestic violence courts (SDVCs), an innovation in access to justice programs for potential victims of intimate partner violence (IPV) and offenders. Using individual-level administrative data from the universe of civil domestic violence cases in Puerto Rico during the period 2014-2021, we leverage the staggered opening of SDVCs across judicial regions to examine the consequences for victims' judicial protection as well as offender recidivism. Access to SDVCs leads to a considerable 8 percentage points increase in the probability that judges issue a protection order and a 1.7 percentage point (15 percent) decrease in victim and offender reappearance rates within one year of the start of the case. Effects are more pronounced for cases in which parties have children in common and in which access to SDVCs is more limited. Linking the case data to administrative and survey data on judges, we show that the priorities of judges assigned to SDVCs play a prominent role in explaining these outcomes.
 
 </details>
 
+
+
+
 # Published Non-Refereed Work
 
-**[Local Manufacturing in a Conflict Zone: Lessons from the White Helmets’ PPE Project](https://reachalliance.org/case-study/syrian-white-helmets-manufacturing-ppe-in-a-conflict-zone/) (*Reach Alliance*, 2022)**  
+**[Local Manufacturing in a Conflict Zone: Lessons from the White Helmets’ PPE Project](https://reachalliance.org/case-study/syrian-white-helmets-manufacturing-ppe-in-a-conflict-zone/) (_Reach Alliance_, 2022)**  
 *With Carolina Canepari, Isabel Davis, Kristyn Lee, and [Stanley Zlotkin](https://www.sickkids.ca/en/staff/z/stanley-zlotkin/)*<br>
 <details>
   <summary>Executive Summary (click to expand)</summary>
@@ -42,9 +45,12 @@ We examine how the White Helmets’ local manufacturing project enabled them to 
 
 </details>
 
-## Toman, D. and Gaus A. (2018). #AUEU: A Twitter analysis of the AU-EU summit 2017. _African Policy Circle_. [Policy Paper]
-
+**[#AUEU: A Twitter Analysis of the AU-EU Summit 2017](https://www.gppi.net/media/APC_2018__AUEU_Twitter_Analysis.pdf) (*_African Policy Circle_, 2018)**  
+*With Alexander Gaus*
+<details>
+  <summary> Summary (click to expand)</summary>
+  
 This paper presents a Twitter analysis of the African Union-European Union Summit (AU-EU Summit), which took place on November 29 and 30, 2017, in Abidjan, Ivory Coast. An analysis of Twitter data offers the opportunity to determine the views of individuals and groups around certain issues. Moreover, it can offer a window into public debates held over social media, how these debates change over time, which communities share what information, and to what extent filter bubbles and insular groups within and across larger communities exist. 
 Examining 46,000 tweets, this Twitter analysis of the 2017 AU-EU Summit shows an engaged but relatively modest online community consisting of core opinion-leaders mainly from Europe who drive the discourse. Moreover, we see a set of self-referencing communities operating on the fringes and with little to no impact on the mainstream discourse. 
+</details>
 
-[Access Here](https://www.gppi.net/media/APC_2018__AUEU_Twitter_Analysis.pdf)
