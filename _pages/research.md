@@ -8,7 +8,7 @@ author_profile: true
 
 # Working Papers
 
-**[Electoral Cycles in Female Sterilization](dariotoman.com)** - *Draft coming very soon*  
+**[Partisanship, Electoral Competition, and Candidate Selection](dariotoman.com)** - *Draft coming very soon*  
 *Job Market Paper*<br>
 <details>
   <summary>Abstract (click to expand)</summary>
