@@ -12,7 +12,7 @@ author_profile: true
 <details>
   <summary>Abstract (click to expand)</summary>
 
-*COMING VERY SOON*
+<it>COMING VERY SOON</it>
 
 </details>
 
