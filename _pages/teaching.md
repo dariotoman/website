@@ -5,14 +5,16 @@ permalink: /teaching/
 author_profile: true
 ---
 
-# Teaching
 ## As Course Instructor
 
 - **PPG201 – Microeconomics for Engineers**  
   *Fall 2024*  
+  An introduction to microeconomics, for application in public policy analysis. Designed specifically for students with training in calculus and linear algebra, and who are pursuing a certificate in public policy, the course explores preference and choice, classical demand theory and the utility maximization problem as well as expenditure minimization problem, welfare evaluation of economic changes, regression analysis and ordinary least squares.
 
+  
 - **PCJ260 – Introduction to Peace, Conflict and Justice I: Data and Applications**  
-*Fall 2023*  
+ *Fall 2023*
+ This course introduces students to reading, interpreting, and communicating data relevant to issues in peace,conflict and justice. Students develop concrete skills such as understanding data sources in conflict and justice, exploring applications of data, and methods of data collection. They reflect on how social constructs can be operationalized into variables that can be employed for qualitative and quantitative analysis in research and policy, and learn how to use visualizations and descriptive statistics to support arguments and research. Through this course, students develop a set of essential skills to work on real-world questions related to issues in peace, conflict and justice, while engaging with existing data and their applied research findings to understand their policy relevance.
 
 ## Teaching Assistantships
 
