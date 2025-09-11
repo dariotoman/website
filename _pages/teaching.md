@@ -13,7 +13,7 @@ author_profile: true
 
   
 - **PCJ260 – Introduction to Peace, Conflict and Justice I: Data and Applications**  
- *Fall 2023*
+ *Fall 2023*  
  This course introduces students to reading, interpreting, and communicating data relevant to issues in peace,conflict and justice. Students develop concrete skills such as understanding data sources in conflict and justice, exploring applications of data, and methods of data collection. They reflect on how social constructs can be operationalized into variables that can be employed for qualitative and quantitative analysis in research and policy, and learn how to use visualizations and descriptive statistics to support arguments and research. Through this course, students develop a set of essential skills to work on real-world questions related to issues in peace, conflict and justice, while engaging with existing data and their applied research findings to understand their policy relevance.
 
 ## Teaching Assistantships
