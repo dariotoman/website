@@ -10,6 +10,12 @@ redirect_from:
 
 
 <style>
+
+.page__content {
+  max-width: 1200px;   /* wider content area */
+}
+
+
 .two-col {
   display: flex;
   align-items: center;    /* vertically center image & text */
@@ -37,6 +43,10 @@ redirect_from:
 </style>
 
 <div class="two-col">
+    <div class="col-image">
+    <img src="{{ '/images/profile.png' | relative_url }}" alt="Profile">
+  </div>
+  
    <div class="col-text">
     <p>
       I am a PhD candidate in Economics at the University of Toronto. In my research, I employ empirical microeconomics techniques to answer questions related to health and political economy.
@@ -50,9 +60,7 @@ redirect_from:
   </div>
 
   
-  <div class="col-image">
-    <img src="{{ '/images/profile.png' | relative_url }}" alt="Profile">
-  </div>
+
 
   
 </div>
