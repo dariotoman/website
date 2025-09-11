@@ -9,7 +9,7 @@ redirect_from:
   - /about.html
 
 feature_row:
-  - image_path: /images/profile.jpg
+  - image_path: "{{ '/images/profile.jpg' | relative_url }}"
     alt: "Portrait of Dario Toman"
     title: "Welcome!"
     excerpt: >
