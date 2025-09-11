@@ -37,21 +37,22 @@ redirect_from:
 </style>
 
 <div class="two-col">
-
-
-  <div class="col-image">
-    <img src="{{ '/images/profile.png' | relative_url }}" alt="Profile">
-  </div>
-
    <div class="col-text">
     <p>
-      I am a PhD candidate in Economics at the University of Toronto working at
-      the intersection of political economy and development economics. My job market paper
-      studies the consequences of partisan local elections for electoral competition, candidate
+      I am a PhD candidate in Economics at the University of Toronto. In my research, I employ empirical microeconomics techniques to answer questions related to health and political economy.
+      </p>
+       <p>
+      My job market paper studies the consequences of partisan local elections for electoral competition, candidate
       selection, and governance. A second strand of my research examines how electoral and judicial
       institutions shape gendered access to healthcare and justice.
     </p>
     <p><em>I will be on the job market in 2025–2026.</em></p>
   </div>
+
+  
+  <div class="col-image">
+    <img src="{{ '/images/profile.png' | relative_url }}" alt="Profile">
+  </div>
+
   
 </div>
