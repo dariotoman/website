@@ -9,7 +9,7 @@ redirect_from:
   - /about.html
 
 feature_row:
-  - image_path: /images/profile.jpg
+  - image_path: /profile.jpg
     alt: "Portrait of Dario Toman"
     title: "Welcome!"
     excerpt: >
