@@ -1,7 +1,6 @@
 ---
 layout: single
 permalink: /
-title: "Welcome!"
 excerpt: "About me"
 author_profile: false
 classes: wide              # makes the content area wider in MM
