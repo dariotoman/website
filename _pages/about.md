@@ -8,32 +8,32 @@ redirect_from:
   - /about.html
 ---
 
+
 <style>
-  .two-col {
-    display: flex;
-    align-items: start;
-    gap: 2rem;
-    flex-wrap: wrap;              /* allows stacking on small screens */
-  }
-  .two-col .col-text {
-    flex: 1 1 420px;              /* grows, min width for readability */
-  }
-  .two-col .col-image {
-    flex: 0 0 320px;              /* fixed-ish image column */
-    max-width: 420px;             /* keep image from getting too huge */
-  }
-  .two-col .col-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 8px;           /* optional: soften corners */
-  }
-  /* Optional: tighten spacing under the page title */
-  .page__content > h1:first-of-type { margin-bottom: 1rem; }
-  @media (max-width: 700px) {
-    .two-col { gap: 1.25rem; }
-    .two-col .col-image, .two-col .col-text { flex: 1 1 100%; }
-  }
+.two-col {
+  display: flex;
+  align-items: center;    /* vertically center image & text */
+  gap: 2rem;
+  flex-wrap: wrap;        /* stack on small screens */
+}
+.two-col .col-image {
+  flex: 0 0 250px;        /* reserve space for the photo */
+  max-width: 250px;
+}
+.two-col .col-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;     /* optional: rounded corners */
+}
+.two-col .col-text {
+  flex: 1 1 300px;        /* text takes the remaining width */
+  min-width: 280px;
+}
+@media (max-width: 700px) {
+  .two-col { gap: 1.25rem; }
+  .two-col .col-image,
+  .two-col .col-text { flex: 1 1 100%; max-width: 100%; }
+}
 </style>
 
 <div class="two-col">
