@@ -10,7 +10,6 @@ author_profile: true
 
 - **PPG201 – Microeconomics for Engineers**  
   *Fall 2024*  
-  Preparing Tutorials • Delivering Tutorials • Grading • Office Hours • Preparing Assessments • Student Communication
 
 - **PCJ260 – Introduction to Peace, Conflict and Justice I: Data and Applications**  
 *Fall 2023*  
