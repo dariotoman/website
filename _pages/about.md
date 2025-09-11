@@ -9,7 +9,7 @@ redirect_from:
   - /about.html
 
 feature_row:
-  - image_path: /images/profile.png
+  - image_path: /images/profile.jpg
     alt: "Portrait of Dario Toman"
     title: "Welcome!"
     excerpt: >
@@ -21,7 +21,7 @@ feature_row:
       <br><br><em>I will be on the job market in 2025–2026.</em>
     btn_label: "Download CV"
     btn_class: "btn btn--primary"
-    url: /cv/Dario_Toman_CV.pdf
+    url: /cv
 ---
 
 {% include feature_row type="left" %}
