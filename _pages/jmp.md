@@ -1,6 +1,10 @@
 ---
-permalink: /jmp
-title: "Job Market Paper"
-author_profile: true
-redirect_to: "/assets/ABST_SDVC_IPV.pdf"
+title: JMP Redirect
+permalink: /jmp/
 ---
+
+[Click here to view the Job Market Paper (PDF)](/assets/ABST_SDVC_IPV.pdf)
+
+<script>
+  window.location.href = "/assets/ABST_SDVC_IPV";
+</script>
