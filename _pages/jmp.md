@@ -3,8 +3,8 @@ title: JMP Redirect
 permalink: /jmp/
 ---
 
-[Click here to view the Job Market Paper (PDF)](dariotoman.com/assets/ABST_SDVC_IPV.pdf)
+[Click here to view the Job Market Paper (PDF)](dariotoman.com/assets/dario_toman_jmp.pdf)
 
 <script>
-  window.location.href = "/assets/ABST_SDVC_IPV.pdf";
+  window.location.href = "/assets/dario_toman_jmp.pdf";
 </script>
