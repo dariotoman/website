@@ -18,7 +18,8 @@ How do partisan electoral institutions affect local democracy? I study this ques
 
 
 **[Improving Judicial Protection in Intimate Partner Violence Cases: The Role of Specialized Courts and Judges](https://dariotoman.com/assets/ABST_SDVC_IPV.pdf)**  
-*With [Carolina Arteaga](https://www.carolinaarteaga.com/), [Gustavo Bobonis](https://www.economics.utoronto.ca/gustavo.bobonis), and [Paola Salardi](https://sites.google.com/site/paolasalardi/home?authuser=0).*  
+*With [Carolina Arteaga](https://www.carolinaarteaga.com/), [Gustavo Bobonis](https://www.economics.utoronto.ca/gustavo.bobonis), and [Paola Salardi](https://sites.google.com/site/paolasalardi/home?authuser=0).*  [NBER Working Paper #34293](https://www.nber.org/papers/w34293)
+
 <details>
   <summary>Abstract(click to expand)</summary>
   
