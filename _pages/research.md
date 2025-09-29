@@ -12,7 +12,7 @@ author_profile: true
 <details>
   <summary>Abstract (click to expand)</summary>
 
-<it>COMING VERY SOON</it>
+How do partisan electoral institutions affect local democracy? I study this question in the context of North Carolina school boards, where the state legislature has gradually converted nonpartisan elections to partisan contests since 2014. Using a difference-in-differences design that exploits this staggered rollout, I estimate the causal effect of partisan elections on candidate entry, voter behaviour, and representation. The reforms reshaped competition by creating partisan strongholds, in which candidates were increasingly unlikely to run in districts dominated by the opposing party. As a result, uncontested races rose sharply and candidates with professional experience, such as principals and former board members, were less likely to enter. At the same time, partisan labels polarized voter choice and mobilized turnout, reinforcing strongholds. These dynamics ultimately advantaged Republicans overall and reduced the professional expertise represented on school boards. The findings reveal a central tradeoff: while partisan rules lower information costs for voters, they also weaken competition and diminish the quality of representation in local governance.
 
 </details>
 
