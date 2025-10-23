@@ -10,7 +10,7 @@ redirect_from:
   - /about.html
 
 feature_row:
-  - image_path: /headshot_site.jpg
+  - image_path: /headshot_site.jpeg
     alt: "Portrait of Dario Toman"
     excerpt: >
       I am a PhD candidate in Economics at the University of Toronto. In my research, I employ
