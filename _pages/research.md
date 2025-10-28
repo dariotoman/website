@@ -5,10 +5,9 @@ permalink: /research/
 author_profile: true
 ---
 
-<h2 style="margin-top:40px;">Working Papers</h2>
 
+<h2 style="margin-top:40px;">Job Market Paper</h2>
 **[Partisan Elections, Competition, and Candidate Selection: Evidence from School Boards](dariotoman.com)** - *Draft coming very soon*  
-*Job Market Paper*  
 <details>
   <summary>Abstract (click to expand)</summary>
 
@@ -16,7 +15,7 @@ How do partisan electoral institutions affect local democracy? I study this ques
 
 </details>
 
-
+<h2 style="margin-top:40px;">Working Papers</h2>
 **[Improving Judicial Protection in Intimate Partner Violence Cases: The Role of Specialized Courts and Judges](https://dariotoman.com/assets/ABST_SDVC_IPV.pdf)**  
 *With [Carolina Arteaga](https://www.carolinaarteaga.com/), [Gustavo Bobonis](https://www.economics.utoronto.ca/gustavo.bobonis), and [Paola Salardi](https://sites.google.com/site/paolasalardi/home?authuser=0).*  [NBER Working Paper #34293](https://www.nber.org/papers/w34293)
 
