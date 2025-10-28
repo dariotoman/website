@@ -7,7 +7,7 @@ author_profile: true
 
 <h2 style="margin-top:40px;">Working Papers</h2>
 
-**[Partisanship, Electoral Competition, and Candidate Selection: Evidence from School Boards](dariotoman.com)** - *Draft coming very soon*  
+**[Partisan Elections, Competition, and Candidate Selection: Evidence from School Boards](dariotoman.com)** - *Draft coming very soon*  
 *Job Market Paper*  
 <details>
   <summary>Abstract (click to expand)</summary>
