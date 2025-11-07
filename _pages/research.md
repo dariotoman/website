@@ -7,7 +7,7 @@ author_profile: true
 
 
 <h2 style="margin-top:40px;">Job Market Paper</h2>
-**[Partisan Elections, Competition, and Candidate Selection: Evidence from School Boards](https://dariotoman.com/jmp)** - *Updated draft coming very soon*  
+**[Partisan Elections, Competition, and Candidate Selection: Evidence from School Boards](https://dariotoman.com/jmp)** 
 <details>
   <summary>Abstract (click to expand)</summary>
 
