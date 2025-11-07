@@ -20,7 +20,7 @@ How do partisan electoral institutions affect local democracy? I study this ques
 *With [Carolina Arteaga](https://www.carolinaarteaga.com/), [Gustavo Bobonis](https://www.economics.utoronto.ca/gustavo.bobonis), and [Paola Salardi](https://sites.google.com/site/paolasalardi/home?authuser=0).*  [NBER Working Paper #34293](https://www.nber.org/papers/w34293)
 
 <details>
-  <summary>Abstract(click to expand)</summary>
+  <summary>Abstract (click to expand)</summary>
   
 We study the large-scale implementation of a system of specialized domestic violence courts (SDVCs), an innovation in access to justice programs for potential victims of intimate partner violence (IPV) and offenders. Using individual-level administrative data from the universe of civil domestic violence cases in Puerto Rico during the period 2014-2021, we leverage the staggered opening of SDVCs across judicial regions to examine the consequences for victims' judicial protection as well as offender recidivism. Access to SDVCs leads to a considerable 8 percentage points increase in the probability that judges issue a protection order and a 1.7 percentage point (15 percent) decrease in victim and offender reappearance rates within one year of the start of the case. Effects are more pronounced for cases in which parties have children in common and in which access to SDVCs is more limited. Linking the case data to administrative and survey data on judges, we show that the priorities of judges assigned to SDVCs play a prominent role in explaining these outcomes.
 
