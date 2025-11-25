@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tax Incidence and Elasticity Visualizer</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 20px;
+      background: #f8f8f8;
+    }
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 0.2rem;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .controls, .plot-container {
+      background: white;
+      padding: 15px 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+    .controls {
+      flex: 1 1 260px;
+      max-width: 340px;
+    }
+    .plot-container {
+      flex: 2 1 480px;
+    }
+    .slider-group {
+      margin-bottom: 15px;
+    }
+    .slider-group label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+    }
+    .slider-group input[type="range"] {
+      width: 100%;
+    }
+    .value {
+      font-weight: 600;
+      margin-left: 8px;
+    }
+    .info-box {
+      margin-top: 10px;
+      padding: 8px 10px;
+      border-radius: 6px;
+      background: #f2f6ff;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+    .legend {
+      font-size: 0.85rem;
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+    }
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+    }
+    .legend-line {
+      width: 22px;
+      height: 0;
+      border-top: 3px solid black;
+      margin-right: 4px;
+    }
+    .legend-line.demand { border-color: #1f77b4; }
+    .legend-line.supply { border-color: #2ca02c; border-style: dashed; }
+    .legend-line.tax    { border-color: #d62728; border-style: dotted; }
+
+    .legend-box {
+      width: 14px;
+      height: 14px;
+      border-radius: 2px;
+      margin-right: 4px;
+    }
+    .legend-box.consumer {
+      background: rgba(255, 165, 0, 0.5); /* orange-ish */
+    }
+    .legend-box.producer {
+      background: rgba(100, 149, 237, 0.5); /* cornflower blue-ish */
+    }
+  </style>
+</head>
+<body>
+  <h1>Tax Incidence & Elasticity Visualizer</h1>
+  <p style="max-width: 700px;">
+    Normalized pre-tax equilibrium at <strong>(P*, Q*) = (1, 1)</strong>.
+    Move the sliders to see how elasticities affect who bears the tax.
+  </p>
+
+  <div class="container">
+    <div class="controls">
+      <div class="slider-group">
+        <label>
+          Demand elasticity (negative)
+          <span class="value" id="valEd"></span>
+        </label>
+        <input id="sliderEd" type="range" min="-5" max="-0.05" step="0.1" value="-1.0">
+      </div>
+
+      <div class="slider-group">
+        <label>
+          Supply elasticity (positive)
+          <span class="value" id="valEs"></span>
+        </label>
+        <input id="sliderEs" type="range" min="0.05" max="5" step="0.1" value="1.0">
+      </div>
+
+      <div class="slider-group">
+        <label>
+          Tax per unit (t)
+          <span class="value" id="valT"></span>
+        </label>
+        <input id="sliderT" type="range" min="0" max="1" step="0.05" value="0.5">
+      </div>
+
+
+    <button id="resetBtn" style="
+        margin-top: 8px;
+        padding: 6px 12px;
+        border-radius: 6px;
+        border: none;
+        background: #444;
+        color: white;
+        cursor: pointer;
+    ">
+    Reset to defaults
+  </button>
+
+      <div class="info-box" id="infoBox">
+        <!-- Filled by JS -->
+      </div>
+    </div>
+
+    <div class="plot-container">
+      <svg id="plot" width="700" height="450"></svg>
+      <div class="legend">
+        <span class="legend-item">
+          <span class="legend-line demand"></span> Demand
+        </span>
+        <span class="legend-item">
+          <span class="legend-line supply"></span> Supply (no tax)
+        </span>
+        <span class="legend-item">
+          <span class="legend-line tax"></span> Supply + tax
+        </span>
+        <span class="legend-item">
+          <span class="legend-box consumer"></span> Consumer incidence
+        </span>
+        <span class="legend-item">
+          <span class="legend-box producer"></span> Producer incidence
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const svg = document.getElementById('plot');
+    const svgWidth = 700, svgHeight = 450;
+    const margin = {left: 60, right: 20, top: 20, bottom: 60};
+    const innerWidth = svgWidth - margin.left - margin.right;
+    const innerHeight = svgHeight - margin.top - margin.bottom;
+
+    const sliderEd = document.getElementById('sliderEd');
+    const sliderEs = document.getElementById('sliderEs');
+    const sliderT  = document.getElementById('sliderT');
+
+    const valEd = document.getElementById('valEd');
+    const valEs = document.getElementById('valEs');
+    const valT  = document.getElementById('valT');
+    const infoBox = document.getElementById('infoBox');
+
+    function computeEquilibrium(e_d, e_s, t) {
+      let deltaPc;
+      if (Math.abs(e_d - e_s) < 1e-6) {
+        // If elasticities are effectively equal, split the tax approx. 50/50
+        deltaPc = t / 2;
+      } else {
+        deltaPc = - e_s * t / (e_d - e_s);
+      }
+      const P_c = 1 + deltaPc;
+      const P_p = P_c - t;
+      const Q   = 1 + e_d * (P_c - 1);   // from demand: Q = 1 + e_d (P_c - 1)
+      return { P_c, P_p, Q };
+    }
+
+    function draw() {
+      const e_d = parseFloat(sliderEd.value);
+      const e_s = parseFloat(sliderEs.value);
+      const t   = parseFloat(sliderT.value);
+
+      // Update labels
+      valEd.textContent = e_d.toFixed(2);
+      valEs.textContent = e_s.toFixed(2);
+      valT.textContent  = t.toFixed(2);
+
+      // Compute equilibrium
+      const { P_c, P_p, Q } = computeEquilibrium(e_d, e_s, t);
+
+      // Quantity grid
+      const Q_min = 0;                          // ensure 0 is visible for revenue area
+      const Q_max = Math.max(1, Q) + 1;
+      const numPoints = 200;
+      const Q_vals = [];
+      for (let i = 0; i < numPoints; i++) {
+        Q_vals.push(Q_min + (Q_max - Q_min) * i / (numPoints - 1));
+      }
+
+      // Demand and supply in P(Q)
+      const P_d = Q_vals.map(q => 1 + (q - 1) / e_d);
+      const P_s = Q_vals.map(q => 1 + (q - 1) / e_s);
+      const P_s_tax = P_s.map(p => p + t);
+
+     // Fixed P range for plotting
+    const P_min = 0.0;
+    const P_max = 2.5;
+
+      // Scales
+      const xScale = q => margin.left + (q - Q_min) / (Q_max - Q_min) * innerWidth;
+      const yScale = p => margin.top + (P_max - p) / (P_max - P_min) * innerHeight;
+
+      // Clear svg
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+      // Axes group
+      const axesGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+      svg.appendChild(axesGroup);
+
+      // X axis line
+      const xAxis = document.createElementNS("http://www.w3.org/2000/svg", "line");
+      xAxis.setAttribute("x1", margin.left);
+      xAxis.setAttribute("y1", yScale(P_min));
+      xAxis.setAttribute("x2", margin.left + innerWidth);
+      xAxis.setAttribute("y2", yScale(P_min));
+      xAxis.setAttribute("stroke", "black");
+      xAxis.setAttribute("stroke-width", "1");
+      axesGroup.appendChild(xAxis);
+
+      // Y axis line
+      const yAxis = document.createElementNS("http://www.w3.org/2000/svg", "line");
+      yAxis.setAttribute("x1", margin.left);
+      yAxis.setAttribute("y1", margin.top);
+      yAxis.setAttribute("x2", margin.left);
+      yAxis.setAttribute("y2", margin.top + innerHeight);
+      yAxis.setAttribute("stroke", "black");
+      yAxis.setAttribute("stroke-width", "1");
+      axesGroup.appendChild(yAxis);
+
+      // Axis labels
+      function addText(x, y, text, anchor="middle") {
+        const tElem = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        tElem.setAttribute("x", x);
+        tElem.setAttribute("y", y);
+        tElem.setAttribute("text-anchor", anchor);
+        tElem.setAttribute("font-size", "12");
+        tElem.textContent = text;
+        svg.appendChild(tElem);
+        return tElem;
+      }
+      addText(margin.left + innerWidth / 2, svgHeight - 20, "Quantity (Q)");
+      const yLabel = addText(20, margin.top + innerHeight / 2, "Price (P)");
+      yLabel.setAttribute("transform", `rotate(-90 20 ${margin.top + innerHeight / 2})`);
+
+      // Ticks
+      const tickCount = 5;
+      for (let i = 0; i <= tickCount; i++) {
+        const qTick = Q_min + (Q_max - Q_min) * i / tickCount;
+        const x = xScale(qTick);
+        const y = yScale(P_min);
+        const tick = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        tick.setAttribute("x1", x);
+        tick.setAttribute("y1", y);
+        tick.setAttribute("x2", x);
+        tick.setAttribute("y2", y + 6);
+        tick.setAttribute("stroke", "black");
+        axesGroup.appendChild(tick);
+
+        const tickLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        tickLabel.setAttribute("x", x);
+        tickLabel.setAttribute("y", y + 18);
+        tickLabel.setAttribute("text-anchor", "middle");
+        tickLabel.setAttribute("font-size", "10");
+        tickLabel.textContent = qTick.toFixed(1);
+        axesGroup.appendChild(tickLabel);
+      }
+
+      for (let i = 0; i <= tickCount; i++) {
+        const pTick = P_min + (P_max - P_min) * i / tickCount;
+        const y = yScale(pTick);
+        const x = margin.left;
+        const tick = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        tick.setAttribute("x1", x);
+        tick.setAttribute("y1", y);
+        tick.setAttribute("x2", x - 6);
+        tick.setAttribute("y2", y);
+        tick.setAttribute("stroke", "black");
+        axesGroup.appendChild(tick);
+
+        const tickLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        tickLabel.setAttribute("x", x - 8);
+        tickLabel.setAttribute("y", y + 3);
+        tickLabel.setAttribute("text-anchor", "end");
+        tickLabel.setAttribute("font-size", "10");
+        tickLabel.textContent = pTick.toFixed(1);
+        axesGroup.appendChild(tickLabel);
+      }
+
+      // Helper to create curves
+      function createPath(Q_arr, P_arr, stroke, width, dashArray) {
+        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        const pts = [];
+        for (let i = 0; i < Q_arr.length; i++) {
+          pts.push(`${xScale(Q_arr[i])} ${yScale(P_arr[i])}`);
+        }
+        if (pts.length > 0) {
+          path.setAttribute("d", "M " + pts.join(" L "));
+        }
+        path.setAttribute("fill", "none");
+        path.setAttribute("stroke", stroke);
+        path.setAttribute("stroke-width", width);
+        if (dashArray) path.setAttribute("stroke-dasharray", dashArray);
+        svg.appendChild(path);
+      }
+
+      // Helper to create shaded rectangles (as polygons)
+      function createAreaRect(q0, q1, pTop, pBottom, fillColor) {
+        const area = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+        const points = [
+          `${xScale(q0)},${yScale(pTop)}`,
+          `${xScale(q1)},${yScale(pTop)}`,
+          `${xScale(q1)},${yScale(pBottom)}`,
+          `${xScale(q0)},${yScale(pBottom)}`
+        ].join(" ");
+        area.setAttribute("points", points);
+        area.setAttribute("fill", fillColor);
+        area.setAttribute("stroke", "none");
+        svg.appendChild(area);
+      }
+
+      // === Shading: tax revenue & incidence ===
+      // Only if tax > 0 and equilibrium makes sense
+      if (t > 0 && !isNaN(Q) && Q > 0 && !isNaN(P_c) && !isNaN(P_p)) {
+        // Consumer incidence (top): between P_c and 1
+        if (P_c > 1) {
+          createAreaRect(Q_min, Q, P_c, Math.max(1, P_p), "rgba(255, 165, 0, 0.4)");
+        }
+
+        // Producer incidence (bottom): between 1 and P_p
+        if (P_p < 1) {
+          createAreaRect(Q_min, Q, Math.min(1, P_c), P_p, "rgba(100, 149, 237, 0.4)");
+        }
+      }
+
+      // Draw curves on top of shading
+      createPath(Q_vals, P_d, "#1f77b4", 2.2, null);         // demand
+      createPath(Q_vals, P_s, "#2ca02c", 2.2, "6,4");        // supply
+      if (t > 0) {
+        createPath(Q_vals, P_s_tax, "#d62728", 2.2, "4,4");  // supply+tax
+      }
+
+      // Pre-tax equilibrium (1,1)
+      if (P_min <= 1 && 1 <= P_max) {
+        const cx0 = xScale(1);
+        const cy0 = yScale(1);
+        const eq0 = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        eq0.setAttribute("cx", cx0);
+        eq0.setAttribute("cy", cy0);
+        eq0.setAttribute("r", 4);
+        eq0.setAttribute("fill", "black");
+        svg.appendChild(eq0);
+
+        addText(cx0 + 6, cy0 - 6, "E₀", "start");
+      }
+
+      // NEW: dashed line at original equilibrium price to divide tax rectangle
+      if (t > 0 && !isNaN(Q)) {
+        const linePstar = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        linePstar.setAttribute("x1", xScale(Q_min));
+        linePstar.setAttribute("y1", yScale(1));
+        linePstar.setAttribute("x2", xScale(1));
+        linePstar.setAttribute("y2", yScale(1));
+        linePstar.setAttribute("stroke", "#555");
+        linePstar.setAttribute("stroke-width", "1");
+        linePstar.setAttribute("stroke-dasharray", "4,4");
+        svg.appendChild(linePstar);
+      }
+
+      // Post-tax equilibrium
+      if (!isNaN(Q) && !isNaN(P_c)) {
+        const cx1 = xScale(Q);
+        const cy1 = yScale(P_c);
+
+        const eq1 = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        eq1.setAttribute("cx", cx1);
+        eq1.setAttribute("cy", cy1);
+        eq1.setAttribute("r", 4);
+        eq1.setAttribute("fill", "#d62728");
+        svg.appendChild(eq1);
+
+        addText(cx1 + 6, cy1 - 6, "E₁", "start");
+
+        // Vertical lines showing quantity change
+        const v1 = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        v1.setAttribute("x1", xScale(1));
+        v1.setAttribute("y1", yScale(P_min));
+        v1.setAttribute("x2", xScale(1));
+        v1.setAttribute("y2", yScale(P_max));
+        v1.setAttribute("stroke", "#888");
+        v1.setAttribute("stroke-width", "1");
+        v1.setAttribute("stroke-dasharray", "4,4");
+        svg.appendChild(v1);
+
+        const v2 = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        v2.setAttribute("x1", xScale(Q));
+        v2.setAttribute("y1", yScale(P_min));
+        v2.setAttribute("x2", xScale(Q));
+        v2.setAttribute("y2", yScale(P_max));
+        v2.setAttribute("stroke", "#888");
+        v2.setAttribute("stroke-width", "1");
+        v2.setAttribute("stroke-dasharray", "4,4");
+        svg.appendChild(v2);
+      }
+
+      // Incidence numbers (shares)
+      let consShare = 0, prodShare = 0;
+      if (t > 0 && !isNaN(P_c) && !isNaN(P_p)) {
+        consShare = (P_c - 1) / t;
+        prodShare = (1 - P_p) / t;
+      }
+
+      infoBox.innerHTML = `
+        <strong>Equilibrium with tax:</strong><br>
+        Consumer price: P<sub>c</sub> = ${P_c.toFixed(2)}<br>
+        Producer price: P<sub>p</sub> = ${P_p.toFixed(2)}<br>
+        Quantity: Q = ${Q.toFixed(2)}<br><br>
+        <strong>Tax incidence (per-unit):</strong><br>
+        Consumers: ${(consShare * 100).toFixed(0)}% of the tax<br>
+        Producers: ${(prodShare * 100).toFixed(0)}% of the tax<br><br>
+        <em>Shaded area</em> = total tax revenue (Q × t), split into
+        consumer (orange) and producer (blue) incidence.<br>
+        Dashed horizontal line at P = 1 marks the original equilibrium price.
+      `;
+    }
+
+    sliderEd.addEventListener('input', draw);
+    sliderEs.addEventListener('input', draw);
+    sliderT.addEventListener('input', draw);
+
+document.getElementById('resetBtn').addEventListener('click', function () {
+  sliderEd.value = -1.0;
+  sliderEs.value = 1.0;
+  sliderT.value = 0.5;
+  draw();
+});
+
+    // Initial render
+    draw();
+  </script>
+</body>
+</html>
