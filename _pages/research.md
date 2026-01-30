@@ -27,7 +27,7 @@ We study the large-scale implementation of a system of specialized domestic viol
 </details>
 
 
-**[Electoral Cycles in Female Sterilization](https://dariotoman.com/assets/nichter_toman_electoral_cycles_sterilizaiton.pdf)** - *Under Review*  
+**[Electoral Cycles in Female Sterilization](https://dariotoman.com/assets/nichter_toman_electoral_cycles_sterilizaiton.pdf)** - *Revise and Resubmit, World Development*  
 *With [Simeon Nichter](https://sites.google.com/site/simeonnichter/home)*  
 <details>
   <summary>Abstract (click to expand)</summary>
