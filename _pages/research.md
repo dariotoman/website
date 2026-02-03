@@ -16,10 +16,10 @@ How do partisan electoral institutions affect local democracy? I study this ques
 </details>
 
 <h2 style="margin-top:40px;">Working Papers</h2>
-**[Improving Judicial Protection in Intimate Partner Violence Cases: The Role of Specialized Courts and Judges](https://dariotoman.com/assets/ABST_SDVC_IPV.pdf)** 
-*With [Carolina Arteaga](https://www.carolinaarteaga.com/), [Gustavo Bobonis](https://www.economics.utoronto.ca/gustavo.bobonis), and [Paola Salardi](https://sites.google.com/site/paolasalardi/home?authuser=0).* 
-[NBER Working Paper #34293](https://www.nber.org/papers/w34293) 
-Revise and Resubmit, *Review of Economics and Statistics.*  
+**[Improving Judicial Protection in Intimate Partner Violence Cases: The Role of Specialized Courts and Judges](https://dariotoman.com/assets/ABST_SDVC_IPV.pdf)**  
+*With [Carolina Arteaga](https://www.carolinaarteaga.com/), [Gustavo Bobonis](https://www.economics.utoronto.ca/gustavo.bobonis), and [Paola Salardi](https://sites.google.com/site/paolasalardi/home?authuser=0).*  
+[NBER Working Paper #34293](https://www.nber.org/papers/w34293)  
+Revise and Resubmit, *Review of Economics and Statistics.*   
 
 <details>
   <summary>Abstract (click to expand)</summary>
@@ -29,8 +29,8 @@ We study the large-scale implementation of a system of specialized domestic viol
 </details>
 
 
-**[Electoral Cycles in Female Sterilization](https://dariotoman.com/assets/nichter_toman_electoral_cycles_sterilizaiton.pdf)** 
-*With [Simeon Nichter](https://sites.google.com/site/simeonnichter/home).* 
+**[Electoral Cycles in Female Sterilization](https://dariotoman.com/assets/nichter_toman_electoral_cycles_sterilizaiton.pdf)**  
+*With [Simeon Nichter](https://sites.google.com/site/simeonnichter/home).*  
 Revise and Resubmit, *World Development.*  
 <details>
   <summary>Abstract (click to expand)</summary>
