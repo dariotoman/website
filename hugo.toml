@@ -1,0 +1,35 @@
+baseURL = "https://dariotoman.com/"
+languageCode = "en-us"
+title = "Dario Toman"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[params]
+  description = "Dario Toman – PhD Candidate in Economics, University of Toronto"
+  author = "Dario Toman"
+  bio = "I am a PhD candidate in Economics at the University of Toronto. In my research, I employ empirical microeconomics to study topics related to health, political economy, and development."
+  role = "PhD Candidate in Economics"
+  employer = "University of Toronto"
+  location = "Toronto, Ontario"
+  email = "dario.toman@mail.utoronto.ca"
+  linkedin = "dario-toman-6b7375385"
+  avatar = "/images/headshot_nobg_400.png"
+  googleSiteVerification = "S3MF-Z4fzKx7yZeClOKs0IX_mwCH2z4E8DBRhI11wrA"
+
+[[menus.main]]
+  name = "CV"
+  url = "/cv/"
+  weight = 1
+
+[[menus.main]]
+  name = "Research"
+  url = "/research/"
+  weight = 2
+
+[[menus.main]]
+  name = "Teaching"
+  url = "/teaching/"
+  weight = 3

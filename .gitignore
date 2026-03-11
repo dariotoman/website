@@ -1,0 +1,11 @@
+public/
+resources/
+.hugo_build.lock
+.DS_Store
+.claude/
+
+# Unused original headshots (keep only headshot_nobg_400.png)
+static/images/headshot_nobg.png
+static/images/headshot_site.JPG
+static/images/headshot_site-removebg-preview.png
+static/images/headshot_site_square.jpeg

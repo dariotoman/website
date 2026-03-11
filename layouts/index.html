@@ -1,0 +1,25 @@
+{{ define "main" }}
+<section class="profile-section">
+  <div class="profile-layout">
+    <div class="profile-avatar-wrap">
+      <img src="{{ .Site.Params.avatar }}" alt="Portrait of {{ .Site.Params.author }}" class="profile-avatar">
+    </div>
+    <div class="profile-body">
+      <h1 class="profile-name">{{ .Site.Params.author }}</h1>
+      <p class="profile-role">{{ .Site.Params.role }} &middot; {{ .Site.Params.employer }}</p>
+      <div class="profile-contact">
+        <a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a>
+        <span class="profile-contact-sep">&middot;</span>
+        <a href="https://www.linkedin.com/in/{{ .Site.Params.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <div class="profile-divider"></div>
+      <div class="profile-bio">
+        {{ .Content }}
+      </div>
+      <div class="profile-actions">
+        <a href="/cv/" class="btn">Download CV</a>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
