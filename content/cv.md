@@ -4,7 +4,7 @@ aliases:
   - /resume/
 ---
 
-<a href="/assets/dario_toman_2026-02-03.pdf" class="btn" target="_blank">Download CV (PDF)</a>
+<a href="/assets/dario_toman_2026-03-25.pdf" class="btn" target="_blank">Download CV (PDF)</a>
 
 <div class="cv-native">
 
@@ -29,22 +29,27 @@ aliases:
 <span class="cv-subheading">Job Market Paper</span>
 
 <ul class="cv-list cv-list--indent">
-<li><span class="cv-paper">"Partisan Elections, Competition, and Candidate Selection: Evidence from School Boards"</span></li>
+<li><span class="cv-paper"><a href="/jmp">"Partisan Elections, Competition, and Candidate Selection: Evidence from School Boards"</a></span></li>
 </ul>
 
 <span class="cv-subheading">Working Papers</span>
 
 <ul class="cv-list cv-list--indent">
-<li><span class="cv-paper">"Improving Judicial Protection in Intimate Partner Violence Cases: The Role of Specialized Courts and Judges."</span><br><em>With Carolina Arteaga, Gustavo J. Bobonis and Paola Salardi</em>.<br><span class="cv-status">Revise and Resubmit, <em>Review of Economics and Statistics</em>.</span></li>
-<li><span class="cv-paper">"Electoral Cycles in Female Sterilization."</span><br><em>With Simeon Nichter</em>.<br><span class="cv-status">Revise and Resubmit, <em>World Development</em>.</span></li>
+<li><span class="cv-paper"><a href="/assets/ABST_SDVC_IPV.pdf">"Improving Judicial Protection in Intimate Partner Violence Cases: The Role of Specialized Courts and Judges."</a></span><br><em>With Carolina Arteaga, Gustavo J. Bobonis and Paola Salardi</em>.<br><span class="cv-status">Revise and Resubmit, <em>Review of Economics and Statistics</em>.</span></li>
 <li><span class="cv-paper">"Poppy Bloom and Bust: Violence and Poverty During the Mexican Opium Crisis."</span></li>
+</ul>
+
+<span class="cv-subheading">Publications</span>
+
+<ul class="cv-list cv-list--indent">
+<li><span class="cv-paper"><a href="/assets/nichter_toman_electoral_cycles_sterilizaiton.pdf">"Electoral Cycles in Female Sterilization."</a></span><br><em>With Simeon Nichter</em>.<br><span class="cv-status">Accepted, <em>World Development</em>.</span></li>
 </ul>
 
 <span class="cv-subheading">Published Non-Peer Reviewed Work</span>
 
 <ul class="cv-list cv-list--indent">
-<li><span class="cv-paper">"Local Manufacturing in a Conflict Zone: Lessons from the White Helmets' PPE Project."</span><br><em>With Carolina Canepari, Isabel Davis, Kristyn Lee, and Stanley Zlotkin</em>.<br><span class="cv-status">Reach Alliance, 2022.</span></li>
-<li><span class="cv-paper">"#AUEU: A Twitter analysis of the AU-EU summit 2017."</span><br><em>With Alexander Gaus</em>.<br><span class="cv-status">African Policy Circle, 2018.</span></li>
+<li><span class="cv-paper"><a href="https://reachalliance.org/case-study/syrian-white-helmets-manufacturing-ppe-in-a-conflict-zone/">"Local Manufacturing in a Conflict Zone: Lessons from the White Helmets' PPE Project."</a></span><br><em>With Carolina Canepari, Isabel Davis, Kristyn Lee, and Stanley Zlotkin</em>.<br><span class="cv-status">Reach Alliance, 2022.</span></li>
+<li><span class="cv-paper"><a href="https://www.gppi.net/media/APC_2018__AUEU_Twitter_Analysis.pdf">"#AUEU: A Twitter analysis of the AU-EU summit 2017."</a></span><br><em>With Alexander Gaus</em>.<br><span class="cv-status">African Policy Circle, 2018.</span></li>
 </ul>
 
 <span class="cv-subheading">Presentations</span>

@@ -28,10 +28,12 @@ title: "Research"
   </details>
 </div>
 
+## Publications
+
 <div class="paper-card">
   <div class="paper-title"><a href="https://dariotoman.com/assets/nichter_toman_electoral_cycles_sterilizaiton.pdf">Electoral Cycles in Female Sterilization</a></div>
   <div class="paper-authors">With <a href="https://sites.google.com/site/simeonnichter/home">Simeon Nichter</a>.</div>
-  <div class="paper-status">Revise and Resubmit, <em>World Development.</em></div>
+  <div class="paper-status">Accepted, <em>World Development.</em></div>
   <details>
     <summary>Abstract (click to expand)</summary>
     <div class="paper-abstract">
