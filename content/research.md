@@ -31,9 +31,9 @@ title: "Research"
 ## Publications
 
 <div class="paper-card">
-  <div class="paper-title"><a href="https://dariotoman.com/assets/nichter_toman_electoral_cycles_sterilizaiton.pdf">Electoral Cycles in Female Sterilization</a></div>
+  <div class="paper-title"><a href="https://www.sciencedirect.com/science/article/pii/S0305750X26000963">Electoral Cycles in Female Sterilization</a></div>
   <div class="paper-authors">With <a href="https://sites.google.com/site/simeonnichter/home">Simeon Nichter</a>.</div>
-  <div class="paper-status">Accepted, <em>World Development.</em></div>
+  <div class="paper-status"><em>World Development</em>, 204, 107407, 2026.</div>
   <details>
     <summary>Abstract (click to expand)</summary>
     <div class="paper-abstract">

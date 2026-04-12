@@ -42,7 +42,7 @@ aliases:
 <span class="cv-subheading">Publications</span>
 
 <ul class="cv-list cv-list--indent">
-<li><span class="cv-paper"><a href="/assets/nichter_toman_electoral_cycles_sterilizaiton.pdf">"Electoral Cycles in Female Sterilization."</a></span><br><em>With Simeon Nichter</em>.<br><span class="cv-status">Accepted, <em>World Development</em>.</span></li>
+<li><span class="cv-paper"><a href="https://www.sciencedirect.com/science/article/pii/S0305750X26000963">"Electoral Cycles in Female Sterilization."</a></span><br><em>With Simeon Nichter</em>.<br><span class="cv-status"><em>World Development</em>, 204, 107407, 2026.</span></li>
 </ul>
 
 <span class="cv-subheading">Published Non-Peer Reviewed Work</span>
