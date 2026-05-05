@@ -4,14 +4,14 @@ aliases:
   - /resume/
 ---
 
-<a href="/assets/dario_toman_2026-03-25.pdf" class="btn" target="_blank">Download CV (PDF)</a>
+<a href="/assets/dario_toman_2026-05-05.pdf" class="btn" target="_blank">Download CV (PDF)</a>
 
 <div class="cv-native">
 
 ## Education
 
 <ul class="cv-list">
-<li><span class="cv-highlight">PhD Economics</span>, <span class="cv-status">University of Toronto</span>, Expected 2026.
+<li><span class="cv-highlight">PhD Economics</span>, <span class="cv-status">University of Toronto</span>, 2026.
   <ul><li>Committee: Gustavo J. Bobonis (Supervisor), Ceren Baysan, Rob Gillezeau</li></ul>
 </li>
 <li><span class="cv-highlight">Visiting Student Research Collaborator</span>, <span class="cv-status">Princeton University</span>, Winter/Spring 2023.
@@ -52,9 +52,10 @@ aliases:
 <li><span class="cv-paper"><a href="https://www.gppi.net/media/APC_2018__AUEU_Twitter_Analysis.pdf">"#AUEU: A Twitter analysis of the AU-EU summit 2017."</a></span><br><em>With Alexander Gaus</em>.<br><span class="cv-status">African Policy Circle, 2018.</span></li>
 </ul>
 
-<span class="cv-subheading">Presentations</span>
+<span class="cv-subheading">Presentations</span> <span style="font-weight: normal; font-style: italic;">(includes expected<sup>†</sup>)</span>
 
 <ul class="cv-list cv-list--indent cv-list--compact">
+<li><span class="cv-highlight">2026:</span> Instituto Tecnológico Autónomo de México, Munk School of Global Affairs and Public Policy (University of Toronto), Society of Labor Economists (SOLE) Annual Meeting, Canadian Economics Association (CEA) Annual Conference<sup>†</sup>, RIDGE-LACEA Impact Evaluation Network Forum<sup>†</sup>, Workshop on the Economics of Crime for Junior Scholars (IFS)<sup>†</sup></li>
 <li><span class="cv-highlight">2025:</span> Canadian Economics Association (CEA) Annual Conference, Workshop on Firms and Inclusive Economic Growth (Queen's University), Banff Empirical Microeconomics Workshop (University of Calgary), University of Toronto (<em>SWEAT</em>, Emp. Micro. Brown Bag)</li>
 <li><span class="cv-highlight">2024:</span> University of Toronto (Emp. Micro. Brown Bag)</li>
 <li><span class="cv-highlight">2023:</span> Princeton, American Society of Health Economists Annual Conference</li>
