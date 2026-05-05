@@ -8,10 +8,11 @@ title = "Dario Toman"
       unsafe = true
 
 [params]
-  description = "Dario Toman – PhD Candidate in Economics, University of Toronto"
+  description = "Dario Toman – Empirical Microeconomist, University of Toronto"
   author = "Dario Toman"
-  bio = "I am a PhD candidate in Economics at the University of Toronto. In my research, I employ empirical microeconomics to study topics related to health, political economy, and development."
-  role = "PhD Candidate in Economics"
+  bio = "I am an empirical microeconomist working on questions in health, political economy, and development. I hold a PhD in Economics from the University of Toronto."
+  # TODO (July 2026): update role to "Assistant Professor" and employer to Munk School when AP appointment starts
+  role = "Empirical Microeconomist"
   employer = "University of Toronto"
   location = "Toronto, Ontario"
   email = "dario.toman@mail.utoronto.ca"
