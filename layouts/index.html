@@ -6,7 +6,7 @@
     </div>
     <div class="profile-body">
       <h1 class="profile-name">{{ .Site.Params.author }}</h1>
-      <p class="profile-role">{{ .Site.Params.role }} &middot; {{ .Site.Params.employer }}</p>
+      <p class="profile-role">{{ .Site.Params.role }}<br>{{ .Site.Params.employer }}</p>
       <div class="profile-contact">
         <a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a>
         <span class="profile-contact-sep">&middot;</span>

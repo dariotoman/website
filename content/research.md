@@ -2,7 +2,7 @@
 title: "Research"
 ---
 
-## Job Market Paper
+## Working Papers
 
 <div class="paper-card">
   <div class="paper-title"><a href="https://dariotoman.com/jmp">Partisan Elections, Competition, and Candidate Selection: Evidence from School Boards</a></div>
@@ -13,8 +13,6 @@ title: "Research"
     </div>
   </details>
 </div>
-
-## Working Papers
 
 <div class="paper-card">
   <div class="paper-title"><a href="https://dariotoman.com/assets/ABST_SDVC_IPV.pdf">Improving Judicial Protection in Intimate Partner Violence Cases: The Role of Specialized Courts and Judges</a></div>
