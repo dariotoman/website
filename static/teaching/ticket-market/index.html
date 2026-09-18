@@ -1,0 +1,1145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Build supply and demand from a room of concert fans, then watch the market clear.">
+<title>The Ticket Market</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --ground: #F5F7FA;
+    --surface: #FFFFFF;
+    --ink: #22303D;
+    --muted: #5E6B78;
+    --rule: #CDD6E0;
+    --mist: #EEF1F6;
+    --bar-bg: #002A5C;
+    --bar-ink: #FFFFFF;
+    --gold: #F2A900;
+    --gold-ink: #8A5A00;
+    --buyer: #534AB7;
+    --seller: #0F6E56;
+    --alert: #A32D2D;
+    --gain: #F2A900;
+    --token-ink: #FFFFFF;
+    --btn-bg: #002A5C;
+    --btn-ink: #FFFFFF;
+    --serif: "Palatino Linotype", Palatino, "Book Antiqua", "URW Palladio L", Georgia, serif;
+    --sans: "Fira Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0D1521;
+      --surface: #141E2C;
+      --ink: #E3E9F0;
+      --muted: #97A4B2;
+      --rule: #2A3848;
+      --mist: #1A2638;
+      --bar-bg: #091D3A;
+      --bar-ink: #F2F5F9;
+      --gold: #F2B52A;
+      --gold-ink: #F5C95E;
+      --buyer: #9A93F0;
+      --seller: #45C29B;
+      --alert: #EC7B7B;
+      --gain: #F2B52A;
+      --token-ink: #0D1521;
+      --btn-bg: #F2B52A;
+      --btn-ink: #1D1500;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #0D1521;
+    --surface: #141E2C;
+    --ink: #E3E9F0;
+    --muted: #97A4B2;
+    --rule: #2A3848;
+    --mist: #1A2638;
+    --bar-bg: #091D3A;
+    --bar-ink: #F2F5F9;
+    --gold: #F2B52A;
+    --gold-ink: #F5C95E;
+    --buyer: #9A93F0;
+    --seller: #45C29B;
+    --alert: #EC7B7B;
+    --gain: #F2B52A;
+    --token-ink: #0D1521;
+    --btn-bg: #F2B52A;
+    --btn-ink: #1D1500;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-inline: 16px;
+    padding-block: 16px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  /* header: echoes the Teach frame-title bar with its gold rule */
+  .bar {
+    background: var(--bar-bg);
+    color: var(--bar-ink);
+    border-bottom: 3px solid var(--gold);
+    border-radius: 6px 6px 0 0;
+    padding: 14px 20px 16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px 24px;
+  }
+  .eyebrow {
+    margin: 0 0 4px;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  h1 {
+    margin: 0;
+    font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.1rem);
+    font-weight: 700;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+  .tabs {
+    display: flex;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.09);
+  }
+  .tab {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--bar-ink);
+    background: transparent;
+    border: 0;
+    border-radius: 999px;
+    padding: 7px 16px;
+    cursor: pointer;
+  }
+  .tab[aria-selected="true"] { background: var(--gold); color: #1D1500; }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 22px;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .key { display: inline-flex; align-items: center; gap: 8px; }
+  .sw { display: inline-block; width: 22px; height: 12px; border-radius: 6px; }
+  .sw.b { background: var(--buyer); }
+  .sw.s { background: var(--seller); }
+  .sw.p { height: 3px; border-radius: 2px; background: var(--gold); }
+  .sw.g { background: var(--gain); opacity: 0.45; border-radius: 2px; }
+  .sw.cs { background: var(--buyer); opacity: 0.35; border-radius: 2px; }
+  .sw.ps { background: var(--seller); opacity: 0.35; border-radius: 2px; }
+
+  .stage {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  canvas { display: block; width: 100%; }
+
+  .panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 16px 32px;
+  }
+  @media (max-width: 760px) { .panel { grid-template-columns: minmax(0, 1fr); } }
+
+  .cap h2 {
+    margin: 0 0 6px;
+    font-size: 1.35rem;
+    line-height: 1.25;
+    text-wrap: balance;
+  }
+  .cap p { margin: 0; max-width: 68ch; font-size: 1.05rem; line-height: 1.55; }
+
+  .nav { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+  @media (max-width: 760px) { .nav { align-items: stretch; } }
+  .nav-row { display: flex; align-items: center; gap: 10px; }
+  .nav-row .btn { flex: 1 0 auto; }
+  .count {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    min-width: 3.6em;
+    text-align: center;
+  }
+  .dots { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; }
+  .dot {
+    width: 12px;
+    height: 12px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: var(--rule);
+    cursor: pointer;
+  }
+  .dot[aria-current="step"] { background: var(--gold); }
+  .hint { margin: 0; font-family: var(--sans); font-size: 0.78rem; color: var(--muted); }
+
+  .btn {
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 9px 16px;
+    cursor: pointer;
+  }
+  .btn.primary { background: var(--btn-bg); color: var(--btn-ink); border-color: transparent; }
+  .btn:disabled { opacity: 0.4; cursor: default; }
+  button:focus-visible, input:focus-visible, select:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 2px;
+  }
+
+  /* explore controls */
+  .controls { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+  .ctrl-row { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 14px 22px; }
+  .field { display: flex; flex-direction: column; gap: 6px; font-family: var(--sans); font-size: 0.85rem; color: var(--muted); }
+  .field.grow { flex: 1 1 260px; }
+  .field output { font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+  input[type="range"] { width: 100%; accent-color: var(--gold); }
+  select {
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 7px 10px;
+  }
+  .btns { display: flex; flex-wrap: wrap; gap: 10px; }
+  .readout { max-width: 46ch; }
+  .chip {
+    display: inline-block;
+    margin-bottom: 6px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: var(--mist);
+    color: var(--ink);
+  }
+  .chip.alert { color: var(--alert); }
+  .chip.ok { color: var(--seller); }
+  .chip.hag { color: var(--gold-ink); }
+  .readout p { margin: 0; font-size: 1.02rem; line-height: 1.55; }
+
+  footer { font-family: var(--sans); font-size: 0.78rem; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="bar">
+    <div>
+      <p class="eyebrow">MUN221 / MUN202 &middot; Supply and demand</p>
+      <h1>The Ticket Market</h1>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Mode">
+      <button class="tab" role="tab" id="tab-walk" aria-selected="true" aria-controls="walk">Walk through</button>
+      <button class="tab" role="tab" id="tab-explore" aria-selected="false" aria-controls="explore">Explore</button>
+    </div>
+  </header>
+
+  <div class="legend" aria-hidden="true">
+    <span class="key"><span class="sw b"></span>Buyers: willingness to pay</span>
+    <span class="key"><span class="sw s"></span>Sellers: willingness to accept</span>
+    <span class="key"><span class="sw p"></span>Price</span>
+    <span class="key"><span class="sw cs"></span>Consumer surplus</span>
+    <span class="key"><span class="sw ps"></span>Producer surplus</span>
+    <span class="key"><span class="sw g"></span>Surplus from a haggled deal</span>
+  </div>
+
+  <div class="stage" id="stage">
+    <canvas id="scene" role="img" aria-label="Ticket market diagram"></canvas>
+  </div>
+
+  <section class="panel" id="walk" role="tabpanel" aria-labelledby="tab-walk">
+    <div class="cap" aria-live="polite">
+      <h2 id="capT"></h2>
+      <p id="capB"></p>
+    </div>
+    <div class="nav">
+      <div class="nav-row">
+        <button class="btn" id="prev" type="button">&larr; Back</button>
+        <span class="count" id="count"></span>
+        <button class="btn primary" id="next" type="button">Next &rarr;</button>
+      </div>
+      <div class="dots" id="dots"></div>
+      <p class="hint">Arrow keys or a presentation clicker also step through.</p>
+    </div>
+  </section>
+
+  <section class="panel" id="explore" role="tabpanel" aria-labelledby="tab-explore" hidden>
+    <div class="controls">
+      <div class="ctrl-row">
+        <label class="field grow" for="priceIn">
+          <span>Price of a ticket: <output id="priceOut" for="priceIn">$95</output></span>
+          <input type="range" id="priceIn" min="0" max="180" step="1" value="95">
+        </label>
+        <label class="field" for="nIn">
+          <span>Fans on each side</span>
+          <select id="nIn">
+            <option value="6" selected>6</option>
+            <option value="12">12</option>
+            <option value="30">30</option>
+            <option value="60">60</option>
+            <option value="120">120</option>
+          </select>
+        </label>
+      </div>
+      <div class="btns">
+        <button class="btn primary" id="findP" type="button">Find the market price</button>
+        <button class="btn" id="haggle" type="button">Haggle in random pairs</button>
+        <button class="btn" id="newFans" type="button" disabled>New fans</button>
+      </div>
+    </div>
+    <div class="readout" id="readout" aria-live="polite"></div>
+  </section>
+
+  <footer>Every fan knows only their own value. Nobody sets the price.</footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var PMAX = 180;
+  // The six-fan market. Lobby order is deliberately unsorted.
+  var BASE_B = [100, 160, 60, 120, 80, 140];   // willingness to pay
+  var BASE_S = [90, 30, 130, 50, 110, 70];     // willingness to accept
+  var NAMES_B = { 160: "Priya", 140: "Marcus", 120: "Sofia", 100: "Kenji", 80: "Amara", 60: "Liam" };
+  var NAMES_S = { 30: "Omar", 50: "Chen", 70: "Leila", 90: "Noah", 110: "Zara", 130: "Diego" };
+  var SANS = '"Fira Sans", system-ui, -apple-system, "Segoe UI", sans-serif';
+  var SERIF = '"Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif';
+
+  var cv = document.getElementById("scene");
+  var ctx = cv.getContext("2d");
+  var stage = document.getElementById("stage");
+  var reduceMQ = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var W = 0, H = 0, dpr = 1, dirty = true;
+
+  function mulberry32(a) {
+    return function () {
+      a |= 0; a = (a + 0x6D2B79F5) | 0;
+      var t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  // ---------- animated scalars ----------
+  var A = {};
+  function def(k, v, rate) { A[k] = { v: v, t: v, r: rate || 7 }; }
+  def("lobby", 1); def("lobB", 1); def("lobS", 1);
+  def("showB", 0); def("showS", 0);
+  def("growB", 0, 4); def("growS", 0, 4); def("barAlpha", 1);
+  def("stairB", 0, 4); def("stairS", 0, 4);
+  def("priceOn", 0); def("price", 95, 3);
+  def("willing", 0); def("trade", 0); def("match", 0); def("money", 0);
+  def("cs", 0, 5); def("ps", 0, 5); def("focus", 0); def("round2", 0, 5);
+  var focusName = null, statusMode = null;
+  function set(k, t) { A[k].t = t; }
+
+  // ---------- the fans ----------
+  var N = 6, agents = [], B = [], S = [], pairs = null, seed = 11;
+
+  function build(n) {
+    N = n;
+    var b, s;
+    if (n === 6) { b = BASE_B.slice(); s = BASE_S.slice(); }
+    else {
+      var r = mulberry32(seed); b = []; s = [];
+      for (var k = 0; k < n; k++) {
+        var f = (k + 0.5) / n;
+        b.push(Math.max(5, Math.round(170 - 120 * f + (r() - 0.5) * 12)));
+        s.push(Math.min(175, Math.round(20 + 120 * f + (r() - 0.5) * 12)));
+      }
+    }
+    agents = [];
+    var named = n === 6;
+    b.forEach(function (v, k) { agents.push({ kind: "b", v: v, name: named ? NAMES_B[v] : "", lobby: k, col: 0, rank: 0, x: null, y: null, placed: false, wait: 0 }); });
+    s.forEach(function (v, k) { agents.push({ kind: "s", v: v, name: named ? NAMES_S[v] : "", lobby: k, col: 0, rank: 0, x: null, y: null, placed: false, wait: 0 }); });
+    B = agents.filter(function (a) { return a.kind === "b"; }).sort(function (p, q) { return q.v - p.v; });
+    S = agents.filter(function (a) { return a.kind === "s"; }).sort(function (p, q) { return p.v - q.v; });
+    B.forEach(function (a, i) { a.rank = i; a.col = i; });
+    S.forEach(function (a, i) { a.rank = i; a.col = i; });
+    pairs = null;
+  }
+
+  function counts(P) {
+    var qd = 0, qs = 0, i;
+    for (i = 0; i < B.length; i++) if (B[i].v >= P) qd++;
+    for (i = 0; i < S.length; i++) if (S[i].v <= P) qs++;
+    return { qd: qd, qs: qs };
+  }
+  function qStar() { var q = 0; while (q < N && B[q].v > S[q].v) q++; return q; }
+  function marketGains() { var g = 0, q = qStar(); for (var i = 0; i < q; i++) g += B[i].v - S[i].v; return g; }
+  function pairStats() {
+    var g = 0, t = 0;
+    if (!pairs) return { g: 0, t: 0 };
+    pairs.forEach(function (s, i) { if (B[i].v > s.v) { g += B[i].v - s.v; t++; } });
+    return { g: g, t: t };
+  }
+  // Consumer and producer surplus of the market trades at price P.
+  function surplus(P) {
+    var q = qStar(), cs = [], ps = [];
+    for (var i = 0; i < q; i++) { cs.push(B[i].v - P); ps.push(P - S[i].v); }
+    function sum(a) { return a.reduce(function (x, y) { return x + y; }, 0); }
+    return { cs: cs, ps: ps, CS: sum(cs), PS: sum(ps) };
+  }
+  // After a round of pairwise haggling: who holds a ticket, who doesn't, and
+  // which further trades would still leave both sides better off.
+  function round2() {
+    if (!pairs) return [];
+    var holders = [], non = [];
+    pairs.forEach(function (s, i) {
+      var b = B[i];
+      if (b.v > s.v) { holders.push(b); non.push(s); } else { holders.push(s); non.push(b); }
+    });
+    holders.sort(function (x, y) { return x.v - y.v; });
+    non.sort(function (x, y) { return y.v - x.v; });
+    var out = [];
+    for (var k = 0; k < Math.min(holders.length, non.length); k++) {
+      if (non[k].v > holders[k].v) out.push({ from: holders[k], to: non[k], g: non[k].v - holders[k].v });
+      else break;
+    }
+    return out;
+  }
+  function round2Gain() { return round2().reduce(function (x, t) { return x + t.g; }, 0); }
+
+  function clearingPrice() {
+    var eq = [], best = 0, bd = 1e9;
+    for (var P = 0; P <= PMAX; P++) {
+      var c = counts(P), d = Math.abs(c.qd - c.qs);
+      if (d === 0) eq.push(P);
+      if (d < bd) { bd = d; best = P; }
+    }
+    return eq.length ? eq[Math.floor(eq.length / 2)] : best;
+  }
+
+  // ---------- geometry ----------
+  function geo() {
+    var lob = A.lobby.v, g = { wide: W >= 640 };
+    if (g.wide) {
+      var lw = Math.min(300, W * 0.32);
+      var x1 = W - 18 - lw * lob;
+      g.plot = { x0: 66, x1: x1, y0: 26, y1: H - 52 };
+      g.lob = { x: x1 + 22, y: 26, w: Math.max(0, lw - 26), h: H - 78, split: "v" };
+    } else {
+      var lh = 156 * lob;
+      g.plot = { x0: 60, x1: W - 14, y0: 22, y1: H - 50 - lh };
+      g.lob = { x: 12, y: H - lh + 6, w: W - 24, h: 150, split: "h" };
+    }
+    var p = g.plot;
+    g.colW = (p.x1 - p.x0) / N;
+    g.xq = function (q) { return p.x0 + q * g.colW; };
+    g.yv = function (v) { return p.y1 - (v / PMAX) * (p.y1 - p.y0); };
+    g.dots = g.colW < 36;
+    return g;
+  }
+  function lobbyBox(g, kind) {
+    var L = g.lob, half = kind === "b" ? 0 : 1;
+    if (L.split === "v") return { x: L.x, y: L.y + half * L.h / 2, w: L.w, h: L.h / 2 };
+    return { x: L.x + half * L.w / 2, y: L.y, w: L.w / 2, h: L.h };
+  }
+  function lobbyPos(g, a) {
+    var bx = lobbyBox(g, a.kind);
+    var c = a.lobby % 3, r = Math.floor(a.lobby / 3);
+    var top = bx.y + 36, cellH = Math.min(46, (bx.h - 42) / 2);
+    return { x: bx.x + bx.w * (c + 0.5) / 3, y: top + cellH * (r + 0.5) };
+  }
+  function target(g, a) {
+    if (a.placed) return { x: g.xq(a.col + 0.5), y: g.yv(a.v) };
+    return lobbyPos(g, a);
+  }
+
+  // ---------- animation step ----------
+  function update(dt) {
+    var snap = reduceMQ.matches, moving = false, k;
+    for (k in A) {
+      var o = A[k], d = o.t - o.v;
+      if (Math.abs(d) > 1e-3) { o.v = snap ? o.t : o.v + d * (1 - Math.exp(-dt * o.r)); moving = true; }
+      else o.v = o.t;
+    }
+    var g = geo(), kk = snap ? 1 : 1 - Math.exp(-dt * 5);
+    for (var i = 0; i < agents.length; i++) {
+      var a = agents[i], t = target(g, a);
+      if (a.x === null || snap) { a.x = t.x; a.y = t.y; a.wait = 0; continue; }
+      if (a.wait > 0) { a.wait -= dt; moving = true; continue; }
+      var dx = t.x - a.x, dy = t.y - a.y;
+      if (Math.abs(dx) > 0.3 || Math.abs(dy) > 0.3) { a.x += dx * kk; a.y += dy * kk; moving = true; }
+      else { a.x = t.x; a.y = t.y; }
+    }
+    return moving;
+  }
+
+  // ---------- drawing ----------
+  function colors() {
+    var cs = getComputedStyle(document.documentElement);
+    function g(n) { return cs.getPropertyValue(n).trim(); }
+    return {
+      ink: g("--ink"), muted: g("--muted"), rule: g("--rule"), surface: g("--surface"), mist: g("--mist"),
+      buyer: g("--buyer"), seller: g("--seller"), gold: g("--gold"), goldInk: g("--gold-ink"),
+      alert: g("--alert"), gain: g("--gain"), tokenInk: g("--token-ink")
+    };
+  }
+  function rr(x, y, w, h, r) {
+    ctx.beginPath();
+    if (ctx.roundRect) { ctx.roundRect(x, y, w, h, r); return; }
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+  }
+  function tag(text, x, y, align, fg, bg, alpha) {
+    ctx.font = "600 13px " + SANS;
+    var pw = ctx.measureText(text).width + 14, ph = 22;
+    var lx = align === "right" ? x - pw : align === "center" ? x - pw / 2 : x;
+    ctx.globalAlpha = alpha; ctx.fillStyle = bg; rr(lx, y - ph / 2, pw, ph, 5); ctx.fill();
+    ctx.fillStyle = fg; ctx.textAlign = "left"; ctx.textBaseline = "middle";
+    ctx.fillText(text, lx + 7, y + 0.5);
+  }
+
+  function drawAxes(g, c) {
+    var p = g.plot, ystep = (p.y1 - p.y0) < 300 ? 40 : 20, v, y;
+    ctx.globalAlpha = 1;
+    ctx.font = "400 12px " + SANS; ctx.textAlign = "right"; ctx.textBaseline = "middle";
+    for (v = 0; v <= PMAX; v += ystep) {
+      y = Math.round(g.yv(v)) + 0.5;
+      if (v > 0) {
+        ctx.globalAlpha = 0.7; ctx.strokeStyle = c.rule; ctx.lineWidth = 1;
+        ctx.beginPath(); ctx.moveTo(p.x0, y); ctx.lineTo(p.x1, y); ctx.stroke();
+      }
+      ctx.globalAlpha = 1; ctx.fillStyle = c.muted; ctx.fillText("$" + v, p.x0 - 8, y);
+    }
+    ctx.strokeStyle = c.muted; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(p.x0, p.y0 - 8); ctx.lineTo(p.x0, p.y1); ctx.lineTo(p.x1 + 4, p.y1); ctx.stroke();
+    var xs = N <= 12 ? 1 : N <= 30 ? 5 : N <= 60 ? 10 : 20;
+    ctx.textAlign = "center"; ctx.textBaseline = "top"; ctx.fillStyle = c.muted;
+    for (var q = 0; q <= N; q += xs) ctx.fillText(String(q), g.xq(q), p.y1 + 7);
+    ctx.font = "500 12px " + SANS;
+    ctx.fillText("Number of tickets", (p.x0 + p.x1) / 2, p.y1 + 27);
+    ctx.save(); ctx.translate(15, (p.y0 + p.y1) / 2); ctx.rotate(-Math.PI / 2);
+    ctx.textBaseline = "middle"; ctx.fillText("Price of a ticket", 0, 0); ctx.restore();
+  }
+
+  function drawBars(g, c) {
+    var ba = A.barAlpha.v;
+    if (ba < 0.01) return;
+    for (var i = 0; i < agents.length; i++) {
+      var a = agents[i];
+      if (!a.placed) continue;
+      var gr = a.kind === "b" ? A.growB.v : A.growS.v;
+      if (gr < 0.005) continue;
+      var cw = g.colW, w = cw * (a.kind === "b" ? 0.7 : 0.42), x = g.xq(a.col) + (cw - w) / 2;
+      var top = g.yv(a.v * gr);
+      ctx.globalAlpha = (a.kind === "b" ? 0.17 : 0.24) * ba;
+      ctx.fillStyle = a.kind === "b" ? c.buyer : c.seller;
+      ctx.fillRect(x, top, w, g.plot.y1 - top);
+    }
+  }
+
+  function gainRect(g, c, i, lo, hi, al) {
+    var cw = g.colW, x = g.xq(i) + cw * 0.08, w = cw * 0.84, yb = g.yv(lo), yt = g.yv(hi);
+    ctx.globalAlpha = 0.42 * al; ctx.fillStyle = c.gain; ctx.fillRect(x, yt, w, yb - yt);
+    if (A.money.v > 0.01 && !g.dots && (yb - yt) > 54) {
+      ctx.globalAlpha = al * A.money.v; ctx.fillStyle = c.goldInk;
+      ctx.font = "600 12px " + SANS; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      ctx.fillText("+$" + (hi - lo), x + w / 2, (yt + yb) / 2);
+    }
+  }
+  function focusFade(a) {
+    return A.focus.v > 0.01 && a.name !== focusName ? 1 - A.focus.v : 1;
+  }
+  function surplusRect(g, i, lo, hi, fill, ink, al) {
+    var cw = g.colW, x = g.xq(i) + cw * 0.08, w = cw * 0.84, yb = g.yv(lo), yt = g.yv(hi);
+    ctx.globalAlpha = 0.34 * al; ctx.fillStyle = fill; ctx.fillRect(x, yt, w, yb - yt);
+    if (A.money.v > 0.01 && !g.dots && (yb - yt) > 40) {
+      ctx.globalAlpha = al * A.money.v; ctx.fillStyle = ink;
+      ctx.font = "600 12px " + SANS; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      ctx.fillText("$" + Math.round(hi - lo), x + w / 2, (yt + yb) / 2);
+    }
+  }
+  function drawSurplus(g, c) {
+    if (A.cs.v < 0.01 && A.ps.v < 0.01) return;
+    var P = Math.round(A.price.v), q = qStar(), i;
+    for (i = 0; i < q; i++) {
+      if (A.cs.v > 0.01 && B[i].v > P) surplusRect(g, i, P, B[i].v, c.buyer, c.buyer, A.cs.v * focusFade(B[i]));
+      if (A.ps.v > 0.01 && S[i].v < P) surplusRect(g, i, S[i].v, P, c.seller, c.seller, A.ps.v * focusFade(S[i]));
+    }
+  }
+  // Geometry of each second-round arrow: from the fan holding the ticket to the
+  // fan who values it more. Starts above the holder's name label.
+  function round2Arrows(g) {
+    return round2().map(function (t) {
+      var lift = t.from.kind === "b" && t.from.name && g.colW >= 50 ? 30 : 14;
+      var x0 = t.from.x, y0 = t.from.y - lift, x2 = t.to.x, y2 = t.to.y;
+      var cx = (x0 + x2) / 2, cy = Math.max(g.plot.y0 + 30, Math.min(y0, y2) - 80);
+      var dx = x2 - cx, dy = y2 - cy, dl = Math.sqrt(dx * dx + dy * dy) || 1;
+      return { t: t, x0: x0, y0: y0, cx: cx, cy: cy, ex: x2 - dx / dl * 16, ey: y2 - dy / dl * 16 };
+    });
+  }
+  function drawRound2(g, c) {
+    if (A.round2.v < 0.01 || !pairs) return;
+    ctx.globalAlpha = A.round2.v;
+    round2Arrows(g).forEach(function (r) {
+      ctx.strokeStyle = c.goldInk; ctx.lineWidth = 2.5; ctx.setLineDash([7, 5]);
+      ctx.beginPath(); ctx.moveTo(r.x0, r.y0); ctx.quadraticCurveTo(r.cx, r.cy, r.ex, r.ey); ctx.stroke();
+      ctx.setLineDash([]);
+      var ang = Math.atan2(r.ey - r.cy, r.ex - r.cx);
+      ctx.fillStyle = c.goldInk; ctx.beginPath();
+      ctx.moveTo(r.ex, r.ey);
+      ctx.lineTo(r.ex - 11 * Math.cos(ang - 0.4), r.ey - 11 * Math.sin(ang - 0.4));
+      ctx.lineTo(r.ex - 11 * Math.cos(ang + 0.4), r.ey - 11 * Math.sin(ang + 0.4));
+      ctx.closePath(); ctx.fill();
+    });
+  }
+  // Labels go on after the tokens. Each slides along its own curve to the first
+  // spot that clears the other labels and covers the fewest tokens.
+  function drawRound2Labels(g, c) {
+    if (A.round2.v < 0.01 || !pairs) return;
+    var placed = [], TS = [0.5, 0.4, 0.6, 0.3, 0.7, 0.22, 0.78];
+    var tokens = agents.map(function (a) {
+      var w = g.dots ? 12 : Math.min(56, Math.max(40, g.colW * 0.8));
+      return { x: a.x - w / 2, y: a.y - 26, w: w, h: 52 };   // pill plus name
+    });
+    function overlap(a, b) {
+      var ox = Math.min(a.x + a.w, b.x + b.w) - Math.max(a.x, b.x);
+      var oy = Math.min(a.y + a.h, b.y + b.h) - Math.max(a.y, b.y);
+      return ox > 0 && oy > 0 ? ox * oy : 0;
+    }
+    ctx.font = "600 13px " + SANS;
+    round2Arrows(g).forEach(function (r) {
+      var label = (r.t.from.name ? r.t.from.name + " → " + r.t.to.name + ": " : "") + "+$" + r.t.g;
+      var w = ctx.measureText(label).width + 14, h = 22, best = null;
+      TS.forEach(function (t) {
+        var u = 1 - t;
+        var px = u * u * r.x0 + 2 * u * t * r.cx + t * t * r.ex;
+        var py = u * u * r.y0 + 2 * u * t * r.cy + t * t * r.ey;
+        var box = { x: px - w / 2, y: py - h / 2 - 3, w: w, h: h + 6 };
+        box.x = Math.max(g.plot.x0 + 2, Math.min(g.plot.x1 - w - 2, box.x));
+        var pad = { x: box.x - 12, y: box.y - 12, w: box.w + 24, h: box.h + 24 };   // keep labels well apart
+        if (placed.some(function (q) { return overlap(pad, q) > 0; })) return;
+        var score = tokens.reduce(function (sum, tk) { return sum + overlap(box, tk); }, 0);
+        if (!best || score < best.score) best = { box: box, score: score };
+      });
+      if (!best) return;
+      placed.push(best.box);
+      tag(label, best.box.x, best.box.y + best.box.h / 2, "left", "#1D1500", c.gold, A.round2.v);
+    });
+  }
+  function drawGains(g, c) {
+    if (A.match.v > 0.01 && pairs) {
+      pairs.forEach(function (s, j) { if (B[j].v > s.v) gainRect(g, c, j, s.v, B[j].v, A.match.v); });
+    }
+  }
+
+  function drawStair(g, vals, kind, col, al) {
+    if (al < 0.01) return;
+    ctx.globalAlpha = al; ctx.strokeStyle = col; ctx.lineWidth = g.dots ? 2.5 : 3; ctx.lineJoin = "miter";
+    ctx.beginPath(); ctx.moveTo(g.xq(0), g.yv(vals[0]));
+    for (var i = 0; i < N; i++) {
+      ctx.lineTo(g.xq(i + 1), g.yv(vals[i]));
+      if (i < N - 1) ctx.lineTo(g.xq(i + 1), g.yv(vals[i + 1]));
+    }
+    ctx.lineTo(g.xq(N), kind === "d" ? g.plot.y1 : g.plot.y0);
+    ctx.stroke();
+  }
+
+  function drawToken(g, c, a, al) {
+    var col = a.kind === "b" ? c.buyer : c.seller;
+    ctx.globalAlpha = al;
+    if (g.dots && a.placed) {
+      var r = Math.max(2.2, Math.min(6, g.colW * 0.32));
+      ctx.fillStyle = col; ctx.beginPath(); ctx.arc(a.x, a.y, r, 0, Math.PI * 2); ctx.fill();
+      return;
+    }
+    var w;
+    if (a.placed) w = Math.min(56, Math.max(40, g.colW * 0.8));
+    else { var bx = lobbyBox(g, a.kind); w = Math.min(56, bx.w / 3 - 8); }
+    var h = 24;
+    ctx.fillStyle = col; rr(a.x - w / 2, a.y - h / 2, w, h, h / 2); ctx.fill();
+    ctx.strokeStyle = c.surface; ctx.lineWidth = 1.5; ctx.stroke();
+    var show = a.kind === "b" ? A.showB.v : A.showS.v;
+    ctx.fillStyle = c.tokenInk; ctx.font = "600 13px " + SANS; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    if (show < 0.99) { ctx.globalAlpha = al * (1 - show); ctx.fillText("?", a.x, a.y + 0.5); }
+    if (show > 0.01) { ctx.globalAlpha = al * show; ctx.fillText("$" + a.v, a.x, a.y + 0.5); }
+    // name: below the token in the lobby; in the chart, buyers above and sellers below
+    if (a.name && (!a.placed || g.colW >= 50)) {
+      var below = !a.placed || a.kind === "s";
+      ctx.globalAlpha = al; ctx.fillStyle = col;
+      ctx.font = "500 11px " + SANS; ctx.textAlign = "center";
+      ctx.textBaseline = below ? "top" : "bottom";
+      ctx.fillText(a.name, a.x, below ? a.y + h / 2 + 3 : a.y - h / 2 - 3);
+    }
+  }
+
+  function drawLobby(g, c) {
+    if (N !== 6 || A.lobby.v < 0.01) return;
+    ["b", "s"].forEach(function (kind) {
+      var al = A.lobby.v * (kind === "b" ? A.lobB.v : A.lobS.v);
+      if (al < 0.01) return;
+      var bx = lobbyBox(g, kind);
+      ctx.globalAlpha = al; ctx.fillStyle = c.mist;
+      rr(bx.x + 2, bx.y + 2, bx.w - 4, bx.h - 8, 8); ctx.fill();
+      ctx.fillStyle = kind === "b" ? c.buyer : c.seller;
+      ctx.font = "600 11px " + SANS; ctx.textAlign = "left"; ctx.textBaseline = "middle";
+      if ("letterSpacing" in ctx) ctx.letterSpacing = "1.2px";
+      ctx.fillText(kind === "b" ? "WANT A TICKET" : "HAVE A TICKET", bx.x + 14, bx.y + 19);
+      if ("letterSpacing" in ctx) ctx.letterSpacing = "0px";
+    });
+  }
+
+  function money(v) { return "$" + Math.round(v).toLocaleString("en-CA"); }
+  function statusLines(c) {
+    var lines = [], pa = A.priceOn.v, P = Math.round(A.price.v), cnt = counts(P), sp, st;
+    if (statusMode === "focus") {
+      var fa = agents.filter(function (a) { return a.name === focusName; })[0];
+      if (fa && fa.kind === "b") return [
+        [fa.name + " would pay up to $" + fa.v, c.ink],
+        [fa.name + " pays the market price: $" + P, c.ink],
+        ["Consumer surplus: $" + fa.v + " − $" + P + " = $" + (fa.v - P), c.buyer]];
+      if (fa) return [
+        [fa.name + " would sell for as little as $" + fa.v, c.ink],
+        [fa.name + " gets the market price: $" + P, c.ink],
+        ["Producer surplus: $" + P + " − $" + fa.v + " = $" + (P - fa.v), c.seller]];
+    }
+    if (statusMode === "cs" || statusMode === "ps") {
+      sp = surplus(P);
+      var isCS = statusMode === "cs", terms = isCS ? sp.cs : sp.ps, tot = isCS ? sp.CS : sp.PS;
+      var head = isCS ? "Consumer surplus" : "Producer surplus", col = isCS ? c.buyer : c.seller;
+      if (terms.length <= 6) return [[head + ":", c.ink], [terms.map(money).join(" + ") + " = " + money(tot), col]];
+      return [[head + ": " + money(tot), col]];
+    }
+    if (statusMode === "total") {
+      sp = surplus(P);
+      return [["Consumer surplus: " + money(sp.CS), c.buyer], ["Producer surplus: " + money(sp.PS), c.seller],
+              ["Total surplus: " + money(sp.CS + sp.PS), c.ink]];
+    }
+    if (statusMode === "haggle" && pairs) {
+      st = pairStats();
+      return [[st.t + " of " + N + " pairs strike a deal", c.ink],
+              ["Total surplus: " + money(st.g) + " (market: " + money(marketGains()) + ")", c.goldInk]];
+    }
+    if (statusMode === "round2" && pairs) {
+      st = pairStats();
+      var r2 = round2();
+      return [["After round 1: " + money(st.g), c.ink],
+              [r2.length + " more " + (r2.length === 1 ? "trade" : "trades") + " would still pay: +" + money(round2Gain()), c.goldInk],
+              ["Not stable: the trading isn’t over", c.alert]];
+    }
+    if (pa > 0.5) {
+      lines.push(["At $" + P + ": " + cnt.qd + " would buy, " + cnt.qs + " would sell", c.ink]);
+      var gap = Math.abs(cnt.qd - cnt.qs);
+      if (cnt.qs > cnt.qd) lines.push([gap + (gap === 1 ? " ticket" : " tickets") + " unsold: excess supply", c.alert]);
+      else if (cnt.qd > cnt.qs) lines.push([gap + (gap === 1 ? " fan" : " fans") + " without a ticket: excess demand", c.alert]);
+      else lines.push(["The market clears", c.seller]);
+      if (A.cs.v > 0.5 && A.money.v > 0.5) {
+        sp = surplus(P);
+        lines.push(["Surplus: consumers " + money(sp.CS) + ", producers " + money(sp.PS), c.ink]);
+      }
+    } else if (A.match.v > 0.5 && pairs) {
+      st = pairStats();
+      lines.push([st.t + " of " + N + " pairs strike a deal: " + money(st.g), c.ink]);
+      var left = round2Gain();
+      if (left > 0) lines.push(["Trades left on the table: +" + money(left), c.alert]);
+      else lines.push(["No further trade would help anyone", c.seller]);
+    }
+    return lines;
+  }
+  function drawStatus(g, c) {
+    var lines = statusLines(c);
+    if (!lines.length) return;
+    var p = g.plot, lh = 20, padX = 12, padY = 8, mw = 0;
+    ctx.font = "600 13px " + SANS;
+    lines.forEach(function (l) { mw = Math.max(mw, ctx.measureText(l[0]).width); });
+    var bw = mw + padX * 2, bh = lines.length * lh + padY * 2;
+    var bx = Math.max(p.x0 + 6, p.x1 - bw - 6), by = p.y0 + 2;
+    ctx.globalAlpha = 0.94; ctx.fillStyle = c.surface; rr(bx, by, bw, bh, 6); ctx.fill();
+    ctx.globalAlpha = 1; ctx.strokeStyle = c.rule; ctx.lineWidth = 1; ctx.stroke();
+    ctx.textAlign = "left"; ctx.textBaseline = "middle";
+    lines.forEach(function (l, i) { ctx.fillStyle = l[1]; ctx.fillText(l[0], bx + padX, by + padY + lh * (i + 0.5)); });
+  }
+
+  function draw() {
+    var c = colors(), g = geo(), p = g.plot, i;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    drawAxes(g, c);
+    drawBars(g, c);
+    drawSurplus(g, c);
+    drawGains(g, c);
+    drawStair(g, B.map(function (a) { return a.v; }), "d", c.buyer, A.stairB.v);
+    drawStair(g, S.map(function (a) { return a.v; }), "s", c.seller, A.stairS.v);
+
+    var pa = A.priceOn.v, P = Math.round(A.price.v), cnt = counts(P), py = g.yv(A.price.v);
+    if (pa > 0.01) {
+      ctx.globalAlpha = pa; ctx.strokeStyle = c.gold; ctx.lineWidth = 2.5;
+      ctx.beginPath(); ctx.moveTo(p.x0, py); ctx.lineTo(p.x1, py); ctx.stroke();
+      if (cnt.qd !== cnt.qs) {
+        ctx.globalAlpha = pa * 0.85; ctx.strokeStyle = c.alert; ctx.lineWidth = 6; ctx.lineCap = "round";
+        ctx.beginPath(); ctx.moveTo(g.xq(cnt.qd), py); ctx.lineTo(g.xq(cnt.qs), py); ctx.stroke();
+        ctx.lineCap = "butt";
+      }
+    }
+
+    drawLobby(g, c);
+
+    var q = qStar(), r2set = null;
+    if (A.round2.v > 0.01 && pairs) {
+      r2set = [];
+      round2().forEach(function (t) { r2set.push(t.from, t.to); });
+    }
+    drawRound2(g, c);
+    for (i = 0; i < agents.length; i++) {
+      var a = agents[i], al = 1;
+      if (A.willing.v > 0.01) {
+        var w = a.kind === "b" ? a.v >= P : a.v <= P;
+        if (!w) al *= 1 - 0.72 * A.willing.v;
+      }
+      if (A.trade.v > 0.01 && a.rank >= q) al *= 1 - 0.65 * A.trade.v;
+      if (A.match.v > 0.01 && pairs) {
+        var tr = a.kind === "b" ? a.v > pairs[a.rank].v : B[a.col].v > a.v;
+        if (!tr) al *= 1 - 0.65 * A.match.v;
+      }
+      if (A.focus.v > 0.01 && a.name !== focusName) al *= 1 - 0.75 * A.focus.v;
+      if (r2set) { if (r2set.indexOf(a) < 0) al *= 1 - 0.6 * A.round2.v; }
+      drawToken(g, c, a, al);
+    }
+    drawRound2Labels(g, c);
+
+    if (pa > 0.01) {
+      [[cnt.qd, c.buyer], [cnt.qs, c.seller]].forEach(function (m) {
+        ctx.globalAlpha = pa; ctx.fillStyle = m[1];
+        ctx.beginPath(); ctx.arc(g.xq(m[0]), py, 6, 0, Math.PI * 2); ctx.fill();
+        ctx.strokeStyle = c.surface; ctx.lineWidth = 2; ctx.stroke();
+      });
+      tag("$" + P, p.x0 - 4, py, "right", "#1D1500", c.gold, pa);
+    }
+
+    ctx.font = "italic 600 16px " + SERIF; ctx.textBaseline = "alphabetic";
+    if (A.stairB.v > 0.01) {
+      ctx.globalAlpha = A.stairB.v; ctx.fillStyle = c.buyer; ctx.textAlign = "right";
+      ctx.fillText("Demand", g.xq(N) - 6, g.yv(B[N - 1].v) + 30);
+    }
+    if (A.stairS.v > 0.01) {
+      ctx.globalAlpha = A.stairS.v * (1 - 0.8 * A.match.v); ctx.fillStyle = c.seller; ctx.textAlign = "left";
+      ctx.fillText("Supply", g.xq(0) + 6, g.yv(S[0].v) + 46);
+    }
+
+    ctx.globalAlpha = 1;
+    drawStatus(g, c);
+    ctx.globalAlpha = 1;
+  }
+
+  // ---------- scene configuration ----------
+  var BASE = {
+    N: 6, inB: true, inS: true, showB: 0, showS: 0, grow: [0, 0], barAlpha: 1, stair: [0, 0],
+    priceOn: 0, price: null, willing: 0, trade: 0, match: null, money: 0,
+    cs: 0, ps: 0, focus: 0, focusName: null, round2: 0, status: null
+  };
+  var ALL = { showB: 1, showS: 1, inB: false, inS: false, grow: [1, 1], stair: [1, 1] };
+  function cfg() {
+    var o = {}, k, i;
+    for (k in BASE) o[k] = BASE[k];
+    for (i = 0; i < arguments.length; i++) for (k in arguments[i]) o[k] = arguments[i][k];
+    return o;
+  }
+
+  function applyCfg(c) {
+    if (c.N !== N) {
+      build(c.N);
+      A.growB.v = A.growS.v = 0; A.stairB.v = A.stairS.v = 0;
+    }
+    agents.forEach(function (a) {
+      var pl = a.kind === "b" ? !c.inB : !c.inS;
+      if (pl && !a.placed) a.wait = a.rank * 0.09;
+      a.placed = pl;
+    });
+    set("lobby", (c.inB || c.inS) && N === 6 ? 1 : 0);
+    set("lobB", c.inB ? 1 : 0); set("lobS", c.inS ? 1 : 0);
+    set("showB", c.showB); set("showS", c.showS);
+    set("growB", c.grow[0]); set("growS", c.grow[1]);
+    set("barAlpha", c.barAlpha);
+    set("stairB", c.stair[0]); set("stairS", c.stair[1]);
+
+    var P = c.price === "clear" ? clearingPrice() : c.price;
+    if (P != null) {
+      if (A.priceOn.v < 0.05) A.price.v = P;
+      set("price", P);
+    }
+    set("priceOn", c.priceOn);
+
+    var trade = c.trade, willing = c.willing;
+    if (trade === "auto") {
+      var ct = counts(P);
+      trade = ct.qd === ct.qs ? 1 : 0;
+      if (trade) { willing = 0; c.cs = 1; c.ps = 1; }
+    }
+    set("willing", willing); set("trade", trade); set("money", c.money);
+    set("cs", c.cs); set("ps", c.ps); set("focus", c.focus); set("round2", c.round2);
+    if (c.focusName) focusName = c.focusName;
+    statusMode = c.status;
+
+    if (c.match === "worst") pairs = B.map(function (_, i) { return S[N - 1 - i]; });
+    else if (c.match === "random") {
+      var sh = S.slice();
+      for (var i = sh.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = sh[i]; sh[i] = sh[j]; sh[j] = t; }
+      pairs = sh;
+    } else if (c.match !== "keep") pairs = null;
+    S.forEach(function (s) { s.col = s.rank; });
+    if (pairs) pairs.forEach(function (s, i) { s.col = i; });
+    set("match", pairs ? 1 : 0);
+    dirty = true;
+  }
+
+  // ---------- walk-through ----------
+  var MKT = { barAlpha: 0.3, priceOn: 1, price: "clear" };
+  var SURP = { barAlpha: 0, priceOn: 1, price: "clear", trade: 1, money: 1 };
+  var STEPS = [
+    { t: "A sold-out show",
+      b: "Six fans want a ticket. Six fans have one. Who should end up with the six tickets?",
+      c: cfg() },
+    { t: "Each buyer has a willingness to pay",
+      b: "It’s the most that fan would pay for a ticket: Priya would pay up to $160, Liam only $60. It’s private: nobody else in the room knows it.",
+      c: cfg({ showB: 1 }) },
+    { t: "Sort the buyers and you get demand",
+      b: "Line the buyers up from the highest willingness to pay to the lowest. The staircase along the tops is the demand curve: at any price, it counts how many fans would buy.",
+      c: cfg({ showB: 1, inB: false, grow: [1, 0], stair: [1, 0] }) },
+    { t: "Each seller has a willingness to accept",
+      b: "It’s the least a ticket holder would take: Omar would sell for $30, but Diego won’t part with his ticket for less than $130. Offer them less and they’d rather go to the show themselves.",
+      c: cfg({ showB: 1, showS: 1, inB: false, grow: [1, 0], stair: [1, 0] }) },
+    { t: "Sort the sellers and you get supply",
+      b: "Line the sellers up from the lowest willingness to accept to the highest. At any price, the supply staircase counts how many would sell.",
+      c: cfg(ALL) },
+    { t: "Try a price of $140",
+      b: "Only Priya and Marcus would pay that, but all six holders would sell. 4 tickets go unsold. Sellers start undercutting each other, and the price falls.",
+      c: cfg(ALL, { barAlpha: 0.3, priceOn: 1, price: 140, willing: 1 }) },
+    { t: "Try a price of $60",
+      b: "Now all six fans would buy, but only Omar and Chen would sell. 4 fans are left without a ticket. Buyers start outbidding each other, and the price rises.",
+      c: cfg(ALL, { barAlpha: 0.3, priceOn: 1, price: 60, willing: 1 }) },
+    { t: "The market clears at $95",
+      b: "At $95, 4 fans want to buy and 4 want to sell. Any price from $90 to $100 does the same job: with only a handful of traders, the curves overlap over a range.",
+      c: cfg(ALL, MKT, { willing: 1 }) },
+    { t: "Who ends up with the tickets?",
+      b: "Priya, Marcus, Sofia and Kenji, the four fans who value a ticket most, each buy one. Omar, Chen, Leila and Noah, the four holders who value theirs least, sell. Amara and Liam are priced out; Zara and Diego keep their tickets.",
+      c: cfg(ALL, MKT, { trade: 1 }) },
+    { t: "What is the ticket worth to Priya?",
+      b: "Priya would have paid up to $160. She pays the market price of $95. The $65 difference is her consumer surplus: what the trade is worth to her, over and above what she pays.",
+      c: cfg(ALL, SURP, { cs: 1, focus: 1, focusName: "Priya", status: "focus" }) },
+    { t: "Consumer surplus",
+      b: "Do the same for every buyer and add it up. Consumer surplus is the area between the demand curve and the price: here, $140.",
+      c: cfg(ALL, SURP, { cs: 1, status: "cs" }) },
+    { t: "Producer surplus",
+      b: "Sellers gain too. Omar would have sold for $30 and gets $95: $65 of producer surplus. Producer surplus is the area between the price and the supply curve: $140 in total.",
+      c: cfg(ALL, SURP, { cs: 0.3, ps: 1, status: "ps" }) },
+    { t: "Total surplus",
+      b: "Together the trades create $280 of surplus, and no other way of allocating these six tickets creates more. A different price between $90 and $100 would only move dollars between buyers and sellers; the total stays $280.",
+      c: cfg(ALL, SURP, { cs: 1, ps: 1, status: "total" }) },
+    { t: "What if they just haggle in pairs?",
+      b: "Here is one way it can go: Priya meets Diego, the most reluctant seller, Marcus meets Zara, and so on down the line. Every pair can strike a deal, so all six tickets change hands. But each deal is worth only $30: $180 in total, $100 less than the market.",
+      c: cfg(ALL, { barAlpha: 0, stair: [1, 0.2], match: "worst", money: 1, status: "haggle" }) },
+    { t: "Trades left on the table",
+      b: "The haggling isn’t over. Liam now holds a ticket he values at $60, while Diego, who sold his, values one at $130. Liam can sell it on to Diego at any price in between, and both gain. The same goes for Amara and Zara. The outcome isn’t stable: trading continues until the tickets sit with the six fans who value them most, which is exactly where the market got in one step, with $280 of surplus.",
+      c: cfg(ALL, { barAlpha: 0, stair: [1, 0.2], match: "worst", money: 1, round2: 1, status: "round2" }) },
+    { t: "Add more fans",
+      b: "With 60 fans on each side, the staircases smooth out into the curves in the textbook, and consumer and producer surplus become the familiar triangles. The logic hasn’t changed.",
+      c: cfg(ALL, { N: 60, barAlpha: 0, priceOn: 1, price: "clear", trade: 1, cs: 1, ps: 1, money: 1, status: "total" }) }
+  ];
+
+  var step = 0, mode = "walk";
+  var capT = document.getElementById("capT"), capB = document.getElementById("capB");
+  var prevB = document.getElementById("prev"), nextB = document.getElementById("next");
+  var countEl = document.getElementById("count"), dotsEl = document.getElementById("dots");
+
+  STEPS.forEach(function (s, i) {
+    var d = document.createElement("button");
+    d.type = "button"; d.className = "dot";
+    d.setAttribute("aria-label", "Step " + (i + 1) + ": " + s.t);
+    d.addEventListener("click", function () { go(i); });
+    dotsEl.appendChild(d);
+  });
+
+  function go(n) {
+    step = Math.max(0, Math.min(STEPS.length - 1, n));
+    var s = STEPS[step];
+    applyCfg(s.c);
+    capT.textContent = s.t; capB.textContent = s.b;
+    cv.setAttribute("aria-label", s.t + ". " + s.b);
+    countEl.textContent = (step + 1) + " / " + STEPS.length;
+    prevB.disabled = step === 0;
+    nextB.disabled = step === STEPS.length - 1;
+    Array.prototype.forEach.call(dotsEl.children, function (d, i) {
+      if (i === step) d.setAttribute("aria-current", "step"); else d.removeAttribute("aria-current");
+    });
+  }
+  prevB.addEventListener("click", function () { go(step - 1); });
+  nextB.addEventListener("click", function () { go(step + 1); });
+
+  document.addEventListener("keydown", function (e) {
+    if (mode !== "walk") return;
+    var tg = e.target, tn = tg && tg.tagName;
+    if (tn === "INPUT" || tn === "SELECT" || tn === "TEXTAREA") return;
+    if (tn === "BUTTON" && (e.key === " " || e.key === "Enter")) return;
+    if (e.key === "ArrowRight" || e.key === "PageDown" || e.key === " ") { e.preventDefault(); go(step + 1); }
+    else if (e.key === "ArrowLeft" || e.key === "PageUp") { e.preventDefault(); go(step - 1); }
+    else if (e.key === "Home") { e.preventDefault(); go(0); }
+    else if (e.key === "End") { e.preventDefault(); go(STEPS.length - 1); }
+  });
+
+  // ---------- explore ----------
+  var priceIn = document.getElementById("priceIn"), priceOut = document.getElementById("priceOut");
+  var nIn = document.getElementById("nIn"), newFans = document.getElementById("newFans");
+  var readout = document.getElementById("readout");
+  var exN = 6, hag = false;
+
+  function applyExplore(matchMode) {
+    var P = +priceIn.value;
+    priceOut.textContent = "$" + P;
+    applyCfg(cfg(ALL, {
+      N: exN, barAlpha: 0.22, stair: [1, hag ? 0.2 : 1],
+      priceOn: hag ? 0 : 1, price: P, willing: hag ? 0 : 1,
+      trade: hag ? 0 : "auto", match: hag ? (matchMode || "keep") : null, money: 1
+    }));
+    writeReadout();
+  }
+  function writeReadout() {
+    var chip, cls, text;
+    if (hag) {
+      var st = pairStats();
+      chip = "Haggling"; cls = "hag";
+      var left = round2Gain();
+      text = "Random pairs: " + st.t + " of " + N + " pairs struck a deal, creating " + money(st.g) + " of surplus. At the market-clearing price it would be " +
+        money(marketGains()) + ". " + (left > 0
+          ? "Trades are still left on the table: fans who ended up with a ticket could resell to fans who value it more, for another " + money(left) + ". This outcome isn\u2019t stable."
+          : "No further trade would help anyone.") + " Click again for a new set of pairs.";
+    } else {
+      var P = +priceIn.value, c = counts(P);
+      if (c.qd > c.qs) {
+        chip = "Excess demand"; cls = "alert";
+        text = "At $" + P + ", " + c.qd + " fans would buy but only " + c.qs + " would sell. Buyers outbid each other, so the price rises.";
+      } else if (c.qs > c.qd) {
+        chip = "Excess supply"; cls = "alert";
+        text = "At $" + P + ", " + c.qs + " holders would sell but only " + c.qd + " fans would buy. Sellers undercut each other, so the price falls.";
+      } else {
+        chip = "Market clears"; cls = "ok";
+        var sp = surplus(P);
+        text = "At $" + P + ", " + c.qd + " would buy and " + c.qs + " would sell. Consumer surplus is " + money(sp.CS) +
+          " and producer surplus " + money(sp.PS) + ", for a total of " + money(sp.CS + sp.PS) +
+          ": the most any allocation of these tickets can create.";
+      }
+    }
+    readout.innerHTML = "";
+    var ch = document.createElement("span"); ch.className = "chip " + cls; ch.textContent = chip;
+    var p = document.createElement("p"); p.textContent = text;
+    readout.appendChild(ch); readout.appendChild(p);
+    cv.setAttribute("aria-label", chip + ". " + text);
+  }
+
+  priceIn.addEventListener("input", function () { hag = false; applyExplore(); });
+  nIn.addEventListener("change", function () {
+    exN = +nIn.value; hag = false; newFans.disabled = exN === 6;
+    applyExplore();
+  });
+  newFans.addEventListener("click", function () {
+    seed += 1; N = -1; hag = false; applyExplore();
+  });
+  document.getElementById("findP").addEventListener("click", function () {
+    hag = false; priceIn.value = clearingPrice(); applyExplore();
+  });
+  document.getElementById("haggle").addEventListener("click", function () {
+    hag = true; applyExplore("random");
+  });
+
+  // ---------- mode tabs ----------
+  var tabW = document.getElementById("tab-walk"), tabE = document.getElementById("tab-explore");
+  var walkP = document.getElementById("walk"), explP = document.getElementById("explore");
+  function setMode(m) {
+    mode = m;
+    tabW.setAttribute("aria-selected", m === "walk"); tabE.setAttribute("aria-selected", m === "explore");
+    walkP.hidden = m !== "walk"; explP.hidden = m !== "explore";
+    if (m === "walk") go(step); else applyExplore();
+  }
+  tabW.addEventListener("click", function () { setMode("walk"); });
+  tabE.addEventListener("click", function () { setMode("explore"); });
+
+  // ---------- sizing, theme, loop ----------
+  var lastW = 0;
+  function resize() {
+    var w = stage.clientWidth, vh = window.innerHeight || 800, h;
+    if (!w) return;
+    if (w >= 640) h = Math.max(380, Math.round(Math.min(w * 0.54, vh - 300)));
+    else h = Math.round(w * 0.9 + 156);
+    var dp = Math.min(2, window.devicePixelRatio || 1);
+    if (w === W && h === H && dp === dpr) return;
+    W = w; H = h; dpr = dp;
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); cv.style.height = H + "px";
+    if (W !== lastW) { agents.forEach(function (a) { a.x = null; }); lastW = W; }
+    dirty = true;
+  }
+  if (window.ResizeObserver) new ResizeObserver(resize).observe(stage);
+  window.addEventListener("resize", resize);
+
+  var darkMQ = window.matchMedia("(prefers-color-scheme: dark)");
+  if (darkMQ.addEventListener) darkMQ.addEventListener("change", function () { dirty = true; });
+  new MutationObserver(function () { dirty = true; }).observe(document.documentElement, { attributes: true });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { dirty = true; });
+
+  var last = performance.now();
+  function frame(now) {
+    var dt = Math.min(0.05, Math.max(0, (now - last) / 1000));
+    last = now;
+    var moving = update(dt);
+    if (moving || dirty) { draw(); dirty = false; }
+    requestAnimationFrame(frame);
+  }
+
+  build(6);
+  resize();
+  go(0);
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
