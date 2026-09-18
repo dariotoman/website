@@ -202,6 +202,47 @@
     overflow: hidden;
   }
   canvas { display: block; width: 100%; }
+  .stage { position: relative; }
+
+  /* scramble start card, over the frozen room */
+  .sc-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: color-mix(in srgb, var(--ground) 60%, transparent);
+  }
+  .sc-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 540px;
+    max-height: 100%;
+    overflow: auto;
+    padding: 20px 24px;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--gold);
+    border-radius: 8px;
+    box-shadow: 0 12px 32px rgba(0, 42, 92, 0.14);
+  }
+  .sc-card .sc-eyebrow {
+    margin: 0;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold-ink);
+  }
+  .sc-card h2 { margin: 0; font-size: 1.35rem; line-height: 1.25; text-wrap: balance; }
+  .sc-card ul { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 6px; line-height: 1.5; }
+  .sc-card .sw { vertical-align: -2px; margin-right: 4px; }
+  .sc-card .q { margin: 0; padding: 10px 12px; background: var(--mist); border-radius: 6px; line-height: 1.5; }
+  .sc-card .q strong { font-family: var(--sans); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-ink); margin-right: 6px; }
+  .sc-card .btn { align-self: flex-start; }
 
   .panel {
     display: grid;
@@ -334,6 +375,20 @@
 
   <div class="stage" id="stage">
     <canvas id="scene" role="img" aria-label="Ticket market diagram"></canvas>
+    <div class="sc-overlay" id="scIntro" hidden>
+      <div class="sc-card" role="dialog" aria-labelledby="scIntroTitle">
+        <p class="sc-eyebrow">The scramble</p>
+        <h2 id="scIntroTitle">No market price. Just fans bumping into each other.</h2>
+        <ul>
+          <li id="scIntroWho"></li>
+          <li>Everyone wanders the room. When a ticket holder bumps into someone who values the ticket more,
+            they trade, at a price halfway between their two values.</li>
+          <li>Nobody sets a price, and nobody can see the whole room. Anyone can buy a ticket and later sell it on.</li>
+        </ul>
+        <p class="q"><strong>Predict</strong><span id="scIntroQ"></span></p>
+        <button class="btn primary" id="scGo" type="button">Start the scramble</button>
+      </div>
+    </div>
   </div>
 
   <section class="panel" id="walk" role="tabpanel" aria-labelledby="tab-walk">
@@ -1197,11 +1252,12 @@
   });
 
   // ---------- scramble: random meetings, trade whenever it pays ----------
-  var SC = { fans: [], nPer: 6, t: 0, lastHist: 0, hist: [], trades: 0, prices: [], last: null,
+  var SC = { fans: [], nPer: 6, started: false, t: 0, lastHist: 0, hist: [], trades: 0, prices: [], last: null,
              paused: false, lineOn: false, line: 0, fx: [], base: 0, best: 0, possible: 0, done: false, aw: 0, ah: 0, r: 20 };
   var scN = document.getElementById("scN"), scSpeed = document.getElementById("scSpeed");
   var scSpeedOut = document.getElementById("scSpeedOut"), scRead = document.getElementById("scRead");
   var scPause = document.getElementById("scPause"), scLine = document.getElementById("scLine");
+  var scIntro = document.getElementById("scIntro");
 
   function scGeo() {
     var g = {};
@@ -1234,7 +1290,7 @@
     hold.forEach(function (h) { non.forEach(function (x) { if (x > h) c++; }); });
     return c;
   }
-  function scReset() {
+  function scReset(intro) {
     var n = +scN.value, vals = scValues(n), a = scGeo().arena, tot = 2 * n;
     SC.nPer = n; SC.fans = [];
     SC.r = n === 6 ? Math.max(14, Math.min(26, a.w / 16)) : Math.max(4.5, Math.min(9, Math.sqrt(a.w * a.h / tot) / 5));
@@ -1256,7 +1312,15 @@
     SC.t = 0; SC.lastHist = 0; SC.hist = [{ t: 0, g: 0 }]; SC.trades = 0; SC.prices = []; SC.last = null; SC.fx = [];
     SC.paused = false; SC.lineOn = false; SC.line = 0; SC.done = false; SC.aw = a.w; SC.ah = a.h;
     SC.possible = scPossible();
-    scPause.textContent = "Pause"; scLine.textContent = "Line them up";
+    SC.started = !intro;
+    document.getElementById("scIntroWho").innerHTML = n === 6
+      ? '<span class="sw hold"></span>Omar, Chen, Leila, Noah, Zara and Diego hold tickets. <span class="sw want"></span>Priya, Marcus, Sofia, Kenji, Amara and Liam want one. Each fan knows only their own value.'
+      : '<span class="sw hold"></span>' + n + ' fans hold tickets and <span class="sw want"></span>' + n + ' want one. Each fan knows only their own value.';
+    document.getElementById("scIntroQ").textContent = n === 6
+      ? "Where do the six tickets end up? The market created $280 of gains from trade. How much will the scramble manage, and how long will it take?"
+      : "Where do the tickets end up? How close will the scramble get to the " + money(SC.best) + " of gains the market creates, and how fast?";
+    scIntro.hidden = SC.started || mode !== "scramble";
+    scPause.textContent = SC.started ? "Pause" : "Start"; scLine.textContent = "Line them up";
     scWrite();
   }
 
@@ -1309,9 +1373,9 @@
     SC.line += ((SC.lineOn ? 1 : 0) - SC.line) * (snap ? 1 : 1 - Math.exp(-dt * 5));
     SC.fans.forEach(function (f) { f.flash = Math.max(0, f.flash - dt * 1.4); });
     SC.fx = SC.fx.filter(function (e) { return (e.age += dt) < 1.3; });
-    if (SC.paused || SC.lineOn) return;
+    if (!SC.started || SC.paused || SC.lineOn) return;
     var mult = +scSpeed.value;
-    var speed = mult * Math.min(a.w, a.h) * (SC.nPer === 6 ? 0.42 : 0.3);
+    var speed = mult * Math.min(a.w, a.h) * (SC.nPer === 6 ? 0.3 : 0.21);
     var steps = Math.min(16, Math.max(1, Math.ceil(dt * speed / (SC.r * 0.5))));
     for (var s = 0; s < steps; s++) scStep(dt / steps, speed, a);
     if (SC.done) return;   // the clock stops with the last trade
@@ -1413,6 +1477,10 @@
   function scWrite() {
     if (!scRead) return;
     var chip, cls, lines = [];
+    if (!SC.started) {
+      scRead.innerHTML = '<span class="chip">Ready</span><p>Press start to let the fans loose.</p>';
+      return;
+    }
     if (SC.done) { chip = "No more trades possible"; cls = "ok"; }
     else if (SC.paused) { chip = "Paused"; cls = ""; }
     else { chip = "Trading"; cls = "hag"; }
@@ -1439,10 +1507,13 @@
     if (mode === "scramble") cv.setAttribute("aria-label", chip + ". " + lines.join(" "));
   }
 
-  document.getElementById("scRestart").addEventListener("click", scReset);
-  scN.addEventListener("change", scReset);
+  function scStart() { SC.started = true; SC.paused = false; scIntro.hidden = true; scPause.textContent = "Pause"; scWrite(); }
+  document.getElementById("scGo").addEventListener("click", scStart);
+  document.getElementById("scRestart").addEventListener("click", function () { scReset(false); });
+  scN.addEventListener("change", function () { scReset(!SC.started); });
   scSpeed.addEventListener("input", function () { scSpeedOut.textContent = (+scSpeed.value) + "×"; });
   scPause.addEventListener("click", function () {
+    if (!SC.started) { scStart(); return; }
     SC.paused = !SC.paused; scPause.textContent = SC.paused ? "Resume" : "Pause"; scWrite();
   });
   scLine.addEventListener("click", function () {
@@ -1462,7 +1533,8 @@
     legM.hidden = m === "scramble"; legS.hidden = m !== "scramble";
     if (m === "walk") go(step);
     else if (m === "explore") applyExplore();
-    else { if (!SC.fans.length) scReset(); else scWrite(); }
+    else { if (!SC.fans.length) scReset(true); else scWrite(); }
+    scIntro.hidden = m !== "scramble" || SC.started;
     dirty = true;
   }
   tabW.addEventListener("click", function () { setMode("walk"); });
