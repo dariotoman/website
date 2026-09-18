@@ -410,7 +410,8 @@
   def("priceOn", 0); def("price", 95, 3);
   def("willing", 0); def("trade", 0); def("match", 0); def("money", 0);
   def("cs", 0, 5); def("ps", 0, 5); def("focus", 0); def("round2", 0, 5);
-  var focusName = null, statusMode = null;
+  def("rankv", 0);
+  var focusName = null, statusMode = null, rankMode = false;
   function set(k, t) { A[k].t = t; }
 
   // ---------- the fans ----------
@@ -437,6 +438,11 @@
     B.forEach(function (a, i) { a.rank = i; a.col = i; });
     S.forEach(function (a, i) { a.rank = i; a.col = i; });
     pairs = null;
+    // Every fan, buyers and sellers together, from highest value to lowest,
+    // and who holds a ticket once the market has cleared.
+    agents.slice().sort(function (p, q) { return q.v - p.v; }).forEach(function (a, i) { a.allRank = i; });
+    var qs = qStar();
+    agents.forEach(function (a) { a.holds = a.kind === "b" ? a.rank < qs : a.rank >= qs; });
   }
 
   function counts(P) {
@@ -504,7 +510,8 @@
       g.lob = { x: 12, y: H - lh + 6, w: W - 24, h: 150, split: "h" };
     }
     var p = g.plot;
-    g.colW = (p.x1 - p.x0) / N;
+    g.cols = rankMode ? 2 * N : N;
+    g.colW = (p.x1 - p.x0) / g.cols;
     g.xq = function (q) { return p.x0 + q * g.colW; };
     g.yv = function (v) { return p.y1 - (v / PMAX) * (p.y1 - p.y0); };
     g.dots = g.colW < 36;
@@ -522,7 +529,7 @@
     return { x: bx.x + bx.w * (c + 0.5) / 3, y: top + cellH * (r + 0.5) };
   }
   function target(g, a) {
-    if (a.placed) return { x: g.xq(a.col + 0.5), y: g.yv(a.v) };
+    if (a.placed) return { x: g.xq((rankMode ? a.allRank : a.col) + 0.5), y: g.yv(a.v) };
     return lobbyPos(g, a);
   }
 
@@ -589,11 +596,12 @@
     }
     ctx.strokeStyle = c.muted; ctx.lineWidth = 1.5;
     ctx.beginPath(); ctx.moveTo(p.x0, p.y0 - 8); ctx.lineTo(p.x0, p.y1); ctx.lineTo(p.x1 + 4, p.y1); ctx.stroke();
-    var xs = N <= 12 ? 1 : N <= 30 ? 5 : N <= 60 ? 10 : 20;
+    var xs = g.cols <= 12 ? 1 : g.cols <= 30 ? 5 : g.cols <= 60 ? 10 : 20;
     ctx.textAlign = "center"; ctx.textBaseline = "top"; ctx.fillStyle = c.muted;
-    for (var q = 0; q <= N; q += xs) ctx.fillText(String(q), g.xq(q), p.y1 + 7);
+    for (var q = 0; q <= g.cols; q += xs) ctx.fillText(String(q), g.xq(q), p.y1 + 7);
     ctx.font = "500 12px " + SANS;
-    ctx.fillText("Number of tickets", (p.x0 + p.x1) / 2, p.y1 + 27);
+    ctx.fillText(rankMode ? "All twelve fans, ranked by what a ticket is worth to them" : "Number of tickets",
+      (p.x0 + p.x1) / 2, p.y1 + 27);
     ctx.save(); ctx.translate(15, (p.y0 + p.y1) / 2); ctx.rotate(-Math.PI / 2);
     ctx.textBaseline = "middle"; ctx.fillText("Price of a ticket", 0, 0); ctx.restore();
   }
@@ -606,7 +614,7 @@
       if (!a.placed) continue;
       var gr = a.kind === "b" ? A.growB.v : A.growS.v;
       if (gr < 0.005) continue;
-      var cw = g.colW, w = cw * (a.kind === "b" ? 0.7 : 0.42), x = g.xq(a.col) + (cw - w) / 2;
+      var cw = g.colW, w = cw * (rankMode ? 0.7 : a.kind === "b" ? 0.7 : 0.42), x = g.xq(rankMode ? a.allRank : a.col) + (cw - w) / 2;
       var top = g.yv(a.v * gr);
       ctx.globalAlpha = (a.kind === "b" ? 0.17 : 0.24) * ba;
       ctx.fillStyle = a.kind === "b" ? c.buyer : c.seller;
@@ -745,7 +753,8 @@
       ctx.globalAlpha = al; ctx.fillStyle = col;
       ctx.font = "500 11px " + SANS; ctx.textAlign = "center";
       ctx.textBaseline = below ? "top" : "bottom";
-      ctx.fillText(a.name, a.x, below ? a.y + h / 2 + 3 : a.y - h / 2 - 3);
+      var off = rankMode && a.holds ? 7 : 3;   // clear the gold ring in the ranking frame
+      ctx.fillText(a.name, a.x, below ? a.y + h / 2 + off : a.y - h / 2 - off);
     }
   }
 
@@ -790,6 +799,13 @@
       sp = surplus(P);
       return [["Consumer surplus: " + money(sp.CS), c.buyer], ["Producer surplus: " + money(sp.PS), c.seller],
               ["Total surplus: " + money(sp.CS + sp.PS), c.ink]];
+    }
+    if (statusMode === "rank") {
+      var hold = agents.filter(function (a) { return a.holds; }).sort(function (x, y) { return x.v - y.v; });
+      var out = agents.filter(function (a) { return !a.holds; }).sort(function (x, y) { return y.v - x.v; });
+      return [["The " + hold.length + " tickets go to the " + hold.length + " highest values", c.ink],
+              ["Lowest with a ticket: " + (hold[0].name || "") + " $" + hold[0].v, c.goldInk],
+              ["Highest without one: " + (out[0].name || "") + " $" + out[0].v, c.muted]];
     }
     if (statusMode === "haggle" && pairs) {
       st = pairStats();
@@ -851,7 +867,7 @@
     if (pa > 0.01) {
       ctx.globalAlpha = pa; ctx.strokeStyle = c.gold; ctx.lineWidth = 2.5;
       ctx.beginPath(); ctx.moveTo(p.x0, py); ctx.lineTo(p.x1, py); ctx.stroke();
-      if (cnt.qd !== cnt.qs) {
+      if (cnt.qd !== cnt.qs && !rankMode) {
         ctx.globalAlpha = pa * 0.85; ctx.strokeStyle = c.alert; ctx.lineWidth = 6; ctx.lineCap = "round";
         ctx.beginPath(); ctx.moveTo(g.xq(cnt.qd), py); ctx.lineTo(g.xq(cnt.qs), py); ctx.stroke();
         ctx.lineCap = "butt";
@@ -866,6 +882,13 @@
       round2().forEach(function (t) { r2set.push(t.from, t.to); });
     }
     drawRound2(g, c);
+    var rv = rankMode ? A.rankv.v : 0;
+    if (rv > 0.01) {
+      var cx = g.xq(N);
+      ctx.globalAlpha = rv; ctx.strokeStyle = c.ink; ctx.lineWidth = 1.5; ctx.setLineDash([6, 5]);
+      ctx.beginPath(); ctx.moveTo(cx, p.y0 + 26); ctx.lineTo(cx, p.y1); ctx.stroke(); ctx.setLineDash([]);
+      tag("\u2190 " + N + " tickets", cx + 6, p.y0 + 12, "left", c.surface, c.ink, rv);
+    }
     for (i = 0; i < agents.length; i++) {
       var a = agents[i], al = 1;
       if (A.willing.v > 0.01) {
@@ -879,12 +902,18 @@
       }
       if (A.focus.v > 0.01 && a.name !== focusName) al *= 1 - 0.75 * A.focus.v;
       if (r2set) { if (r2set.indexOf(a) < 0) al *= 1 - 0.6 * A.round2.v; }
+      if (rv > 0.01 && !a.holds) al *= 1 - 0.6 * rv;
       drawToken(g, c, a, al);
+      if (rv > 0.01 && a.holds && !g.dots) {
+        var tw = Math.min(56, Math.max(40, g.colW * 0.8)) + 8;
+        ctx.globalAlpha = rv; ctx.strokeStyle = c.gold; ctx.lineWidth = 3;
+        rr(a.x - tw / 2, a.y - 16, tw, 32, 16); ctx.stroke();
+      }
     }
     drawRound2Labels(g, c);
 
     if (pa > 0.01) {
-      [[cnt.qd, c.buyer], [cnt.qs, c.seller]].forEach(function (m) {
+      if (!rankMode) [[cnt.qd, c.buyer], [cnt.qs, c.seller]].forEach(function (m) {
         ctx.globalAlpha = pa; ctx.fillStyle = m[1];
         ctx.beginPath(); ctx.arc(g.xq(m[0]), py, 6, 0, Math.PI * 2); ctx.fill();
         ctx.strokeStyle = c.surface; ctx.lineWidth = 2; ctx.stroke();
@@ -911,7 +940,7 @@
   var BASE = {
     N: 6, inB: true, inS: true, showB: 0, showS: 0, grow: [0, 0], barAlpha: 1, stair: [0, 0],
     priceOn: 0, price: null, willing: 0, trade: 0, match: null, money: 0,
-    cs: 0, ps: 0, focus: 0, focusName: null, round2: 0, status: null
+    cs: 0, ps: 0, focus: 0, focusName: null, round2: 0, status: null, rank: 0
   };
   var ALL = { showB: 1, showS: 1, inB: false, inS: false, grow: [1, 1], stair: [1, 1] };
   function cfg() {
@@ -955,6 +984,8 @@
     set("cs", c.cs); set("ps", c.ps); set("focus", c.focus); set("round2", c.round2);
     if (c.focusName) focusName = c.focusName;
     statusMode = c.status;
+    rankMode = !!c.rank;
+    set("rankv", c.rank ? 1 : 0);
 
     if (c.match === "worst") pairs = B.map(function (_, i) { return S[N - 1 - i]; });
     else if (c.match === "random") {
@@ -1011,6 +1042,9 @@
     { t: "Total surplus",
       b: "Together the trades create $280 of surplus, and no other way of allocating these six tickets creates more. A different price between $90 and $100 would only move dollars between buyers and sellers; the total stays $280.",
       c: cfg(ALL, SURP, { cs: 1, ps: 1, status: "total" }) },
+    { t: "Allocative efficiency",
+      b: "Line up all twelve fans, buyers and sellers together, by what a ticket is worth to them. The six tickets end up with the top six: Priya, Marcus, Diego, Sofia, Zara and Kenji. That is allocative efficiency: the goods go to the people who value them most. Who started with a ticket doesn\u2019t matter: Diego and Zara keep theirs because they value them more than anyone left without one.",
+      c: cfg(ALL, { barAlpha: 0.25, stair: [0, 0], priceOn: 1, price: "clear", money: 1, rank: 1, status: "rank" }) },
     { t: "What if they just haggle in pairs?",
       b: "Here is one way it can go: Priya meets Diego, the most reluctant seller, Marcus meets Zara, and so on down the line. Every pair can strike a deal, so all six tickets change hands. But each deal is worth only $30: $180 in total, $100 less than the market.",
       c: cfg(ALL, { barAlpha: 0, stair: [1, 0.2], match: "worst", money: 1, status: "haggle" }) },
