@@ -190,6 +190,10 @@
   .sw.g { background: var(--gain); opacity: 0.45; border-radius: 2px; }
   .sw.cs { background: var(--buyer); opacity: 0.35; border-radius: 2px; }
   .sw.ps { background: var(--seller); opacity: 0.35; border-radius: 2px; }
+  .sw.hold { width: 14px; height: 14px; border-radius: 50%; background: var(--gold); }
+  .sw.want { width: 14px; height: 14px; border-radius: 50%; background: var(--surface); border: 1.5px solid var(--muted); }
+  .sc-intro { margin: 0; max-width: 62ch; font-size: 1.02rem; line-height: 1.55; }
+  .readout p + p { margin-top: 6px; }
 
   .stage {
     background: var(--surface);
@@ -308,12 +312,18 @@
       <div class="tabs" role="tablist" aria-label="Mode">
         <button class="tab" role="tab" id="tab-walk" aria-selected="true" aria-controls="walk">Walk through</button>
         <button class="tab" role="tab" id="tab-explore" aria-selected="false" aria-controls="explore">Explore</button>
+        <button class="tab" role="tab" id="tab-scramble" aria-selected="false" aria-controls="scramble">Scramble</button>
       </div>
       <button class="fs-btn" id="fsBtn" type="button" aria-pressed="false" title="Full screen (F)">Full screen</button>
     </div>
   </header>
 
-  <div class="legend" aria-hidden="true">
+  <div class="legend" id="legScramble" aria-hidden="true" hidden>
+    <span class="key"><span class="sw hold"></span>Has a ticket</span>
+    <span class="key"><span class="sw want"></span>Wants a ticket</span>
+    <span class="key"><span class="sw p"></span>Gains from trade so far</span>
+  </div>
+  <div class="legend" id="legMarket" aria-hidden="true">
     <span class="key"><span class="sw b"></span>Buyers: willingness to pay</span>
     <span class="key"><span class="sw s"></span>Sellers: willingness to accept</span>
     <span class="key"><span class="sw p"></span>Price</span>
@@ -367,6 +377,32 @@
       </div>
     </div>
     <div class="readout" id="readout" aria-live="polite"></div>
+  </section>
+
+  <section class="panel" id="scramble" role="tabpanel" aria-labelledby="tab-scramble" hidden>
+    <div class="controls">
+      <p class="sc-intro">Everyone wanders the room. When a fan with a ticket bumps into one who values it more,
+        they trade at a price halfway between their two values. Anyone can buy a ticket and later sell it on.</p>
+      <div class="ctrl-row">
+        <label class="field" for="scN">
+          <span>Fans</span>
+          <select id="scN">
+            <option value="6" selected>12, the named fans</option>
+            <option value="50">100</option>
+          </select>
+        </label>
+        <label class="field grow" for="scSpeed">
+          <span>Speed: <output id="scSpeedOut" for="scSpeed">1&times;</output></span>
+          <input type="range" id="scSpeed" min="0.25" max="3" step="0.25" value="1">
+        </label>
+      </div>
+      <div class="btns">
+        <button class="btn primary" id="scRestart" type="button">Restart</button>
+        <button class="btn" id="scPause" type="button">Pause</button>
+        <button class="btn" id="scLine" type="button">Line them up</button>
+      </div>
+    </div>
+    <div class="readout" id="scRead"></div>
   </section>
 
   <footer>Every fan knows only their own value. Nobody sets the price.</footer>
@@ -1160,17 +1196,278 @@
     hag = true; applyExplore("random");
   });
 
+  // ---------- scramble: random meetings, trade whenever it pays ----------
+  var SC = { fans: [], nPer: 6, t: 0, lastHist: 0, hist: [], trades: 0, prices: [], last: null,
+             paused: false, lineOn: false, line: 0, fx: [], base: 0, best: 0, possible: 0, done: false, aw: 0, ah: 0, r: 20 };
+  var scN = document.getElementById("scN"), scSpeed = document.getElementById("scSpeed");
+  var scSpeedOut = document.getElementById("scSpeedOut"), scRead = document.getElementById("scRead");
+  var scPause = document.getElementById("scPause"), scLine = document.getElementById("scLine");
+
+  function scGeo() {
+    var g = {};
+    if (W >= 640) {
+      var aw = Math.round(W * 0.62);
+      g.arena = { x: 14, y: 14, w: aw - 28, h: H - 28 };
+      g.chart = { x: aw + 52, y: 46, w: W - aw - 72, h: H - 104 };
+    } else {
+      var ah = Math.round(H * 0.62);
+      g.arena = { x: 12, y: 12, w: W - 24, h: ah - 24 };
+      g.chart = { x: 56, y: ah + 30, w: W - 74, h: H - ah - 74 };
+    }
+    return g;
+  }
+  function scValues(n) {
+    if (n === 6) return { b: BASE_B.slice(), s: BASE_S.slice() };
+    var r = mulberry32(seed + 101), b = [], s = [];
+    for (var k = 0; k < n; k++) {
+      var f = (k + 0.5) / n;
+      b.push(Math.max(5, Math.round(170 - 120 * f + (r() - 0.5) * 12)));
+      s.push(Math.min(175, Math.round(20 + 120 * f + (r() - 0.5) * 12)));
+    }
+    return { b: b, s: s };
+  }
+  function scHolderSum() { return SC.fans.reduce(function (x, f) { return x + (f.holds ? f.v : 0); }, 0); }
+  function scGains() { return scHolderSum() - SC.base; }
+  function scPossible() {
+    var hold = [], non = [], c = 0;
+    SC.fans.forEach(function (f) { (f.holds ? hold : non).push(f.v); });
+    hold.forEach(function (h) { non.forEach(function (x) { if (x > h) c++; }); });
+    return c;
+  }
+  function scReset() {
+    var n = +scN.value, vals = scValues(n), a = scGeo().arena, tot = 2 * n;
+    SC.nPer = n; SC.fans = [];
+    SC.r = n === 6 ? Math.max(14, Math.min(26, a.w / 16)) : Math.max(4.5, Math.min(9, Math.sqrt(a.w * a.h / tot) / 5));
+    function add(v, name, holds) {
+      var r = SC.r, x = 0, y = 0;
+      for (var tries = 0; tries < 300; tries++) {
+        x = r + Math.random() * (a.w - 2 * r); y = r + Math.random() * (a.h - 2 * r);
+        var ok = SC.fans.every(function (f) { var dx = f.x - x, dy = f.y - y; return dx * dx + dy * dy > 4.4 * r * r; });
+        if (ok) break;
+      }
+      var ang = Math.random() * Math.PI * 2;
+      SC.fans.push({ v: v, name: name, holds: holds, x: x, y: y, vx: Math.cos(ang), vy: Math.sin(ang), flash: 0 });
+    }
+    vals.b.forEach(function (v) { add(v, n === 6 ? NAMES_B[v] : "", false); });
+    vals.s.forEach(function (v) { add(v, n === 6 ? NAMES_S[v] : "", true); });
+    SC.base = scHolderSum();
+    var top = SC.fans.map(function (f) { return f.v; }).sort(function (x, y) { return y - x; }).slice(0, n);
+    SC.best = top.reduce(function (x, y) { return x + y; }, 0) - SC.base;
+    SC.t = 0; SC.lastHist = 0; SC.hist = [{ t: 0, g: 0 }]; SC.trades = 0; SC.prices = []; SC.last = null; SC.fx = [];
+    SC.paused = false; SC.lineOn = false; SC.line = 0; SC.done = false; SC.aw = a.w; SC.ah = a.h;
+    SC.possible = scPossible();
+    scPause.textContent = "Pause"; scLine.textContent = "Line them up";
+    scWrite();
+  }
+
+  function scMeet(p, q, x, y) {
+    if (SC.done) return;
+    var hold, non;
+    if (p.holds && !q.holds) { hold = p; non = q; }
+    else if (q.holds && !p.holds) { hold = q; non = p; }
+    else return;
+    if (non.v <= hold.v) return;
+    var price = Math.round((hold.v + non.v) / 2), gain = non.v - hold.v;
+    hold.holds = false; non.holds = true; hold.flash = 1; non.flash = 1;
+    SC.trades++; SC.prices.push(price);
+    SC.last = { from: hold, to: non, price: price, gain: gain };
+    SC.fx.push({ x: x, y: y, text: "+$" + gain, age: 0 });
+    SC.hist.push({ t: SC.t, g: scGains(), trade: true });
+    SC.possible = scPossible();
+    if (SC.possible === 0) SC.done = true;
+    scWrite();
+  }
+  function scStep(h, speed, a) {
+    var F = SC.fans, r = SC.r, i, j, f;
+    for (i = 0; i < F.length; i++) {
+      f = F[i];
+      f.x += f.vx * speed * h; f.y += f.vy * speed * h;
+      if (f.x < r) { f.x = r; f.vx = Math.abs(f.vx); }
+      if (f.x > a.w - r) { f.x = a.w - r; f.vx = -Math.abs(f.vx); }
+      if (f.y < r) { f.y = r; f.vy = Math.abs(f.vy); }
+      if (f.y > a.h - r) { f.y = a.h - r; f.vy = -Math.abs(f.vy); }
+    }
+    for (i = 0; i < F.length; i++) for (j = i + 1; j < F.length; j++) {
+      var p = F[i], q = F[j], dx = q.x - p.x, dy = q.y - p.y, d2 = dx * dx + dy * dy;
+      if (d2 >= 4 * r * r || d2 === 0) continue;
+      var d = Math.sqrt(d2), nx = dx / d, ny = dy / d, ov = (2 * r - d) / 2;
+      p.x -= nx * ov; p.y -= ny * ov; q.x += nx * ov; q.y += ny * ov;
+      var rv = (q.vx - p.vx) * nx + (q.vy - p.vy) * ny;
+      if (rv < 0) {   // approaching: equal-mass elastic bounce, then see if a deal exists
+        p.vx += rv * nx; p.vy += rv * ny; q.vx -= rv * nx; q.vy -= rv * ny;
+        scMeet(p, q, (p.x + q.x) / 2, (p.y + q.y) / 2);
+      }
+    }
+  }
+  function scUpdate(dt) {
+    var a = scGeo().arena, snap = reduceMQ.matches;
+    if (SC.aw && (Math.abs(a.w - SC.aw) > 0.5 || Math.abs(a.h - SC.ah) > 0.5)) {
+      var sx = a.w / SC.aw, sy = a.h / SC.ah;
+      SC.fans.forEach(function (f) { f.x *= sx; f.y *= sy; });
+      SC.aw = a.w; SC.ah = a.h;
+    }
+    SC.line += ((SC.lineOn ? 1 : 0) - SC.line) * (snap ? 1 : 1 - Math.exp(-dt * 5));
+    SC.fans.forEach(function (f) { f.flash = Math.max(0, f.flash - dt * 1.4); });
+    SC.fx = SC.fx.filter(function (e) { return (e.age += dt) < 1.3; });
+    if (SC.paused || SC.lineOn) return;
+    var mult = +scSpeed.value;
+    var speed = mult * Math.min(a.w, a.h) * (SC.nPer === 6 ? 0.42 : 0.3);
+    var steps = Math.min(16, Math.max(1, Math.ceil(dt * speed / (SC.r * 0.5))));
+    for (var s = 0; s < steps; s++) scStep(dt / steps, speed, a);
+    if (SC.done) return;   // the clock stops with the last trade
+    SC.t += dt * mult;
+    if (SC.t - SC.lastHist >= 0.1) { SC.hist.push({ t: SC.t, g: scGains() }); SC.lastHist = SC.t; }
+  }
+
+  function scDraw() {
+    var c = colors(), g = scGeo(), a = g.arena, F = SC.fans, n = SC.nPer, tot = 2 * n, L = SC.line;
+    ctx.setTransform(dpr * uiScale, 0, 0, dpr * uiScale, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    ctx.globalAlpha = 1; ctx.fillStyle = c.mist; rr(a.x, a.y, a.w, a.h, 10); ctx.fill();
+
+    var ranked = F.slice().sort(function (x, y) { return y.v - x.v; });
+    var slot = function (f) {
+      var k = ranked.indexOf(f);
+      return { x: (k + 0.5) / tot * a.w, y: a.h - 34 - (f.v / PMAX) * (a.h - 80) };
+    };
+    if (L > 0.01) {
+      var cut = a.x + n / tot * a.w;
+      ctx.globalAlpha = L; ctx.strokeStyle = c.ink; ctx.lineWidth = 1.5; ctx.setLineDash([6, 5]);
+      ctx.beginPath(); ctx.moveTo(cut, a.y + 34); ctx.lineTo(cut, a.y + a.h - 10); ctx.stroke(); ctx.setLineDash([]);
+      tag("← " + n + " tickets", cut + 6, a.y + 20, "left", c.surface, c.ink, L);
+      ctx.font = "500 12px " + SANS; ctx.fillStyle = c.muted; ctx.textAlign = "center"; ctx.textBaseline = "bottom";
+      ctx.fillText("Everyone, ranked by what a ticket is worth to them", a.x + a.w / 2, a.y + a.h - 4);
+    }
+
+    var labels = n === 6;
+    F.forEach(function (f) {
+      var sl = slot(f);
+      var x = a.x + f.x + (sl.x - f.x) * L, y = a.y + f.y + (sl.y - f.y) * L, r = SC.r;
+      if (f.flash > 0.01) {
+        ctx.globalAlpha = f.flash; ctx.strokeStyle = c.gold; ctx.lineWidth = 3;
+        ctx.beginPath(); ctx.arc(x, y, r + 4 + (1 - f.flash) * 10, 0, Math.PI * 2); ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+      ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2);
+      if (f.holds) { ctx.fillStyle = c.gold; ctx.fill(); }
+      else { ctx.fillStyle = c.surface; ctx.fill(); ctx.strokeStyle = c.muted; ctx.lineWidth = 1.5; ctx.stroke(); }
+      if (labels) {
+        ctx.fillStyle = f.holds ? "#1D1500" : c.ink; ctx.font = "600 12px " + SANS;
+        ctx.textAlign = "center"; ctx.textBaseline = "middle";
+        ctx.fillText("$" + f.v, x, y + 0.5);
+        ctx.fillStyle = c.muted; ctx.font = "500 11px " + SANS; ctx.textBaseline = "top";
+        ctx.fillText(f.name, x, y + r + 3);
+      }
+    });
+
+    SC.fx.forEach(function (e) {
+      if (L > 0.5) return;
+      ctx.globalAlpha = Math.max(0, 1 - e.age / 1.3);
+      ctx.fillStyle = c.goldInk; ctx.font = "700 14px " + SANS; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      ctx.fillText(e.text, a.x + e.x, a.y + e.y - SC.r - 8 - e.age * 28);
+    });
+
+    if (SC.done && L < 0.5) {
+      tag("No more trades possible", a.x + a.w / 2, a.y + 22, "center", c.surface, c.seller, 1 - L * 2);
+    }
+    ctx.globalAlpha = 1;
+    scChart(g.chart, c);
+  }
+
+  function scChart(ch, c) {
+    var T = Math.max(10, SC.t * 1.08), Y = Math.max(SC.best, 1) * 1.18;
+    var X = function (t) { return ch.x + t / T * ch.w; }, Yv = function (v) { return ch.y + ch.h - v / Y * ch.h; };
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = c.ink; ctx.font = "600 13px " + SANS; ctx.textAlign = "left"; ctx.textBaseline = "bottom";
+    ctx.fillText("Gains from trade so far", ch.x - 40, ch.y - 16);
+    ctx.strokeStyle = c.muted; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(ch.x, ch.y); ctx.lineTo(ch.x, ch.y + ch.h); ctx.lineTo(ch.x + ch.w, ch.y + ch.h); ctx.stroke();
+    ctx.font = "400 12px " + SANS; ctx.fillStyle = c.muted; ctx.textAlign = "right"; ctx.textBaseline = "middle";
+    ctx.fillText("$0", ch.x - 6, Yv(0));
+    ctx.textAlign = "center"; ctx.textBaseline = "top";
+    ctx.fillText("Time", ch.x + ch.w / 2, ch.y + ch.h + 8);
+
+    // the market's benchmark
+    var yb = Yv(SC.best);
+    ctx.strokeStyle = c.gold; ctx.lineWidth = 2; ctx.setLineDash([6, 5]);
+    ctx.beginPath(); ctx.moveTo(ch.x, yb); ctx.lineTo(ch.x + ch.w, yb); ctx.stroke(); ctx.setLineDash([]);
+    ctx.fillStyle = c.muted; ctx.textAlign = "right"; ctx.textBaseline = "middle";
+    ctx.fillText(money(SC.best), ch.x - 6, yb);
+    ctx.fillStyle = c.goldInk; ctx.font = "600 12px " + SANS; ctx.textAlign = "left"; ctx.textBaseline = "bottom";
+    ctx.fillText("The market, in one step", ch.x + 4, yb - 4);
+
+    // the scramble so far
+    ctx.strokeStyle = c.ink; ctx.lineWidth = 2.5; ctx.lineJoin = "round";
+    ctx.beginPath();
+    SC.hist.forEach(function (h, i) { var px = X(h.t), py = Yv(h.g); if (i) ctx.lineTo(px, py); else ctx.moveTo(px, py); });
+    var gNow = scGains();
+    ctx.lineTo(X(SC.t), Yv(gNow)); ctx.stroke();
+    SC.hist.forEach(function (h) {
+      if (!h.trade) return;
+      ctx.fillStyle = c.gold; ctx.beginPath(); ctx.arc(X(h.t), Yv(h.g), 3.5, 0, Math.PI * 2); ctx.fill();
+    });
+    tag(money(gNow), Math.min(X(SC.t) + 6, ch.x + ch.w - 50), Yv(gNow) + (gNow > SC.best * 0.85 ? 16 : -14),
+        "left", c.surface, c.ink, 1);
+  }
+
+  function scWrite() {
+    if (!scRead) return;
+    var chip, cls, lines = [];
+    if (SC.done) { chip = "No more trades possible"; cls = "ok"; }
+    else if (SC.paused) { chip = "Paused"; cls = ""; }
+    else { chip = "Trading"; cls = "hag"; }
+    lines.push(SC.trades + (SC.trades === 1 ? " trade" : " trades") + " so far. Gains from trade: " + money(scGains()) +
+      " of the " + money(SC.best) + " the market creates. " +
+      (SC.done ? "" : SC.possible + (SC.possible === 1 ? " pair" : " pairs") + " could still make a deal."));
+    if (SC.last) {
+      var lt = SC.last;
+      lines.push(lt.from.name
+        ? "Latest: " + lt.from.name + " sold to " + lt.to.name + " for $" + lt.price + ". Each gains " + money(lt.gain / 2) + "."
+        : "Latest trade: $" + lt.price + ", worth " + money(lt.gain) + " to the pair.");
+    }
+    if (SC.prices.length > 1) {
+      lines.push("Prices paid so far run from $" + Math.min.apply(null, SC.prices) + " to $" + Math.max.apply(null, SC.prices) +
+        ". The market used one price for everyone.");
+    }
+    if (SC.done) {
+      lines.push("The tickets now sit with the " + SC.nPer + " fans who value them most: the same allocation the market reached in one step.");
+    }
+    scRead.innerHTML = "";
+    var ch = document.createElement("span"); ch.className = "chip " + cls; ch.textContent = chip;
+    scRead.appendChild(ch);
+    lines.forEach(function (t) { var el = document.createElement("p"); el.textContent = t; scRead.appendChild(el); });
+    if (mode === "scramble") cv.setAttribute("aria-label", chip + ". " + lines.join(" "));
+  }
+
+  document.getElementById("scRestart").addEventListener("click", scReset);
+  scN.addEventListener("change", scReset);
+  scSpeed.addEventListener("input", function () { scSpeedOut.textContent = (+scSpeed.value) + "×"; });
+  scPause.addEventListener("click", function () {
+    SC.paused = !SC.paused; scPause.textContent = SC.paused ? "Resume" : "Pause"; scWrite();
+  });
+  scLine.addEventListener("click", function () {
+    SC.lineOn = !SC.lineOn; scLine.textContent = SC.lineOn ? "Let them loose" : "Line them up";
+  });
+
   // ---------- mode tabs ----------
   var tabW = document.getElementById("tab-walk"), tabE = document.getElementById("tab-explore");
   var walkP = document.getElementById("walk"), explP = document.getElementById("explore");
+  var tabS = document.getElementById("tab-scramble"), scP = document.getElementById("scramble");
+  var legM = document.getElementById("legMarket"), legS = document.getElementById("legScramble");
   function setMode(m) {
     mode = m;
     tabW.setAttribute("aria-selected", m === "walk"); tabE.setAttribute("aria-selected", m === "explore");
-    walkP.hidden = m !== "walk"; explP.hidden = m !== "explore";
-    if (m === "walk") go(step); else applyExplore();
+    tabS.setAttribute("aria-selected", m === "scramble");
+    walkP.hidden = m !== "walk"; explP.hidden = m !== "explore"; scP.hidden = m !== "scramble";
+    legM.hidden = m === "scramble"; legS.hidden = m !== "scramble";
+    if (m === "walk") go(step);
+    else if (m === "explore") applyExplore();
+    else { if (!SC.fans.length) scReset(); else scWrite(); }
+    dirty = true;
   }
   tabW.addEventListener("click", function () { setMode("walk"); });
   tabE.addEventListener("click", function () { setMode("explore"); });
+  tabS.addEventListener("click", function () { setMode("scramble"); });
 
   // ---------- sizing, theme, loop ----------
   var lastW = 0, uiScale = 1;
@@ -1237,8 +1534,11 @@
   function frame(now) {
     var dt = Math.min(0.05, Math.max(0, (now - last) / 1000));
     last = now;
-    var moving = update(dt);
-    if (moving || dirty) { draw(); dirty = false; }
+    if (mode === "scramble") { scUpdate(dt); scDraw(); dirty = false; }
+    else {
+      var moving = update(dt);
+      if (moving || dirty) { draw(); dirty = false; }
+    }
     requestAnimationFrame(frame);
   }
 
