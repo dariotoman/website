@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Move the elasticities of supply and demand and see who really bears a per-unit tax.">
+<title>Who Pays a Tax?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600&display=swap">
+<style>
+  /* Same tokens as the Week 2 ticket-market interactive (Teach theme palette) */
+  :root {
+    --ground: #F5F7FA;
+    --surface: #FFFFFF;
+    --ink: #22303D;
+    --muted: #5E6B78;
+    --rule: #CDD6E0;
+    --mist: #EEF1F6;
+    --bar-bg: #002A5C;
+    --bar-ink: #FFFFFF;
+    --gold: #F2A900;
+    --gold-ink: #8A5A00;
+    --buyer: #534AB7;
+    --seller: #0F6E56;
+    --alert: #A32D2D;
+    --btn-bg: #002A5C;
+    --btn-ink: #FFFFFF;
+    --buyer-fill: rgba(83, 74, 183, 0.32);
+    --seller-fill: rgba(15, 110, 86, 0.32);
+    --dwl-fill: rgba(163, 45, 45, 0.30);
+    --serif: "Palatino Linotype", Palatino, "Book Antiqua", "URW Palladio L", Georgia, serif;
+    --sans: "Fira Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0D1521;
+      --surface: #141E2C;
+      --ink: #E3E9F0;
+      --muted: #97A4B2;
+      --rule: #2A3848;
+      --mist: #1A2638;
+      --bar-bg: #091D3A;
+      --bar-ink: #F2F5F9;
+      --gold: #F2B52A;
+      --gold-ink: #F5C95E;
+      --buyer: #9A93F0;
+      --seller: #45C29B;
+      --alert: #EC7B7B;
+      --btn-bg: #F2B52A;
+      --btn-ink: #1D1500;
+      --buyer-fill: rgba(154, 147, 240, 0.30);
+      --seller-fill: rgba(69, 194, 155, 0.28);
+      --dwl-fill: rgba(236, 123, 123, 0.30);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #0D1521;
+    --surface: #141E2C;
+    --ink: #E3E9F0;
+    --muted: #97A4B2;
+    --rule: #2A3848;
+    --mist: #1A2638;
+    --bar-bg: #091D3A;
+    --bar-ink: #F2F5F9;
+    --gold: #F2B52A;
+    --gold-ink: #F5C95E;
+    --buyer: #9A93F0;
+    --seller: #45C29B;
+    --alert: #EC7B7B;
+    --btn-bg: #F2B52A;
+    --btn-ink: #1D1500;
+    --buyer-fill: rgba(154, 147, 240, 0.30);
+    --seller-fill: rgba(69, 194, 155, 0.28);
+    --dwl-fill: rgba(236, 123, 123, 0.30);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-inline: 16px;
+    padding-block: 16px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  /* header: echoes the Teach frame-title bar with its gold rule */
+  .bar {
+    background: var(--bar-bg);
+    color: var(--bar-ink);
+    border-bottom: 3px solid var(--gold);
+    border-radius: 6px 6px 0 0;
+    padding: 14px 20px 16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px 24px;
+  }
+  .eyebrow {
+    margin: 0 0 4px;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  h1 {
+    margin: 0;
+    font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.1rem);
+    font-weight: 700;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+  .fs-btn {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--bar-ink);
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 999px;
+    padding: 6px 14px;
+    cursor: pointer;
+  }
+  .fs-btn:hover { border-color: var(--gold); }
+
+  .intro { margin: 0; max-width: 72ch; font-size: 1.05rem; line-height: 1.55; }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 22px;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .key { display: inline-flex; align-items: center; gap: 8px; }
+  .sw { display: inline-block; width: 22px; height: 12px; border-radius: 2px; }
+  .sw.line { height: 3px; border-radius: 2px; }
+  .sw.d { background: var(--buyer); }
+  .sw.s { background: var(--seller); }
+  .sw.st { background: repeating-linear-gradient(90deg, var(--seller) 0 5px, transparent 5px 9px); }
+  .sw.bf { background: var(--buyer-fill); }
+  .sw.sf { background: var(--seller-fill); }
+  .sw.dw { background: var(--dwl-fill); }
+  .sw.tax { width: 4px; height: 16px; background: var(--alert); }
+
+  .main {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(280px, 1fr);
+    gap: 16px;
+    align-items: start;
+  }
+  @media (max-width: 860px) { .main { grid-template-columns: minmax(0, 1fr); } }
+
+  .stage {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  svg#plot { display: block; width: 100%; height: auto; }
+
+  .side { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .card h2 {
+    margin: 0;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold-ink);
+  }
+  .field { display: flex; flex-direction: column; gap: 6px; font-family: var(--sans); font-size: 0.85rem; color: var(--muted); }
+  .field output { font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+  input[type="range"] { width: 100%; accent-color: var(--gold); }
+  .check { display: flex; align-items: center; gap: 8px; font-family: var(--sans); font-size: 0.85rem; color: var(--muted); }
+  .check input { accent-color: var(--gold); width: 16px; height: 16px; }
+
+  .presets { display: flex; flex-wrap: wrap; gap: 8px; }
+  .btn {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 7px 12px;
+    cursor: pointer;
+  }
+  .btn[aria-pressed="true"] { background: var(--btn-bg); color: var(--btn-ink); border-color: transparent; }
+  button:focus-visible, input:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 2px;
+  }
+
+  .read { font-family: var(--sans); font-size: 0.92rem; font-variant-numeric: tabular-nums; }
+  .read table { width: 100%; border-collapse: collapse; }
+  .read td { padding: 3px 0; }
+  .read td:last-child { text-align: right; font-weight: 600; color: var(--ink); }
+  .read td:first-child { color: var(--muted); }
+  .split { display: flex; height: 14px; border-radius: 7px; overflow: hidden; background: var(--mist); }
+  .split .b { background: var(--buyer); }
+  .split .s { background: var(--seller); }
+  .split-lab { display: flex; justify-content: space-between; font-family: var(--sans); font-size: 0.85rem; font-weight: 600; }
+  .split-lab .bl { color: var(--buyer); }
+  .split-lab .sl { color: var(--seller); }
+  .keyidea {
+    margin: 0;
+    padding: 10px 12px;
+    background: var(--mist);
+    border-left: 3px solid var(--gold);
+    border-radius: 4px;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  .formula { font-family: var(--sans); font-size: 0.85rem; color: var(--muted); margin: 0; }
+
+  /* SVG styling through the same tokens, so dark mode follows automatically */
+  .ax { stroke: var(--ink); stroke-width: 1.2; }
+  .tick { fill: var(--muted); font-family: var(--sans); font-size: 12px; }
+  .axlab { fill: var(--muted); font-family: var(--serif); font-size: 15px; font-style: italic; }
+  .curve-d { stroke: var(--buyer); stroke-width: 3; fill: none; }
+  .curve-s { stroke: var(--seller); stroke-width: 3; fill: none; }
+  .curve-st { stroke: var(--seller); stroke-width: 2.6; fill: none; stroke-dasharray: 9 6; }
+  .fill-b { fill: var(--buyer-fill); }
+  .fill-s { fill: var(--seller-fill); }
+  .fill-dw { fill: var(--dwl-fill); }
+  .guide { stroke: var(--muted); stroke-width: 1; stroke-dasharray: 4 4; }
+  .wedge { stroke: var(--alert); stroke-width: 4; stroke-linecap: round; }
+  .dot0 { fill: var(--gold); }
+  .dot1 { fill: var(--alert); }
+  .plab { font-family: var(--serif); font-size: 15px; font-style: italic; paint-order: stroke; stroke: var(--surface); stroke-width: 5px; stroke-linejoin: round; }
+  .plab.b { fill: var(--buyer); }
+  .plab.s { fill: var(--seller); }
+  .plab.one { fill: var(--muted); }
+  .clab { font-family: var(--serif); font-size: 15px; font-style: italic; }
+  .clab.d { fill: var(--buyer); }
+  .clab.s { fill: var(--seller); }
+  .shut { fill: var(--alert); font-family: var(--sans); font-size: 15px; font-weight: 600; }
+
+  /* presenter mode */
+  .wrap.is-fs { max-width: none; width: 100%; height: 100vh; height: 100dvh; overflow: auto; background: var(--ground); padding-block: 12px; }
+  .wrap.is-fs .intro, .wrap.is-fs footer { display: none; }
+  .wrap.is-fs .main { flex: 1 1 auto; }
+
+  footer { font-family: var(--sans); font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+</style>
+</head>
+<body>
+<div class="wrap" id="app">
+  <header class="bar">
+    <div>
+      <p class="eyebrow">MUN221 / MUN202 &middot; Using supply and demand</p>
+      <h1>Who Pays a Tax?</h1>
+    </div>
+    <button class="fs-btn" id="fsBtn" type="button" aria-pressed="false" title="Full screen (F)">Full screen</button>
+  </header>
+
+  <p class="intro">The government collects a tax of <em>t</em> on every unit sold. Buyers now pay
+    <em>P<sub>b</sub></em>, sellers keep <em>P<sub>s</sub> = P<sub>b</sub> &minus; t</em>. Who actually
+    bears the tax depends on how elastic each side is, not on who hands the money over.
+    Move the sliders, or start from one of the markets in the lecture.</p>
+
+  <div class="legend" aria-hidden="true">
+    <span class="key"><span class="sw line d"></span>Demand</span>
+    <span class="key"><span class="sw line s"></span>Supply</span>
+    <span class="key"><span class="sw line st"></span>Supply + tax</span>
+    <span class="key"><span class="sw tax"></span>The tax, t</span>
+    <span class="key"><span class="sw bf"></span>Paid by buyers</span>
+    <span class="key"><span class="sw sf"></span>Paid by sellers</span>
+    <span class="key" id="dwKey"><span class="sw dw"></span>Deadweight loss</span>
+  </div>
+
+  <div class="main">
+    <div class="stage">
+      <svg id="plot" viewBox="0 0 720 480" role="img" aria-label="Supply and demand diagram with a per-unit tax"></svg>
+    </div>
+
+    <div class="side">
+      <div class="card">
+        <h2>Start from a market</h2>
+        <div class="presets" id="presets">
+          <button class="btn" type="button" data-ed="-1.27" data-es="1.27">Our ticket market</button>
+          <button class="btn" type="button" data-ed="-0.4" data-es="2.5">Cigarettes</button>
+          <button class="btn" type="button" data-ed="-2.5" data-es="0.4">Hotel rooms in one city</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Adjust</h2>
+        <label class="field" for="edIn">
+          <span>Elasticity of demand, <em>E<sup>D</sup></em>: <output id="edOut" for="edIn"></output></span>
+          <input type="range" id="edIn" min="-5" max="-0.1" step="0.01" value="-1.27">
+        </label>
+        <label class="field" for="esIn">
+          <span>Elasticity of supply, <em>E<sup>S</sup></em>: <output id="esOut" for="esIn"></output></span>
+          <input type="range" id="esIn" min="0.1" max="5" step="0.01" value="1.27">
+        </label>
+        <label class="field" for="tIn">
+          <span>Tax per unit, <em>t</em> (the old price is 1): <output id="tOut" for="tIn"></output></span>
+          <input type="range" id="tIn" min="0" max="0.8" step="0.02" value="0.4">
+        </label>
+        <label class="check"><input type="checkbox" id="dwIn"> Show deadweight loss</label>
+      </div>
+
+      <div class="card read" aria-live="polite">
+        <h2>Who bears it</h2>
+        <div class="split-lab"><span class="bl" id="bShare"></span><span class="sl" id="sShare"></span></div>
+        <div class="split" aria-hidden="true"><div class="b" id="bBar"></div><div class="s" id="sBar"></div></div>
+        <table>
+          <tr><td>Buyers pay, <em>P<sub>b</sub></em></td><td id="rPb"></td></tr>
+          <tr><td>Sellers keep, <em>P<sub>s</sub></em></td><td id="rPs"></td></tr>
+          <tr><td>Quantity sold</td><td id="rQ"></td></tr>
+          <tr><td>Tax revenue, <em>t</em> &times; <em>Q</em></td><td id="rRev"></td></tr>
+          <tr><td>Deadweight loss</td><td id="rDwl"></td></tr>
+        </table>
+        <p class="keyidea" id="verdict"></p>
+        <p class="formula">Buyers' share = <em>E<sup>S</sup></em> / (<em>E<sup>S</sup></em> + |<em>E<sup>D</sup></em>|)</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>Straight-line demand and supply drawn through the pre-tax equilibrium, with price and quantity
+    both scaled to 1 and the chosen elasticities holding at that point. The shaded rectangle is the tax
+    revenue, split at the old price: the part above it is paid by buyers, the part below by sellers.
+    GLS <em>Microeconomics</em>, Section 3.4 and Figure 3.13. Press F for full screen.</footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var NS = "http://www.w3.org/2000/svg";
+  var svg = document.getElementById("plot");
+  var W = 720, H = 480, M = { l: 70, r: 70, t: 24, b: 56 };
+  var iw = W - M.l - M.r, ih = H - M.t - M.b;
+  var QMAX = 2, PMAX = 2.1;
+  function X(q) { return M.l + q / QMAX * iw; }
+  function Y(p) { return M.t + (PMAX - p) / PMAX * ih; }
+
+  var edIn = document.getElementById("edIn"), esIn = document.getElementById("esIn");
+  var tIn = document.getElementById("tIn"), dwIn = document.getElementById("dwIn");
+  function $(id) { return document.getElementById(id); }
+
+  function el(name, attrs, parent) {
+    var e = document.createElementNS(NS, name);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    (parent || svg).appendChild(e);
+    return e;
+  }
+  function text(x, y, s, cls, anchor, parent) {
+    var t = el("text", { x: x, y: y, "class": cls, "text-anchor": anchor || "middle" }, parent);
+    t.innerHTML = s;
+    return t;
+  }
+  function rect(q0, q1, pTop, pBot, cls, parent) {
+    if (pTop - pBot < 1e-9 || q1 - q0 < 1e-9) return;
+    el("rect", { x: X(q0), y: Y(pTop), width: X(q1) - X(q0), height: Y(pBot) - Y(pTop), "class": cls }, parent);
+  }
+  function fmt(x, d) { return x.toFixed(d === undefined ? 2 : d); }
+
+  // Linear curves through (1, 1) with elasticity e at that point: Q = 1 + e (P - 1)
+  function solve(ed, es, t) {
+    var dPb = es * t / (es - ed);          // rise in the buyers' price = E^S t / (E^S + |E^D|)
+    var Pb = 1 + dPb, Ps = Pb - t, Q = 1 + ed * dPb;
+    return { Pb: Pb, Ps: Ps, Q: Q, bShare: t > 0 ? dPb / t : es / (es - ed) };
+  }
+
+  function draw() {
+    var ed = +edIn.value, es = +esIn.value, t = +tIn.value;
+    $("edOut").textContent = fmt(ed);
+    $("esOut").textContent = fmt(es);
+    $("tOut").textContent = fmt(t);
+    $("dwKey").style.opacity = dwIn.checked ? 1 : 0.4;
+
+    var r = solve(ed, es, t), shut = r.Q <= 0;
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+
+    var defs = el("defs", {});
+    var cp = el("clipPath", { id: "clip" }, defs);
+    el("rect", { x: M.l, y: M.t, width: iw, height: ih }, cp);
+    var g = el("g", { "clip-path": "url(#clip)" });
+
+    // shaded areas first
+    if (t > 0 && !shut) {
+      rect(0, r.Q, r.Pb, 1, "fill-b", g);
+      rect(0, r.Q, 1, r.Ps, "fill-s", g);
+      if (dwIn.checked) {
+        el("polygon", { points: [X(r.Q) + "," + Y(r.Pb), X(1) + "," + Y(1), X(r.Q) + "," + Y(r.Ps)].join(" "), "class": "fill-dw" }, g);
+      }
+    }
+
+    // curves: P = 1 + (Q - 1) / e
+    function path(fn, cls) {
+      var pts = [];
+      for (var i = 0; i <= 200; i++) { var q = QMAX * i / 200; pts.push(X(q) + " " + Y(fn(q))); }
+      el("path", { d: "M " + pts.join(" L "), "class": cls }, g);
+    }
+    path(function (q) { return 1 + (q - 1) / ed; }, "curve-d");
+    path(function (q) { return 1 + (q - 1) / es; }, "curve-s");
+    if (t > 0) path(function (q) { return 1 + (q - 1) / es + t; }, "curve-st");
+
+    // guides
+    if (t > 0 && !shut) {
+      el("line", { x1: X(0), y1: Y(1), x2: X(1), y2: Y(1), "class": "guide" }, g);
+      el("line", { x1: X(r.Q), y1: Y(0), x2: X(r.Q), y2: Y(r.Ps), "class": "guide" }, g);
+    }
+    el("line", { x1: X(1), y1: Y(0), x2: X(1), y2: Y(1), "class": "guide" }, g);
+
+    // axes
+    el("line", { x1: M.l, y1: Y(0), x2: M.l + iw, y2: Y(0), "class": "ax" });
+    el("line", { x1: M.l, y1: M.t, x2: M.l, y2: Y(0), "class": "ax" });
+    text(M.l + iw / 2, H - 14, "quantity", "axlab");
+    var yl = text(22, M.t + ih / 2, "price", "axlab");
+    yl.setAttribute("transform", "rotate(-90 22 " + (M.t + ih / 2) + ")");
+    [0, 0.5, 1, 1.5, 2].forEach(function (q) {
+      el("line", { x1: X(q), y1: Y(0), x2: X(q), y2: Y(0) + 5, "class": "ax" });
+      text(X(q), Y(0) + 20, q === 1 ? "Q₁ = 1" : fmt(q, 1), "tick");
+    });
+
+    // price labels: P_1 on the left axis, P_b and P_s beside the wedge
+    text(M.l - 8, Y(1) + 5, "P<tspan baseline-shift='sub' font-size='11'>1</tspan>", "plab one", "end");
+    if (t > 0 && !shut) {
+      var close = (r.Pb - r.Ps) < 0.12;
+      text(X(r.Q) + 10, Y(r.Pb) + (close ? -4 : 5), "P<tspan baseline-shift='sub' font-size='11'>b</tspan> = " + fmt(r.Pb), "plab b", "start");
+      text(X(r.Q) + 10, Y(r.Ps) + (close ? 16 : 5), "P<tspan baseline-shift='sub' font-size='11'>s</tspan> = " + fmt(r.Ps), "plab s", "start");
+      el("line", { x1: X(r.Q), y1: Y(r.Ps), x2: X(r.Q), y2: Y(r.Pb), "class": "wedge" });
+      el("circle", { cx: X(r.Q), cy: Y(r.Pb), r: 5, "class": "dot1" });
+      el("circle", { cx: X(r.Q), cy: Y(r.Ps), r: 5, "class": "dot1" });
+    }
+    el("circle", { cx: X(1), cy: Y(1), r: 6, "class": "dot0" });
+
+    // curve labels at the right edge (inside the plot when the curve leaves early)
+    function edgeLabel(fn, lab, cls, dy) {
+      var q = QMAX, p = fn(q);
+      if (p < 0) { p = 0.06; q = 1 + (p - 1) * (cls === "clab d" ? ed : es); }
+      if (p > PMAX) { p = PMAX - 0.04; q = 1 + (p - 1) * (cls === "clab d" ? ed : es); }
+      text(Math.min(X(q) + 6, W - 4), Y(p) + (dy || 4), lab, cls, "start");
+    }
+    edgeLabel(function (q) { return 1 + (q - 1) / ed; }, "D", "clab d");
+    edgeLabel(function (q) { return 1 + (q - 1) / es; }, "S", "clab s", 14);
+
+    if (shut) text(M.l + iw / 2, M.t + 30, "This tax is so large that the market shuts down.", "shut");
+
+    // readout
+    var b = Math.max(0, Math.min(1, r.bShare)), s = 1 - b;
+    $("bShare").textContent = "Buyers " + Math.round(b * 100) + "%";
+    $("sShare").textContent = "Sellers " + Math.round(s * 100) + "%";
+    $("bBar").style.width = (b * 100) + "%";
+    $("sBar").style.width = (s * 100) + "%";
+    $("rPb").textContent = shut ? "–" : fmt(r.Pb);
+    $("rPs").textContent = shut ? "–" : fmt(r.Ps);
+    $("rQ").textContent = shut ? "0" : fmt(r.Q);
+    $("rRev").textContent = shut ? "0" : fmt(t * r.Q, 3);
+    $("rDwl").textContent = shut ? "–" : fmt(0.5 * t * (1 - r.Q), 3);
+    var v;
+    if (t === 0) v = "Set a tax to see who bears it.";
+    else if (Math.abs(b - 0.5) < 0.03) v = "The two sides are about <strong>equally elastic</strong>, so they split the tax roughly 50/50.";
+    else if (b > 0.5) v = "Demand is the <strong>less elastic</strong> side, so <strong>buyers</strong> bear most of the tax: they can't easily walk away.";
+    else v = "Supply is the <strong>less elastic</strong> side, so <strong>sellers</strong> bear most of the tax: they can't easily walk away.";
+    $("verdict").innerHTML = v;
+
+    // preset buttons light up when they match
+    Array.prototype.forEach.call(document.querySelectorAll("#presets .btn"), function (btn) {
+      var on = Math.abs(+btn.dataset.ed - ed) < 0.005 && Math.abs(+btn.dataset.es - es) < 0.005;
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+  }
+
+  [edIn, esIn, tIn].forEach(function (i) { i.addEventListener("input", draw); });
+  dwIn.addEventListener("change", draw);
+  Array.prototype.forEach.call(document.querySelectorAll("#presets .btn"), function (btn) {
+    btn.addEventListener("click", function () { edIn.value = btn.dataset.ed; esIn.value = btn.dataset.es; draw(); });
+  });
+
+  // ---------- full screen (same behaviour as the ticket market) ----------
+  var app = $("app"), fsBtn = $("fsBtn");
+  function isFS() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  if (!(app.requestFullscreen || app.webkitRequestFullscreen)) fsBtn.hidden = true;
+  function toggleFS() {
+    if (isFS()) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+    else {
+      var p = (app.requestFullscreen || app.webkitRequestFullscreen).call(app);
+      if (p && p.catch) p.catch(function () {});
+    }
+  }
+  function onFS() {
+    var fs = isFS();
+    app.classList.toggle("is-fs", fs);
+    fsBtn.setAttribute("aria-pressed", fs ? "true" : "false");
+    fsBtn.textContent = fs ? "Exit full screen" : "Full screen";
+  }
+  fsBtn.addEventListener("click", toggleFS);
+  document.addEventListener("fullscreenchange", onFS);
+  document.addEventListener("webkitfullscreenchange", onFS);
+  document.addEventListener("keydown", function (e) {
+    if ((e.key !== "f" && e.key !== "F") || e.metaKey || e.ctrlKey || e.altKey) return;
+    var tn = e.target && e.target.tagName;
+    if (tn === "INPUT" || tn === "SELECT" || tn === "TEXTAREA") return;
+    if (fsBtn.hidden) return;
+    e.preventDefault(); toggleFS();
+  });
+
+  draw();
+})();
+</script>
+</body>
+</html>
