@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Split a price change into its income and substitution effects: find the cash that is worth as much as the price change.">
+<title>Income and Substitution Effects</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600&display=swap">
+<style>
+  /* Same tokens as the MUN221 ticket-market and tax-incidence interactives (Teach theme palette).
+     Income effect = TeachGreen, substitution effect = TeachPlum, matching the Week 4 slides. */
+  :root {
+    --ground: #F5F7FA;
+    --surface: #FFFFFF;
+    --ink: #22303D;
+    --muted: #5E6B78;
+    --rule: #CDD6E0;
+    --mist: #EEF1F6;
+    --bar-bg: #002A5C;
+    --bar-ink: #FFFFFF;
+    --gold: #F2A900;
+    --gold-ink: #8A5A00;
+    --budget: #002A5C;
+    --old: #9AA7B5;
+    --ic: #C98C00;
+    --inc: #3B6D11;
+    --sub: #534AB7;
+    --alert: #A32D2D;
+    --btn-bg: #002A5C;
+    --btn-ink: #FFFFFF;
+    --serif: "Palatino Linotype", Palatino, "Book Antiqua", "URW Palladio L", Georgia, serif;
+    --sans: "Fira Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0D1521;
+      --surface: #141E2C;
+      --ink: #E3E9F0;
+      --muted: #97A4B2;
+      --rule: #2A3848;
+      --mist: #1A2638;
+      --bar-bg: #091D3A;
+      --bar-ink: #F2F5F9;
+      --gold: #F2B52A;
+      --gold-ink: #F5C95E;
+      --budget: #C9D6E6;
+      --old: #5E6B78;
+      --ic: #F2B52A;
+      --inc: #7CC44A;
+      --sub: #9A93F0;
+      --alert: #EC7B7B;
+      --btn-bg: #F2B52A;
+      --btn-ink: #1D1500;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #0D1521;
+    --surface: #141E2C;
+    --ink: #E3E9F0;
+    --muted: #97A4B2;
+    --rule: #2A3848;
+    --mist: #1A2638;
+    --bar-bg: #091D3A;
+    --bar-ink: #F2F5F9;
+    --gold: #F2B52A;
+    --gold-ink: #F5C95E;
+    --budget: #C9D6E6;
+    --old: #5E6B78;
+    --ic: #F2B52A;
+    --inc: #7CC44A;
+    --sub: #9A93F0;
+    --alert: #EC7B7B;
+    --btn-bg: #F2B52A;
+    --btn-ink: #1D1500;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-inline: 16px;
+    padding-block: 16px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  /* header: echoes the Teach frame-title bar with its gold rule */
+  .bar {
+    background: var(--bar-bg);
+    color: var(--bar-ink);
+    border-bottom: 3px solid var(--gold);
+    border-radius: 6px 6px 0 0;
+    padding: 14px 20px 16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px 24px;
+  }
+  .eyebrow {
+    margin: 0 0 4px;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  h1 {
+    margin: 0;
+    font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.1rem);
+    font-weight: 700;
+    line-height: 1.15;
+    text-wrap: balance;
+  }
+  .fs-btn {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--bar-ink);
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 999px;
+    padding: 6px 14px;
+    cursor: pointer;
+  }
+  .fs-btn:hover { border-color: var(--gold); }
+
+  .intro { margin: 0; max-width: 76ch; font-size: 1.05rem; line-height: 1.55; }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 22px;
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .key { display: inline-flex; align-items: center; gap: 8px; }
+  .sw { display: inline-block; width: 22px; height: 3px; border-radius: 2px; }
+  .sw.old { background: var(--old); }
+  .sw.new { background: var(--budget); }
+  .sw.cash { background: repeating-linear-gradient(90deg, var(--gold) 0 6px, transparent 6px 10px); }
+  .sw.ic { background: var(--ic); opacity: 0.7; }
+  .sw.inc { background: var(--inc); height: 5px; }
+  .sw.sub { background: var(--sub); height: 5px; }
+
+  .main {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(280px, 1fr);
+    gap: 16px;
+    align-items: start;
+  }
+  @media (max-width: 860px) { .main { grid-template-columns: minmax(0, 1fr); } }
+
+  .stage {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  svg#plot { display: block; width: 100%; height: auto; }
+
+  .side { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .card h2 {
+    margin: 0;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold-ink);
+  }
+  .field { display: flex; flex-direction: column; gap: 6px; font-family: var(--sans); font-size: 0.85rem; color: var(--muted); }
+  .field output { font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+  input[type="range"] { width: 100%; accent-color: var(--gold); }
+
+  .presets, .actions { display: flex; flex-wrap: wrap; gap: 8px; }
+  .btn {
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 7px 12px;
+    cursor: pointer;
+  }
+  .btn[aria-pressed="true"], .btn.primary { background: var(--btn-bg); color: var(--btn-ink); border-color: transparent; }
+  button:focus-visible, input:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 2px;
+  }
+
+  .read { font-family: var(--sans); font-size: 0.92rem; font-variant-numeric: tabular-nums; }
+  .read table { width: 100%; border-collapse: collapse; }
+  .read td { padding: 3px 0; }
+  .read td:last-child { text-align: right; font-weight: 600; color: var(--ink); }
+  .read td:first-child { color: var(--muted); }
+  .read tr.inc td { color: var(--inc); }
+  .read tr.sub td { color: var(--sub); }
+  .read tr.tot td { border-top: 1px solid var(--rule); padding-top: 6px; }
+  .keyidea {
+    margin: 0;
+    padding: 10px 12px;
+    background: var(--mist);
+    border-left: 3px solid var(--gold);
+    border-radius: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  /* SVG styling through the same tokens, so dark mode follows automatically */
+  .ax { stroke: var(--ink); stroke-width: 1.2; }
+  .tick { fill: var(--muted); font-family: var(--sans); font-size: 12px; }
+  .axlab { fill: var(--muted); font-family: var(--serif); font-size: 15px; font-style: italic; }
+  .bud-old { stroke: var(--old); stroke-width: 3; fill: none; }
+  .bud-new { stroke: var(--budget); stroke-width: 3; fill: none; }
+  .bud-cash { stroke: var(--gold); stroke-width: 2.6; fill: none; stroke-dasharray: 9 6; }
+  .icv { stroke: var(--ic); stroke-width: 1.8; fill: none; opacity: 0.75; }
+  .icv.faint { opacity: 0.35; stroke-dasharray: 2 4; }
+  .dotA, .dotC { fill: var(--alert); }
+  .dotB { fill: var(--gold); }
+  .plab { font-family: var(--serif); font-size: 16px; font-style: italic; font-weight: 700; fill: var(--alert); paint-order: stroke; stroke: var(--surface); stroke-width: 5px; stroke-linejoin: round; }
+  .plab.b { fill: var(--gold-ink); }
+  .arr-inc { stroke: var(--inc); stroke-width: 4; }
+  .arr-sub { stroke: var(--sub); stroke-width: 4; }
+  .head-inc { fill: var(--inc); }
+  .head-sub { fill: var(--sub); }
+
+  /* presenter mode */
+  .wrap.is-fs { max-width: none; width: 100%; height: 100vh; height: 100dvh; overflow: auto; background: var(--ground); padding-block: 12px; }
+  .wrap.is-fs .intro, .wrap.is-fs footer { display: none; }
+  .wrap.is-fs .main { flex: 1 1 auto; }
+
+  footer { font-family: var(--sans); font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+  .leftcol { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+  .below { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: start; }
+  @media (max-width: 640px) { .below { grid-template-columns: 1fr; } }
+  /* steps */
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+  .step { font-family: var(--sans); font-size: 0.8rem; font-weight: 500; text-align: left; line-height: 1.25;
+    color: var(--muted); background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 7px 8px; cursor: pointer; }
+  .step b { display: block; font-size: 0.72rem; letter-spacing: 0.08em; color: var(--gold-ink); }
+  .step[aria-current="step"] { background: var(--btn-bg); color: var(--btn-ink); border-color: transparent; }
+  .step[aria-current="step"] b { color: var(--btn-ink); opacity: 0.8; }
+  .nav { display: flex; justify-content: space-between; gap: 8px; }
+  .steptext { margin: 0; font-size: 1.02rem; line-height: 1.5; }
+  .steptext .q { display: block; margin-top: 8px; padding: 8px 10px; border-left: 3px solid var(--sub); background: var(--mist); }
+  .checks { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; font-family: var(--sans); font-size: 0.9rem; }
+  .checks li { display: grid; grid-template-columns: 22px 1fr; gap: 6px; align-items: start; color: var(--ink); }
+  .checks .mk { font-weight: 600; text-align: center; }
+  .checks .ok { color: var(--inc); }
+  .checks .no { color: var(--alert); }
+  .checks .why { color: var(--muted); display: block; font-size: 0.82rem; }
+  .abc th { text-align: left; font-weight: 600; color: var(--muted); font-size: 0.8rem; padding: 2px 0; }
+  .abc td:first-child { font-family: var(--serif); font-style: italic; font-weight: 700; color: var(--alert); }
+  .abc tr.rowB td:first-child { color: var(--gold-ink); }
+  .abc td { color: var(--ink) !important; text-align: left !important; font-weight: 400 !important; }
+  .abc td.num { text-align: right !important; font-weight: 600 !important; }
+  .eff { display: flex; flex-direction: column; gap: 4px; }
+  .eff div { display: flex; justify-content: space-between; font-weight: 600; }
+  .eff .i { color: var(--inc); } .eff .s { color: var(--sub); } .eff .t { color: var(--ink); border-top: 1px solid var(--rule); padding-top: 4px; }
+</style>
+</head>
+<body>
+<div class="wrap" id="app">
+  <header class="bar">
+    <div>
+      <p class="eyebrow">GLA1010 &middot; Doing the best you can</p>
+      <h1>Income and Substitution Effects</h1>
+    </div>
+    <button class="fs-btn" id="fsBtn" type="button" aria-pressed="false" title="Full screen (F)">Full screen</button>
+  </header>
+
+  <p class="intro" id="intro"></p>
+
+  <div class="legend" aria-hidden="true">
+    <span class="key"><span class="sw old"></span>Budget before</span>
+    <span class="key"><span class="sw new"></span>Budget after</span>
+    <span class="key"><span class="sw cash"></span>Original prices plus a cash payment</span>
+    <span class="key"><span class="sw ic"></span>Indifference curves</span>
+    <span class="key"><span class="sw inc"></span>Income effect</span>
+    <span class="key"><span class="sw sub"></span>Substitution effect</span>
+  </div>
+
+  <div class="main">
+    <div class="leftcol">
+      <div class="stage">
+        <svg id="plot" viewBox="0 0 720 480" role="img" aria-label="Budget constraints and indifference curves, with the income and substitution effects"></svg>
+      </div>
+      <div class="below">
+      <div class="card" id="checkCard">
+        <h2>The dashed line is&hellip;</h2>
+        <ul class="checks" id="checks"></ul>
+      </div>
+      <div class="card read" id="abcCard">
+        <h2>One thing at a time</h2>
+        <table class="abc">
+          <tr><th></th><th id="hP">Prices</th><th>Utility</th><th class="num" id="hQ">Lattes</th></tr>
+          <tr><td>A</td><td id="pA">old</td><td>initial</td><td class="num" id="qA"></td></tr>
+          <tr class="rowB"><td>B</td><td id="pB">old</td><td>new</td><td class="num" id="qB"></td></tr>
+          <tr><td>C</td><td id="pC">new</td><td>new</td><td class="num" id="qC"></td></tr>
+        </table>
+        <div class="eff" id="effBox">
+          <div class="i"><span>Income effect, A &rarr; B</span><span id="rI"></span></div>
+          <div class="s"><span>Substitution effect, B &rarr; C</span><span id="rS"></span></div>
+          <div class="t"><span>Total effect, A &rarr; C</span><span id="rT"></span></div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="side">
+
+      <div class="card" aria-live="polite">
+        <h2>Step by step</h2>
+        <div class="steps" id="steps">
+          <button class="step" type="button" data-step="1"><b>1</b>Initial choice</button>
+          <button class="step" type="button" data-step="2"><b>2</b>Price change</button>
+          <button class="step" type="button" data-step="3"><b>3</b>Equivalent payment</button>
+          <button class="step" type="button" data-step="4"><b>4</b>Decomposition</button>
+        </div>
+        <p class="steptext" id="stepText"></p>
+        <div class="nav">
+          <button class="btn" type="button" id="backBtn">&larr; Back</button>
+          <button class="btn primary" type="button" id="nextBtn">Next &rarr;</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Adjust</h2>
+        <label class="field" for="pIn">
+          <span id="pLab"></span>
+          <input type="range" id="pIn">
+        </label>
+        <div id="cashBox" class="field">
+          <label class="field" for="gIn">
+            <span id="gLab"></span>
+            <input type="range" id="gIn">
+          </label>
+          <div class="actions">
+            <button class="btn" type="button" id="animBtn">Show the equivalent payment</button>
+            <button class="btn" type="button" id="resetBtn">Remove the payment</button>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="card">
+        <h2>Start from a case</h2>
+        <div class="presets" id="presets">
+          <button class="btn" type="button" data-mode="goods" data-p="2.5">Lattes: price falls by half</button>
+          <button class="btn" type="button" data-mode="goods" data-p="10">Lattes: price doubles</button>
+          <button class="btn" type="button" data-mode="labour" data-s="6" data-p="30">Wage rise: worker 1</button>
+          <button class="btn" type="button" data-mode="labour" data-s="-6" data-p="30">Wage rise: worker 2</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer id="foot"></footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var NS = "http://www.w3.org/2000/svg";
+  var svg = document.getElementById("plot");
+  var W = 720, H = 480, M = { l: 74, r: 30, t: 24, b: 56 };
+  var iw = W - M.l - M.r, ih = H - M.t - M.b;
+  function $(id) { return document.getElementById(id); }
+  var pIn = $("pIn"), gIn = $("gIn");
+
+  // ---------------- the two models ----------------
+  // Goods: u = L * A, budget $60, toast $15, latte price p (was $5).  Week 3's student.
+  // Labour: u = (t + s)(c + 20 s), 16 hours, wage w (was $20).  s = 6: worker 1
+  //   (substitution effect larger); s = -6: worker 2 (income effect larger).
+  //   Both choose t = 8, c = 160 at $20, as in Week 3.
+  var G = { m: 60, pa: 15, p0: 5, xmax: 18, ymax: 6 };
+  var L = { T: 16, w0: 20, xmax: 16, ymax: 500 };
+  var state = { mode: "goods", s: 6, step: 1, p1: 2.5 };
+
+  function goodsChoice(p, g) {
+    var inc = G.m + g;
+    return { x: inc / (2 * p), y: inc / (2 * G.pa), u: (inc / (2 * p)) * (inc / (2 * G.pa)) };
+  }
+  function goodsCash(p1) { return G.m * (Math.sqrt(G.p0 / p1) - 1); }
+  function labourChoice(w, g) {
+    var s = state.s, t = (16 * w + g + 20 * s - w * s) / (2 * w);
+    t = Math.max(Math.min(t, L.T), Math.max(0, -s + 0.01));
+    var c = w * (L.T - t) + g;
+    return { x: t, y: c, u: (t + s) * (c + 20 * s) };
+  }
+  function labourCash(w1) {
+    var s = state.s, u1 = labourChoice(w1, 0).u, w0 = L.w0;
+    return 2 * w0 * (Math.sqrt(u1 / w0) - s) - 16 * w0 - 20 * s + w0 * s;
+  }
+
+  function cfg() {
+    if (state.mode === "goods") return {
+      p0: G.p0, xmax: G.xmax, ymax: G.ymax, xlab: "lattes", ylab: "avocado toast",
+      xt: [0, 3, 6, 9, 12, 15, 18], yt: [0, 1, 2, 3, 4, 5, 6],
+      choice: goodsChoice, cash: goodsCash,
+      budget: function (p, g) { var inc = G.m + g; return [[0, inc / G.pa], [inc / p, 0]]; },
+      ic: function (u) { return { from: Math.max(u / G.ymax, 0.05), to: G.xmax, f: function (x) { return u / x; } }; },
+      unit: "lattes", qx: function (x) { return x.toFixed(1); }, per: "a week", prices: "prices", thing: "the latte price"
+    };
+    return {
+      p0: L.w0, xmax: L.xmax, ymax: L.ymax, xlab: "free time, t (hours a day)", ylab: "consumption, c ($)",
+      xt: [0, 4, 8, 12, 16], yt: [0, 100, 200, 300, 400, 500],
+      choice: labourChoice, cash: labourCash,
+      budget: function (w, g) { return [[0, w * L.T + g], [L.T, g]]; },
+      ic: function (u) { var s = state.s; return { from: Math.max(-s + 0.05, 0), to: L.T + 0.6, f: function (t) { return u / (t + s) - 20 * s; } }; },
+      unit: "hours", qx: function (x) { return x.toFixed(1); }, per: "a day", prices: "wage", thing: "the wage"
+    };
+  }
+
+  function X(x) { var c = cfg(); return M.l + x / c.xmax * iw; }
+  function Y(y) { var c = cfg(); return M.t + (c.ymax - y) / c.ymax * ih; }
+  function el(name, attrs, parent) {
+    var e = document.createElementNS(NS, name);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    (parent || svg).appendChild(e);
+    return e;
+  }
+  function text(x, y, s, cls, anchor, parent) {
+    var t = el("text", { x: x, y: y, "class": cls, "text-anchor": anchor || "middle" }, parent);
+    t.innerHTML = s;
+    return t;
+  }
+  function money(v) { return (v < 0 ? "−$" : "$") + Math.abs(v).toFixed(2); }
+  function signed(v, d) { var r = v.toFixed(d); return (v > 0.0005 ? "+" : "") + r; }
+
+  // the words for this case: a discount / price rise / raise / pay cut
+  function words(p1) {
+    var c = cfg(), goods = state.mode === "goods", up = p1 > c.p0;
+    var change = goods ? (up ? "the higher price" : "the lower price") : (up ? "the higher wage" : "the lower wage");
+    var good = goods ? !up : up;          // does the change make her better off?
+    return { goods: goods, change: change, good: good };
+  }
+
+  // ---------------- mode ----------------
+  function setMode(mode, s, p) {
+    state.mode = mode; if (s !== undefined) state.s = s;
+    if (mode === "goods") {
+      pIn.min = 2.5; pIn.max = 10; pIn.step = 0.25;
+      gIn.min = -30; gIn.max = 80; gIn.step = "any";
+      $("hQ").textContent = "Lattes"; $("hP").textContent = "Prices";
+      $("intro").innerHTML = "A student spends $60 a week on lattes and avocado toast ($15 a serving). At $5 a latte she chooses <em>A</em>. " +
+        "When the latte price changes, she is affected in two ways at once: her $60 goes further or less far, <em>and</em> lattes become cheaper or more expensive relative to toast. " +
+        "To separate the two, consider a <strong>thought experiment</strong>: a cash payment in place of the price change, with prices held at their original levels.";
+      $("foot").innerHTML = "Preferences u = L &times; A (Week 3's student). The dashed line is her budget constraint with the payment: original prices, plus the payment. " +
+        "At the right amount it just touches the indifference curve through C, at B. Same construction and labels as CORE Section 3.7 and Problem Set 3, Question 3. " +
+        "Keys: &larr; &rarr; move between steps, F for full screen.";
+    } else {
+      pIn.min = 15; pIn.max = 40; pIn.step = 1;
+      gIn.min = -75; gIn.max = 200; gIn.step = "any";
+      $("hQ").textContent = "Free time (h)"; $("hP").textContent = "Wage";
+      $("intro").innerHTML = "A worker has 16 hours a day. At a wage of $20 she chooses <em>A</em>: 8 hours of free time and $160 of consumption. " +
+        "A change in the wage changes her attainable utility <em>and</em> the price of her free time. The same thought experiment separates them: " +
+        "<strong>a daily cash payment at the original wage, in place of the change in the wage</strong>. Compare worker 1 and worker 2.";
+      $("foot").innerHTML = "Preferences u = (t + s)(c + 20s), with s = 6 for worker 1 and s = &minus;6 for worker 2; both choose A at $20, as in Week 3. " +
+        "A wage is the price of time she sells, so a raise makes her richer: the income effect adds free time while the substitution effect removes it. " +
+        "Keys: &larr; &rarr; move between steps, F for full screen.";
+    }
+    state.p1 = p !== undefined ? p : state.p1;
+    pIn.value = state.p1;
+    gIn.value = 0;
+    setStep(state.step > 1 ? 2 : 1, true);
+  }
+
+  // ---------------- steps ----------------
+  function setStep(n, noAnim) {
+    var c = cfg();
+    n = Math.max(1, Math.min(4, n));
+    if (n === 1) pIn.value = c.p0;                                             // step 1: before the change
+    if (n >= 2 && Math.abs(+pIn.value - c.p0) < 1e-9) pIn.value = state.p1;   // step 2 needs a change
+    if (n < 3) gIn.value = 0;
+    state.step = n;
+    Array.prototype.forEach.call(document.querySelectorAll("#steps .step"), function (b) {
+      if (+b.dataset.step === n) b.setAttribute("aria-current", "step"); else b.removeAttribute("aria-current");
+    });
+    $("backBtn").disabled = n === 1; $("nextBtn").disabled = n === 4;
+    if (n === 4 && !noAnim) {
+      var gs = c.cash(+pIn.value);
+      if (Math.abs(+gIn.value - gs) > tolerance()) { animateTo(gs); return; }
+    }
+    draw();
+  }
+  function tolerance() { return state.mode === "goods" ? 0.3 : 1.0; }
+
+  // ---------------- drawing ----------------
+  function curve(fn, from, to, cls, parent) {
+    var pts = [], c = cfg();
+    for (var i = 0; i <= 240; i++) {
+      var x = from + (to - from) * i / 240, y = fn(x);
+      if (!isFinite(y)) continue;
+      y = Math.max(Math.min(y, c.ymax * 1.6), -c.ymax * 0.2);
+      pts.push(X(x).toFixed(1) + " " + Y(y).toFixed(1));
+    }
+    if (pts.length > 1) el("path", { d: "M " + pts.join(" L "), "class": cls }, parent);
+  }
+  function seg(b, cls, parent) { el("line", { x1: X(b[0][0]), y1: Y(b[0][1]), x2: X(b[1][0]), y2: Y(b[1][1]), "class": cls }, parent); }
+  function arrow(a, b, kind, parent) {
+    var x1 = X(a.x), y1 = Y(a.y), x2 = X(b.x), y2 = Y(b.y);
+    var len = Math.hypot(x2 - x1, y2 - y1); if (len < 14) return;
+    var ux = (x2 - x1) / len, uy = (y2 - y1) / len, s = 11;
+    var sx = x1 + 8 * ux, sy = y1 + 8 * uy, ex = x2 - 9 * ux, ey = y2 - 9 * uy;
+    el("line", { x1: sx, y1: sy, x2: ex - 6 * ux, y2: ey - 6 * uy, "class": "arr-" + kind }, parent);
+    var px = -uy, py = ux;
+    el("path", { d: "M" + ex + " " + ey + " L" + (ex - s * ux + 0.55 * s * px) + " " + (ey - s * uy + 0.55 * s * py) +
+      " L" + (ex - s * ux - 0.55 * s * px) + " " + (ey - s * uy - 0.55 * s * py) + " Z", "class": "head-" + kind }, parent);
+  }
+
+  function draw() {
+    var c = cfg(), p1 = +pIn.value, g = +gIn.value, p0 = c.p0, st = state.step, w = words(p1);
+    var changed = st >= 2 && Math.abs(p1 - p0) > 1e-9;
+    var A = c.choice(p0, 0), C = c.choice(p1, 0), gStar = c.cash(p1), Bg = c.choice(p0, g);
+    var dealOn = st >= 3 && changed, hasCash = dealOn && Math.abs(g) > 1e-9;
+    var match = dealOn && Math.abs(g - gStar) < tolerance();
+    var B = c.choice(p0, gStar);
+
+    // labels
+    $("pLab").innerHTML = (w.goods ? "Price of a latte (was $5): " : "Wage (was $20 an hour): ") + "<output>" + money(p1) + "</output>";
+    $("gLab").innerHTML = "Cash payment at the original " + c.prices + ": <output>" + money(g) + " " + c.per + "</output>";
+    $("cashBox").hidden = st < 3;
+    $("checkCard").hidden = st < 3;
+    $("abcCard").hidden = st < 3;
+    $("effBox").hidden = st < 4;
+
+    // plot
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    var defs = el("defs", {});
+    var cp = el("clipPath", { id: "clip" }, defs);
+    el("rect", { x: M.l, y: M.t, width: iw, height: ih }, cp);
+    var gr = el("g", { "clip-path": "url(#clip)" });
+
+    var ia = c.ic(A.u); curve(ia.f, ia.from, ia.to, "icv", gr);
+    if (changed) { var ic2 = c.ic(C.u); curve(ic2.f, ic2.from, ic2.to, "icv", gr); }
+    if (hasCash && !match) { var ig = c.ic(Bg.u); curve(ig.f, ig.from, ig.to, "icv faint", gr); }
+    seg(c.budget(p0, 0), "bud-old", gr);
+    if (changed) seg(c.budget(p1, 0), "bud-new", gr);
+    if (hasCash) seg(c.budget(p0, g), "bud-cash", gr);
+    if (match && st >= 4) { arrow(A, B, "inc", gr); arrow(B, C, "sub", gr); }
+
+    el("circle", { cx: X(A.x), cy: Y(A.y), r: 6, "class": "dotA" }, gr);
+    text(X(A.x) - 10, Y(A.y) - 10, "A", "plab", "end", gr);
+    if (changed) {
+      el("circle", { cx: X(C.x), cy: Y(C.y), r: 6, "class": "dotC" }, gr);
+      text(X(C.x) + 10, Y(C.y) - 10, "C", "plab", "start", gr);
+    }
+    if (hasCash) {
+      el("circle", { cx: X(Bg.x), cy: Y(Bg.y), r: 5.5, "class": "dotB" }, gr);
+      if (match) text(X(Bg.x) - 10, Y(Bg.y) - 12, "B", "plab b", "end", gr);
+    }
+    el("line", { x1: M.l, y1: Y(0), x2: M.l + iw, y2: Y(0), "class": "ax" });
+    el("line", { x1: M.l, y1: M.t, x2: M.l, y2: Y(0), "class": "ax" });
+    c.xt.forEach(function (v) { el("line", { x1: X(v), y1: Y(0), x2: X(v), y2: Y(0) + 5, "class": "ax" }); text(X(v), Y(0) + 20, v, "tick"); });
+    c.yt.forEach(function (v) { el("line", { x1: M.l - 5, y1: Y(v), x2: M.l, y2: Y(v), "class": "ax" }); text(M.l - 9, Y(v) + 4, v, "tick", "end"); });
+    text(M.l + iw / 2, H - 12, c.xlab, "axlab");
+    var yl = text(20, M.t + ih / 2, c.ylab, "axlab");
+    yl.setAttribute("transform", "rotate(-90 20 " + (M.t + ih / 2) + ")");
+
+    // step text
+    var t;
+    if (st === 1) {
+      t = w.goods ? "At $5 a latte and $15 a serving of toast, her best choice is <em>A</em>: 6 lattes and 2 servings, where her indifference curve just touches the budget line."
+                  : "At $20 an hour, her best choice is <em>A</em>: 8 hours of free time, 8 hours of work, $160 of consumption.";
+    } else if (st === 2) {
+      if (!changed) t = "Move the " + (w.goods ? "latte price" : "wage") + " to create a change.";
+      else t = "After " + w.change + " she moves from A to <em>C</em>: " + c.qx(A.x) + " &rarr; " + c.qx(C.x) + " " + c.unit + ". " +
+        "Two things changed at once: her attainable utility, and the relative price" + (w.goods ? " of lattes." : " of her free time.") +
+        "<span class='q'>Give two separate reasons for the move from A to C.</span>";
+    } else if (st === 3) {
+      var ask = "Suppose she receives a cash payment <strong>in place of " + w.change + "</strong>, with the " + c.prices + " held at " + (w.goods ? "their" : "its") + " original level.";
+      if (!hasCash) t = ask + "<span class='q'>" + (w.good ? "What is the smallest payment she would accept in place of " + w.change + "? Adjust the payment until the dashed line just touches the curve through C."
+                                                           : "What reduction in her income would leave her as badly off as " + w.change + "? Set the payment below zero, and adjust it until the dashed line just touches the curve through C.") + "</span>";
+      else if (match) t = ask + "<br><br>At <strong>" + money(gStar) + " " + c.per + "</strong> she is indifferent between the payment and " + w.change + ": the dashed line just touches the curve through C, at <em>B</em>. " +
+        "This sum is the <strong>equivalent variation</strong> of the price change.";
+      else {
+        var better = Bg.u > C.u;
+        t = ask + "<br><br>With a payment of " + money(g) + " " + c.per + " she would be <strong>" + (better ? "better off" : "worse off") + "</strong> than with " + w.change + ": " +
+          (better ? "the payment exceeds the equivalent amount." : "the payment falls short of the equivalent amount.");
+      }
+    } else {
+      var ie = B.x - A.x, se = C.x - B.x;
+      t = "B changes <strong>one thing at a time</strong>. A &rarr; B: same " + c.prices + ", only utility changes. That is the <strong>income effect</strong>. " +
+        "B &rarr; C: same utility, only the " + (w.goods ? "relative price" : "price of free time") + " changes. That is the <strong>substitution effect</strong>: what " + w.change + " does that a payment of equal value would not.";
+      if (!w.goods) t += " The two point in opposite directions; here the " + (Math.abs(se) > Math.abs(ie) ? "substitution" : "income") + " effect is larger, so she works " + (C.x < A.x ? "more." : (C.x > A.x ? "less." : "the same."));
+      else if (ie * se > 0) t += " For this normal good they point the same way.";
+    }
+    $("stepText").innerHTML = t;
+
+    // checklist: the three properties of the dashed line
+    if (st >= 3) {
+      var further = g > 0, inward = g < 0;
+      var rel = w.goods ? "a latte still costs &frac13; of a serving of toast" : "an hour of free time still costs $20";
+      var items = [
+        { ok: hasCash, label: "parallel to the old line", why: "cash does not change " + (w.goods ? "prices" : "the wage") + ": " + rel },
+        { ok: hasCash && (w.good ? further : inward), label: w.good ? "further out" : "further in",
+          why: w.good ? "she is better off, by what " + w.change + " is worth to her" : "she is worse off, by what " + w.change + " costs her" },
+        { ok: match, label: "just touching the curve through C",
+          why: match ? "she is exactly as well off with the payment as with " + w.change
+                     : (hasCash ? (Bg.u > C.u ? "not yet: it reaches a higher curve (the payment is too large)" : "not yet: it falls below that curve (the payment is too small)") : "not yet: no payment") }
+      ];
+      $("checks").innerHTML = items.map(function (it) {
+        return "<li><span class='mk " + (it.ok ? "ok'>&#10003;" : "no'>&middot;") + "</span><span>" + it.label + "<span class='why'>" + it.why + "</span></span></li>";
+      }).join("");
+      $("qA").textContent = c.qx(A.x); $("qC").textContent = c.qx(C.x);
+      $("qB").textContent = match ? c.qx(B.x) : "?";
+      if (st >= 4) {
+        $("rI").textContent = signed(B.x - A.x, 1) + " " + c.unit;
+        $("rS").textContent = signed(C.x - B.x, 1) + " " + c.unit;
+        $("rT").textContent = signed(C.x - A.x, 1) + " " + c.unit;
+      }
+    }
+
+    Array.prototype.forEach.call(document.querySelectorAll("#presets .btn"), function (btn) {
+      var on = btn.dataset.mode === state.mode && Math.abs(+btn.dataset.p - p1) < 1e-9 &&
+        (btn.dataset.mode === "goods" || +btn.dataset.s === state.s);
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+  }
+
+  // ---------------- interactions ----------------
+  var anim = null;
+  function animateTo(target) {
+    if (anim) cancelAnimationFrame(anim);
+    var start = +gIn.value, t0 = null, dur = 1600;
+    function step(ts) {
+      if (t0 === null) t0 = ts;
+      var k = Math.min((ts - t0) / dur, 1), e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+      gIn.value = start + (target - start) * e;
+      if (k === 1) gIn.value = target;
+      draw();
+      if (k < 1) anim = requestAnimationFrame(step); else anim = null;
+    }
+    anim = requestAnimationFrame(step);
+  }
+  pIn.addEventListener("input", function () {
+    state.p1 = +pIn.value; gIn.value = 0;
+    if (state.step === 1 && Math.abs(state.p1 - cfg().p0) > 1e-9) { setStep(2, true); return; }
+    if (state.step === 4) { setStep(3, true); return; }
+    draw();
+  });
+  gIn.addEventListener("input", draw);
+  $("animBtn").addEventListener("click", function () { var c = cfg(), p1 = +pIn.value; if (Math.abs(p1 - c.p0) < 1e-9) return; animateTo(c.cash(p1)); });
+  $("resetBtn").addEventListener("click", function () { if (state.step === 4) setStep(3, true); animateTo(0); });
+  $("backBtn").addEventListener("click", function () { setStep(state.step - 1); });
+  $("nextBtn").addEventListener("click", function () { setStep(state.step + 1); });
+  Array.prototype.forEach.call(document.querySelectorAll("#steps .step"), function (b) {
+    b.addEventListener("click", function () { setStep(+b.dataset.step); });
+  });
+  Array.prototype.forEach.call(document.querySelectorAll("#presets .btn"), function (btn) {
+    btn.addEventListener("click", function () { state.step = 2; setMode(btn.dataset.mode, btn.dataset.s !== undefined ? +btn.dataset.s : undefined, +btn.dataset.p); });
+  });
+
+  // ---------- full screen (same behaviour as the MUN221 interactives) ----------
+  var app = $("app"), fsBtn = $("fsBtn");
+  function isFS() { return !!(document.fullscreenElement || document.webkitFullscreenElement); }
+  if (!(app.requestFullscreen || app.webkitRequestFullscreen)) fsBtn.hidden = true;
+  function toggleFS() {
+    if (isFS()) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+    else {
+      var p = (app.requestFullscreen || app.webkitRequestFullscreen).call(app);
+      if (p && p.catch) p.catch(function () {});
+    }
+  }
+  function onFS() {
+    var fs = isFS();
+    app.classList.toggle("is-fs", fs);
+    fsBtn.setAttribute("aria-pressed", fs ? "true" : "false");
+    fsBtn.textContent = fs ? "Exit full screen" : "Full screen";
+  }
+  fsBtn.addEventListener("click", toggleFS);
+  document.addEventListener("fullscreenchange", onFS);
+  document.addEventListener("webkitfullscreenchange", onFS);
+  document.addEventListener("keydown", function (e) {
+    var tn = e.target && e.target.tagName;
+    if (tn === "INPUT" || tn === "SELECT" || tn === "TEXTAREA") return;
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key === "ArrowRight" || e.key === "PageDown") { e.preventDefault(); setStep(state.step + 1); return; }
+    if (e.key === "ArrowLeft" || e.key === "PageUp") { e.preventDefault(); setStep(state.step - 1); return; }
+    if ((e.key !== "f" && e.key !== "F") || fsBtn.hidden) return;
+    e.preventDefault(); toggleFS();
+  });
+
+  setMode("goods", undefined, 2.5);
+})();
+</script>
+</body>
+</html>
