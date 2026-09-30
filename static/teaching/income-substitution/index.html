@@ -255,7 +255,10 @@
 
   /* presenter mode */
   .wrap.is-fs { max-width: none; width: 100%; height: 100vh; height: 100dvh; overflow: auto; background: var(--ground); padding-block: 12px; }
-  .wrap.is-fs .intro, .wrap.is-fs footer { display: none; }
+  .wrap.is-fs footer { display: none; }
+  .wrap.is-fs .intro { max-width: none; font-size: 0.98rem; line-height: 1.45; }
+  /* keep the chart on screen now that the scenario text shows in full screen */
+  .wrap.is-fs svg#plot { max-height: calc(100vh - 250px); max-height: calc(100dvh - 250px); margin-inline: auto; }
   .wrap.is-fs .main { flex: 1 1 auto; }
 
   footer { font-family: var(--sans); font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
