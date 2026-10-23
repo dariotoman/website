@@ -4,13 +4,17 @@ title: "Teaching"
 
 ## As Course Instructor
 
+- **GLA2062 – Voters, Politicians, and Accountability: Political Economy in the Developing World** — [Munk School MGA](https://munkschool.utoronto.ca/mga/)
+  *Winter 2027*
+  This course examines how politics shapes whether governments serve or fail their citizens across the developing world. Do elections hold leaders accountable? Can votes be bought? Who gets to govern, and when does the state deliver? To answer questions like these, the course turns to empirical evidence on electoral accountability, vote-buying and clientelism, political selection and the identity of leaders, bureaucracy and corruption, the media, and authoritarian politics. Students will learn to read, critique, and apply causal evidence from the frontier of empirical political economy in their own policy work. While the course is built around close reading of empirical research, no prior background in econometrics is assumed.
+
 - **MUN221 / MUN202 – Microeconomics for Policy Analysis / Microeconomics for Engineers**
   *Fall 2026*
-  Microeconomic tools for designing and evaluating public policy, from consumer choice and demand to welfare analysis, taxation, and social programs. MUN221 is offered to Arts & Science students; MUN202 is the companion course for engineering students completing the public policy certificate.
+  This course examines how microeconomic analysis can inform the design and evaluation of public policy. Why does housing cost so much? Who really pays a tax? What does a minimum wage do, and how should governments deal with pollution? To answer questions like these, the course covers supply and demand, consumer and producer behaviour, competitive markets, monopoly, factor markets, asymmetric information, and externalities and public goods, tying the theory to real data and evidence throughout. Students will learn to apply these models to policy questions, weigh the trade-offs policymakers face, and identify who gains and who loses from a policy change.
 
 - **GLA1010 – Microeconomics for Global Affairs** — [Munk School MGA](https://munkschool.utoronto.ca/mga/)
   *Fall 2026*
-  The core microeconomics course in the Master of Global Affairs program. Students learn to reason systematically about how incentives shape choices and markets, and apply these tools to policy questions in global affairs.
+  This required course in the Master of Global Affairs program examines how microeconomic reasoning can inform debates in global affairs and public policy. Why did some countries grow rich while others did not? Who pays for a tariff? Why is cooperation on climate so hard, and what does a patent monopoly do to the price of a medicine? To answer questions like these, the course builds core models of constrained choice, strategic interaction and social dilemmas, market power, and competitive markets, and tests them against real data and evidence. Students will learn to use these tools to predict the effects of a policy, weigh its trade-offs, and identify who gains and who loses. While the course uses graphs and some algebra throughout, no prior background in economics is assumed.
 
 - **PPG201 – Microeconomics for Engineers**
   *Fall 2024*

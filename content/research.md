@@ -30,7 +30,7 @@ title: "Research"
 
 <div class="paper-card">
   <div class="paper-title">Understanding Judicial Decision-Making: Ability, Preferences, and Court Organization</div>
-  <div class="paper-authors">With <a href="https://www.economics.utoronto.ca/gustavo.bobonis">Gustavo Bobonis</a>, Boriana Miloucheva, and <a href="https://sites.google.com/site/paolasalardi/home?authuser=0">Paola Salardi</a></div>
+  <div class="paper-authors">With <a href="https://www.economics.utoronto.ca/gustavo.bobonis">Gustavo Bobonis</a>, <a href="https://www.borianamiloucheva.com/">Boriana Miloucheva</a>, and <a href="https://sites.google.com/site/paolasalardi/home?authuser=0">Paola Salardi</a></div>
 </div>
 
 <div class="paper-card">

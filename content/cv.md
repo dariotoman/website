@@ -75,6 +75,7 @@ aliases:
 ## Awards
 
 <ul class="cv-list cv-list--compact">
+<li><span class="cv-highlight">Social Sciences and Humanities Research Council (SSHRC) Institutional Grant (SIG)</span>, ($3,905, Co-PI), <em>2026</em>.</li>
 <li><span class="cv-highlight">Shortlisted Candidate for TATP TA Teaching Excellence Award</span>, <em>2023</em>.</li>
 <li><span class="cv-highlight">Social Sciences and Humanities Research Council (SSHRC) Doctoral Fellowship</span>, (4&times;$20,000), <em>2021&ndash;2024</em>.</li>
 <li><span class="cv-highlight">Mobilizing Insights in Defence and Security (MINDS) Doctoral Award</span>, ($35,000), <em>2020&ndash;2021</em>.</li>
@@ -86,9 +87,6 @@ aliases:
 <ul class="cv-list">
 <li><span class="cv-highlight">Reach Alliance, Munk School of Global Affairs and Public Policy</span>, Researcher, <em>2021&ndash;2023</em>.</li>
 <li><span class="cv-highlight">Global Public Policy Institute</span> (Berlin), Research Intern&mdash;Peace and Security Group, <em>2017</em>.</li>
-<li><span class="cv-highlight">University of Toronto Economic Review</span>, <em>2015&ndash;2018</em>.
-  <ul><li>Editor-in-Chief (2018 Issue), Managing Editor (2017 issue), Editor (2016 issue)</li></ul>
-</li>
 </ul>
 
 ## Teaching
@@ -96,6 +94,7 @@ aliases:
 <span class="cv-subheading">Course Instructor</span>
 
 <ul class="cv-list cv-list--compact">
+<li><code>GLA2062</code> &mdash; Voters, Politicians, and Accountability: Political Economy in the Developing World, <em>Winter 2027</em> [@ Munk School MGA].</li>
 <li><code>MUN221/MUN202</code> &mdash; Microeconomics for Policy Analysis / Microeconomics for Engineers, <em>Fall 2026</em>.</li>
 <li><code>GLA1010</code> &mdash; Microeconomics for Global Affairs, <em>Fall 2026</em> [@ Munk School MGA].</li>
 <li><code>PPG201</code> &mdash; Microeconomics for Engineers, <em>Fall 2024</em>.</li>
