@@ -4,7 +4,7 @@ aliases:
   - /resume/
 ---
 
-<a href="/assets/dario_toman_2026-07-01.pdf" class="btn" target="_blank">Download CV (PDF)</a>
+<a href="/assets/dario_toman_2026-10-23.pdf" class="btn" target="_blank">Download CV (PDF)</a>
 
 <div class="cv-native">
 
@@ -12,6 +12,7 @@ aliases:
 
 <ul class="cv-list">
 <li><span class="cv-highlight">Assistant Professor</span>, <span class="cv-status">Munk School of Global Affairs and Public Policy, University of Toronto</span>, 2026&ndash;present.</li>
+<li><span class="cv-highlight">Research Affiliate</span>, <span class="cv-status"><a href="https://foslab.org">Forward Society Lab</a>, University of Toronto</span>, 2026&ndash;present.</li>
 </ul>
 
 ## Education
@@ -36,8 +37,15 @@ aliases:
 
 <ul class="cv-list cv-list--indent">
 <li><span class="cv-paper"><a href="/jmp">"Partisan Elections, Competition, and Candidate Selection: Evidence from School Boards"</a></span></li>
-<li><span class="cv-paper"><a href="/assets/ABST_SDVC_IPV.pdf">"Improving Judicial Protection in Intimate Partner Violence Cases: The Role of Specialized Courts and Judges."</a></span><br><em>With Carolina Arteaga, Gustavo J. Bobonis and Paola Salardi</em>.<br><span class="cv-status">Revise and Resubmit, <em>Review of Economics and Statistics</em>.</span></li>
+<li><span class="cv-paper"><a href="/assets/ABST_SDVC_IPV.pdf">"Improving Judicial Protection in Intimate Partner Violence Cases: The Role of Specialized Courts and Judges."</a></span><br><em>With Carolina Arteaga, Gustavo J. Bobonis and Paola Salardi</em>.<br><span class="cv-status">Revise and Resubmit, <em>Review of Economics and Statistics</em>. <a href="https://www.nber.org/papers/w34293">NBER Working Paper No. 34293</a>.</span></li>
 <li><span class="cv-paper">"Poppy Bloom and Bust: Violence and Poverty During the Mexican Opium Crisis."</span></li>
+</ul>
+
+<span class="cv-subheading">Work in Progress</span>
+
+<ul class="cv-list cv-list--indent">
+<li><span class="cv-paper">"Understanding Judicial Decision-Making: Ability, Preferences, and Court Organization."</span><br><em>With Gustavo J. Bobonis, Boriana Miloucheva and Paola Salardi</em>.</li>
+<li><span class="cv-paper">"Candidates, Rhetoric, and the Political Economy of Populism: Evidence from Municipal and State Elections in Brazil."</span><br><em>With Gustavo J. Bobonis, Claudio Ferraz and Helios Herrera</em>.</li>
 </ul>
 
 <span class="cv-subheading">Publications</span>
@@ -56,7 +64,7 @@ aliases:
 <span class="cv-subheading">Presentations</span>
 
 <ul class="cv-list cv-list--indent cv-list--compact">
-<li><span class="cv-highlight">2026:</span> Instituto Tecnológico Autónomo de México, Munk School of Global Affairs and Public Policy (University of Toronto), Society of Labor Economists (SOLE) Annual Meeting, Canadian Economics Association (CEA) Annual Conference, RIDGE-LACEA Impact Evaluation Network Forum, Workshop on the Economics of Crime for Junior Scholars (IFS)</li>
+<li><span class="cv-highlight">2026:</span> Instituto Tecnológico Autónomo de México, Munk School of Global Affairs and Public Policy (University of Toronto), Society of Labor Economists (SOLE) Annual Meeting, Canadian Economics Association (CEA) Annual Conference, RIDGE-LACEA Impact Evaluation Network Forum, Workshop on the Economics of Crime for Junior Scholars (IFS), Virtual Crime Economics (ViCE) Seminar</li>
 <li><span class="cv-highlight">2025:</span> Canadian Economics Association (CEA) Annual Conference, Workshop on Firms and Inclusive Economic Growth (Queen's University), Banff Empirical Microeconomics Workshop (University of Calgary), University of Toronto (<em>SWEAT</em>, Emp. Micro. Brown Bag)</li>
 <li><span class="cv-highlight">2024:</span> University of Toronto (Emp. Micro. Brown Bag)</li>
 <li><span class="cv-highlight">2023:</span> Princeton, American Society of Health Economists Annual Conference</li>
@@ -70,7 +78,7 @@ aliases:
 <li><span class="cv-highlight">Shortlisted Candidate for TATP TA Teaching Excellence Award</span>, <em>2023</em>.</li>
 <li><span class="cv-highlight">Social Sciences and Humanities Research Council (SSHRC) Doctoral Fellowship</span>, (4&times;$20,000), <em>2021&ndash;2024</em>.</li>
 <li><span class="cv-highlight">Mobilizing Insights in Defence and Security (MINDS) Doctoral Award</span>, ($35,000), <em>2020&ndash;2021</em>.</li>
-<li><span class="cv-highlight">University of Toronto Doctoral Fellowship</span>. (5&times;$17,000), <em>2019&ndash;</em>.</li>
+<li><span class="cv-highlight">University of Toronto Doctoral Fellowship</span>, (5&times;$17,000), <em>2019&ndash;2024</em>.</li>
 </ul>
 
 ## Experience
@@ -88,6 +96,8 @@ aliases:
 <span class="cv-subheading">Course Instructor</span>
 
 <ul class="cv-list cv-list--compact">
+<li><code>MUN221/MUN202</code> &mdash; Microeconomics for Policy Analysis / Microeconomics for Engineers, <em>Fall 2026</em>.</li>
+<li><code>GLA1010</code> &mdash; Microeconomics for Global Affairs, <em>Fall 2026</em> [@ Munk School MGA].</li>
 <li><code>PPG201</code> &mdash; Microeconomics for Engineers, <em>Fall 2024</em>.</li>
 <li><code>PCJ260</code> &mdash; Introduction to Peace, Conflict and Justice I: Data and Applications, <em>Fall 2023</em>.</li>
 </ul>
@@ -106,7 +116,6 @@ aliases:
 <li><code>PCJ460</code> &mdash; Causes and Consequences of Civil War, <em>Fall 2020</em>.</li>
 <li><code>ECO403</code> &mdash; Topics in Development, <em>Fall 2018, Fall 2019</em>.</li>
 <li><code>ECO324</code> &mdash; Economic Development, <em>Fall 2019</em>.</li>
-<li><code>ECO334</code> &mdash; Political Economy, <em>Winter 2019</em>.</li>
 <li><code>ECO320</code> &mdash; Economics and the Law, <em>Winter 2019</em>.</li>
 <li><code>ECO101</code> &mdash; Principles of Microeconomics, <em>Fall 2018</em>.</li>
 </ul>
@@ -114,6 +123,7 @@ aliases:
 ## Service
 
 <ul class="cv-list cv-list--compact">
+<li><span class="cv-highlight">Referee:</span> <em>Journal of Population Economics</em>.</li>
 <li><span class="cv-highlight">Graduate Students Support Working Group</span>, <em>2024</em>.</li>
 <li><span class="cv-highlight">Graduate Appeals Committee</span>, <em>2023&ndash;2024</em>.</li>
 <li><span class="cv-highlight">Department Chair Search Committee</span>, <em>2022</em>.</li>

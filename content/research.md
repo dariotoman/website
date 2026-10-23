@@ -21,9 +21,21 @@ title: "Research"
   <details>
     <summary>Abstract (click to expand)</summary>
     <div class="paper-abstract">
-      <p>We study the large-scale implementation of a system of specialized domestic violence courts (SDVCs), an innovation in access to justice programs for potential victims of intimate partner violence (IPV) and offenders. Using individual-level administrative data from the universe of civil domestic violence cases in Puerto Rico during the period 2014-2021, we leverage the staggered opening of SDVCs across judicial regions to examine the consequences for victims' judicial protection as well as offender recidivism. Access to SDVCs leads to a considerable 8 percentage points increase in the probability that judges issue a protection order and a 1.7 percentage point (15 percent) decrease in victim and offender reappearance rates within one year of the start of the case. Effects are more pronounced for cases in which parties have children in common and in which access to SDVCs is more limited. Linking the case data to administrative and survey data on judges, we show that the priorities of judges assigned to SDVCs play a prominent role in explaining these outcomes.</p>
+      <p>We study the large-scale implementation of a system of specialized domestic violence courts (SDVCs), an innovation in access to justice programs for potential victims of intimate partner violence (IPV) and offenders. Using individual-level administrative data from the universe of civil domestic violence cases in Puerto Rico during the period 2014-2020, we leverage the staggered opening of SDVCs across judicial regions to examine the consequences for victims' judicial protection as well as offender recidivism. Access to SDVCs leads to a considerable 8 percentage points increase in the probability that judges issue a protection order and a 1.7 percentage point (15 percent) decrease in victim and offender reappearance rates within one year of the start of the case. Effects are more pronounced for cases in which parties have children in common and in which access to SDVCs is more limited. Linking the case data to administrative and survey data on judges, we show that the priorities of judges assigned to SDVCs play a prominent role in explaining these outcomes.</p>
     </div>
   </details>
+</div>
+
+## Work in Progress
+
+<div class="paper-card">
+  <div class="paper-title">Understanding Judicial Decision-Making: Ability, Preferences, and Court Organization</div>
+  <div class="paper-authors">With <a href="https://www.economics.utoronto.ca/gustavo.bobonis">Gustavo Bobonis</a>, Boriana Miloucheva, and <a href="https://sites.google.com/site/paolasalardi/home?authuser=0">Paola Salardi</a></div>
+</div>
+
+<div class="paper-card">
+  <div class="paper-title">Candidates, Rhetoric, and the Political Economy of Populism: Evidence from Municipal and State Elections in Brazil</div>
+  <div class="paper-authors">With <a href="https://www.economics.utoronto.ca/gustavo.bobonis">Gustavo Bobonis</a>, <a href="https://sites.google.com/site/claudferraz/">Claudio Ferraz</a>, and <a href="https://warwick.ac.uk/fac/soc/economics/staff/hherrera/">Helios Herrera</a></div>
 </div>
 
 ## Publications

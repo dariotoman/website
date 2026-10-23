@@ -4,6 +4,14 @@ title: "Teaching"
 
 ## As Course Instructor
 
+- **MUN221 / MUN202 – Microeconomics for Policy Analysis / Microeconomics for Engineers**
+  *Fall 2026*
+  Microeconomic tools for designing and evaluating public policy, from consumer choice and demand to welfare analysis, taxation, and social programs. MUN221 is offered to Arts & Science students; MUN202 is the companion course for engineering students completing the public policy certificate.
+
+- **GLA1010 – Microeconomics for Global Affairs** — [Munk School MGA](https://munkschool.utoronto.ca/mga/)
+  *Fall 2026*
+  The core microeconomics course in the Master of Global Affairs program. Students learn to reason systematically about how incentives shape choices and markets, and apply these tools to policy questions in global affairs.
+
 - **PPG201 – Microeconomics for Engineers**
   *Fall 2024*
   An introduction to microeconomics, for application in public policy analysis. Designed specifically for students with training in calculus and linear algebra, and who are pursuing a certificate in public policy, the course explores preference and choice, classical demand theory and the utility maximization problem as well as expenditure minimization problem, welfare evaluation of economic changes, regression analysis and ordinary least squares.
