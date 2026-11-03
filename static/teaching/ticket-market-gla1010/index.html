@@ -411,8 +411,8 @@
     <div class="controls">
       <div class="ctrl-row">
         <label class="field grow" for="priceIn">
-          <span>Price of a ticket: <output id="priceOut" for="priceIn">$95</output></span>
-          <input type="range" id="priceIn" min="0" max="180" step="1" value="95">
+          <span>Price of a ticket: <output id="priceOut" for="priceIn">$5</output></span>
+          <input type="range" id="priceIn" min="0" max="1000" step="10" value="500">
         </label>
         <label class="field" for="nIn">
           <span>Fans on each side</span>
@@ -467,12 +467,13 @@
 (function () {
   "use strict";
 
-  var PMAX = 180;
-  // The six-fan market. Lobby order is deliberately unsorted.
-  var BASE_B = [100, 160, 60, 120, 80, 140];   // willingness to pay
-  var BASE_S = [90, 30, 130, 50, 110, 70];     // willingness to accept
-  var NAMES_B = { 160: "Priya", 140: "Marcus", 120: "Sofia", 100: "Kenji", 80: "Amara", 60: "Liam" };
-  var NAMES_S = { 30: "Omar", 50: "Chen", 70: "Leila", 90: "Noah", 110: "Zara", 130: "Diego" };
+  // All values and prices are held in cents; money() formats them.
+  var PMAX = 1000;
+  // The six-fan market: the same values as PS6 Question 1. Lobby order is deliberately unsorted.
+  var BASE_B = [500, 800, 300, 600, 400, 700];   // willingness to pay
+  var BASE_S = [500, 200, 700, 300, 600, 400];   // willingness to accept
+  var NAMES_B = { 800: "Priya", 700: "Marcus", 600: "Sofia", 500: "Kenji", 400: "Amara", 300: "Liam" };
+  var NAMES_S = { 200: "Omar", 300: "Chen", 400: "Leila", 500: "Noah", 600: "Zara", 700: "Diego" };
   var SANS = '"Fira Sans", system-ui, -apple-system, "Segoe UI", sans-serif';
   var SERIF = '"Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif';
 
@@ -498,7 +499,7 @@
   def("showB", 0); def("showS", 0);
   def("growB", 0, 4); def("growS", 0, 4); def("barAlpha", 1);
   def("stairB", 0, 4); def("stairS", 0, 4);
-  def("priceOn", 0); def("price", 95, 3);
+  def("priceOn", 0); def("price", 500, 3);
   def("willing", 0); def("trade", 0); def("match", 0); def("money", 0);
   def("cs", 0, 5); def("ps", 0, 5); def("focus", 0); def("round2", 0, 5);
   def("rankv", 0);
@@ -516,8 +517,8 @@
       var r = mulberry32(seed); b = []; s = [];
       for (var k = 0; k < n; k++) {
         var f = (k + 0.5) / n;
-        b.push(Math.max(5, Math.round(170 - 120 * f + (r() - 0.5) * 12)));
-        s.push(Math.min(175, Math.round(20 + 120 * f + (r() - 0.5) * 12)));
+        b.push(Math.max(30, Math.round((850 - 600 * f + (r() - 0.5) * 60) / 10) * 10));
+        s.push(Math.min(870, Math.round((100 + 600 * f + (r() - 0.5) * 60) / 10) * 10));
       }
     }
     agents = [];
@@ -542,7 +543,7 @@
     for (i = 0; i < S.length; i++) if (S[i].v <= P) qs++;
     return { qd: qd, qs: qs };
   }
-  function qStar() { var q = 0; while (q < N && B[q].v > S[q].v) q++; return q; }
+  function qStar() { var q = 0; while (q < N && B[q].v >= S[q].v) q++; return q; }
   function marketGains() { var g = 0, q = qStar(); for (var i = 0; i < q; i++) g += B[i].v - S[i].v; return g; }
   function pairStats() {
     var g = 0, t = 0;
@@ -579,7 +580,7 @@
 
   function clearingPrice() {
     var eq = [], best = 0, bd = 1e9;
-    for (var P = 0; P <= PMAX; P++) {
+    for (var P = 0; P <= PMAX; P += 10) {
       var c = counts(P), d = Math.abs(c.qd - c.qs);
       if (d === 0) eq.push(P);
       if (d < bd) { bd = d; best = P; }
@@ -674,7 +675,7 @@
   }
 
   function drawAxes(g, c) {
-    var p = g.plot, ystep = (p.y1 - p.y0) < 300 ? 40 : 20, v, y;
+    var p = g.plot, ystep = (p.y1 - p.y0) < 300 ? 200 : 100, v, y;
     ctx.globalAlpha = 1;
     ctx.font = "400 12px " + SANS; ctx.textAlign = "right"; ctx.textBaseline = "middle";
     for (v = 0; v <= PMAX; v += ystep) {
@@ -683,7 +684,7 @@
         ctx.globalAlpha = 0.7; ctx.strokeStyle = c.rule; ctx.lineWidth = 1;
         ctx.beginPath(); ctx.moveTo(p.x0, y); ctx.lineTo(p.x1, y); ctx.stroke();
       }
-      ctx.globalAlpha = 1; ctx.fillStyle = c.muted; ctx.fillText("$" + v, p.x0 - 8, y);
+      ctx.globalAlpha = 1; ctx.fillStyle = c.muted; ctx.fillText(money(v), p.x0 - 8, y);
     }
     ctx.strokeStyle = c.muted; ctx.lineWidth = 1.5;
     ctx.beginPath(); ctx.moveTo(p.x0, p.y0 - 8); ctx.lineTo(p.x0, p.y1); ctx.lineTo(p.x1 + 4, p.y1); ctx.stroke();
@@ -716,10 +717,10 @@
   function gainRect(g, c, i, lo, hi, al) {
     var cw = g.colW, x = g.xq(i) + cw * 0.08, w = cw * 0.84, yb = g.yv(lo), yt = g.yv(hi);
     ctx.globalAlpha = 0.42 * al; ctx.fillStyle = c.gain; ctx.fillRect(x, yt, w, yb - yt);
-    if (A.money.v > 0.01 && !g.dots && (yb - yt) > 54) {
+    if (A.money.v > 0.01 && !g.dots && (yb - yt) > 18) {
       ctx.globalAlpha = al * A.money.v; ctx.fillStyle = c.goldInk;
       ctx.font = "600 12px " + SANS; ctx.textAlign = "center"; ctx.textBaseline = "middle";
-      ctx.fillText("+$" + (hi - lo), x + w / 2, (yt + yb) / 2);
+      ctx.fillText("+" + money(hi - lo), x + w / 2, (yt + yb) / 2);
     }
   }
   function focusFade(a) {
@@ -728,15 +729,15 @@
   function surplusRect(g, i, lo, hi, fill, ink, al) {
     var cw = g.colW, x = g.xq(i) + cw * 0.08, w = cw * 0.84, yb = g.yv(lo), yt = g.yv(hi);
     ctx.globalAlpha = 0.34 * al; ctx.fillStyle = fill; ctx.fillRect(x, yt, w, yb - yt);
-    if (A.money.v > 0.01 && !g.dots && (yb - yt) > 40) {
+    if (A.money.v > 0.01 && !g.dots && (yb - yt) > 18) {
       ctx.globalAlpha = al * A.money.v; ctx.fillStyle = ink;
       ctx.font = "600 12px " + SANS; ctx.textAlign = "center"; ctx.textBaseline = "middle";
-      ctx.fillText("$" + Math.round(hi - lo), x + w / 2, (yt + yb) / 2);
+      ctx.fillText(money(hi - lo), x + w / 2, (yt + yb) / 2);
     }
   }
   function drawSurplus(g, c) {
     if (A.cs.v < 0.01 && A.ps.v < 0.01) return;
-    var P = Math.round(A.price.v), q = qStar(), i;
+    var P = Math.round(A.price.v / 10) * 10, q = qStar(), i;
     for (i = 0; i < q; i++) {
       if (A.cs.v > 0.01 && B[i].v > P) surplusRect(g, i, P, B[i].v, c.buyer, c.buyer, A.cs.v * focusFade(B[i]));
       if (A.ps.v > 0.01 && S[i].v < P) surplusRect(g, i, S[i].v, P, c.seller, c.seller, A.ps.v * focusFade(S[i]));
@@ -784,7 +785,7 @@
     }
     ctx.font = "600 13px " + SANS;
     round2Arrows(g).forEach(function (r) {
-      var label = (r.t.from.name ? r.t.from.name + " → " + r.t.to.name + ": " : "") + "+$" + r.t.g;
+      var label = (r.t.from.name ? r.t.from.name + " → " + r.t.to.name + ": " : "") + "+" + money(r.t.g);
       var w = ctx.measureText(label).width + 14, h = 22, best = null;
       TS.forEach(function (t) {
         var u = 1 - t;
@@ -837,7 +838,7 @@
     var show = a.kind === "b" ? A.showB.v : A.showS.v;
     ctx.fillStyle = c.tokenInk; ctx.font = "600 13px " + SANS; ctx.textAlign = "center"; ctx.textBaseline = "middle";
     if (show < 0.99) { ctx.globalAlpha = al * (1 - show); ctx.fillText("?", a.x, a.y + 0.5); }
-    if (show > 0.01) { ctx.globalAlpha = al * show; ctx.fillText("$" + a.v, a.x, a.y + 0.5); }
+    if (show > 0.01) { ctx.globalAlpha = al * show; ctx.fillText(money(a.v), a.x, a.y + 0.5); }
     // name: below the token in the lobby; in the chart, buyers above and sellers below
     if (a.name && (!a.placed || g.colW >= 50)) {
       var below = !a.placed || a.kind === "s";
@@ -865,19 +866,22 @@
     });
   }
 
-  function money(v) { return "$" + Math.round(v).toLocaleString("en-CA"); }
+  function money(v) {
+    var d = Math.round(v) / 100, f = d % 1 === 0 ? 0 : 2;
+    return "$" + d.toLocaleString("en-CA", { minimumFractionDigits: f, maximumFractionDigits: f });
+  }
   function statusLines(c) {
-    var lines = [], pa = A.priceOn.v, P = Math.round(A.price.v), cnt = counts(P), sp, st;
+    var lines = [], pa = A.priceOn.v, P = Math.round(A.price.v / 10) * 10, cnt = counts(P), sp, st;
     if (statusMode === "focus") {
       var fa = agents.filter(function (a) { return a.name === focusName; })[0];
       if (fa && fa.kind === "b") return [
-        [fa.name + " would pay up to $" + fa.v, c.ink],
-        [fa.name + " pays the market price: $" + P, c.ink],
-        ["Consumer surplus: $" + fa.v + " − $" + P + " = $" + (fa.v - P), c.buyer]];
+        [fa.name + " would pay up to " + money(fa.v), c.ink],
+        [fa.name + " pays the market price: " + money(P), c.ink],
+        ["Consumer surplus: " + money(fa.v) + " − " + money(P) + " = " + money(fa.v - P), c.buyer]];
       if (fa) return [
-        [fa.name + " would sell for as little as $" + fa.v, c.ink],
-        [fa.name + " gets the market price: $" + P, c.ink],
-        ["Producer surplus: $" + P + " − $" + fa.v + " = $" + (P - fa.v), c.seller]];
+        [fa.name + " would sell for as little as " + money(fa.v), c.ink],
+        [fa.name + " gets the market price: " + money(P), c.ink],
+        ["Producer surplus: " + money(P) + " − " + money(fa.v) + " = " + money(P - fa.v), c.seller]];
     }
     if (statusMode === "cs" || statusMode === "ps") {
       sp = surplus(P);
@@ -895,8 +899,8 @@
       var hold = agents.filter(function (a) { return a.holds; }).sort(function (x, y) { return x.v - y.v; });
       var out = agents.filter(function (a) { return !a.holds; }).sort(function (x, y) { return y.v - x.v; });
       return [["The " + hold.length + " tickets go to the " + hold.length + " highest values", c.ink],
-              ["Lowest with a ticket: " + (hold[0].name || "") + " $" + hold[0].v, c.goldInk],
-              ["Highest without one: " + (out[0].name || "") + " $" + out[0].v, c.muted]];
+              ["Lowest with a ticket: " + (hold[0].name || "") + " " + money(hold[0].v), c.goldInk],
+              ["Highest without one: " + (out[0].name || "") + " " + money(out[0].v), c.muted]];
     }
     if (statusMode === "haggle" && pairs) {
       st = pairStats();
@@ -911,7 +915,7 @@
               ["Not stable: the trading isn’t over", c.alert]];
     }
     if (pa > 0.5) {
-      lines.push(["At $" + P + ": " + cnt.qd + " would buy, " + cnt.qs + " would sell", c.ink]);
+      lines.push(["At " + money(P) + ": " + cnt.qd + " would buy, " + cnt.qs + " would sell", c.ink]);
       var gap = Math.abs(cnt.qd - cnt.qs);
       if (cnt.qs > cnt.qd) lines.push([gap + (gap === 1 ? " ticket" : " tickets") + " unsold: excess supply", c.alert]);
       else if (cnt.qd > cnt.qs) lines.push([gap + (gap === 1 ? " fan" : " fans") + " without a ticket: excess demand", c.alert]);
@@ -954,7 +958,7 @@
     drawStair(g, B.map(function (a) { return a.v; }), "d", c.buyer, A.stairB.v);
     drawStair(g, S.map(function (a) { return a.v; }), "s", c.seller, A.stairS.v);
 
-    var pa = A.priceOn.v, P = Math.round(A.price.v), cnt = counts(P), py = g.yv(A.price.v);
+    var pa = A.priceOn.v, P = Math.round(A.price.v / 10) * 10, cnt = counts(P), py = g.yv(A.price.v);
     if (pa > 0.01) {
       ctx.globalAlpha = pa; ctx.strokeStyle = c.gold; ctx.lineWidth = 2.5;
       ctx.beginPath(); ctx.moveTo(p.x0, py); ctx.lineTo(p.x1, py); ctx.stroke();
@@ -1009,7 +1013,7 @@
         ctx.beginPath(); ctx.arc(g.xq(m[0]), py, 6, 0, Math.PI * 2); ctx.fill();
         ctx.strokeStyle = c.surface; ctx.lineWidth = 2; ctx.stroke();
       });
-      tag("$" + P, p.x0 - 4, py, "right", "#1D1500", c.gold, pa);
+      tag(money(P), p.x0 - 4, py, "right", "#1D1500", c.gold, pa);
     }
 
     ctx.font = "italic 600 16px " + SERIF; ctx.textBaseline = "alphabetic";
@@ -1098,49 +1102,49 @@
       b: "Six fans want a ticket. Six fans have one. Who should end up with the six tickets?",
       c: cfg() },
     { t: "Each buyer has a willingness to pay",
-      b: "It’s the most that fan would pay for a ticket: Priya would pay up to $160, Liam only $60. It’s private: nobody else in the room knows it.",
+      b: "It’s the most that fan would pay for a ticket: Priya would pay up to $8, Liam only $3. It’s private: nobody else in the room knows it.",
       c: cfg({ showB: 1 }) },
     { t: "Sort the buyers and you get demand",
       b: "Line the buyers up from the highest willingness to pay to the lowest. The staircase along the tops is the demand curve: at any price, it counts how many fans would buy.",
       c: cfg({ showB: 1, inB: false, grow: [1, 0], stair: [1, 0] }) },
     { t: "Each seller has a willingness to accept",
-      b: "It’s the least a ticket holder would take: Omar would sell for $30, but Diego won’t part with his ticket for less than $130. Offer them less and they’d rather go to the show themselves.",
+      b: "It’s the least a ticket holder would take: Omar would sell for $2, but Diego won’t part with his ticket for less than $7. Offer them less and they’d rather go to the show themselves.",
       c: cfg({ showB: 1, showS: 1, inB: false, grow: [1, 0], stair: [1, 0] }) },
     { t: "Sort the sellers and you get supply",
       b: "Line the sellers up from the lowest willingness to accept to the highest. At any price, the supply staircase counts how many would sell.",
       c: cfg(ALL) },
-    { t: "Try a price of $140",
+    { t: "Try a price of $7",
       b: "Only Priya and Marcus would pay that, but all six holders would sell. 4 tickets go unsold. Sellers start undercutting each other, and the price falls.",
-      c: cfg(ALL, { barAlpha: 0.3, priceOn: 1, price: 140, willing: 1 }) },
-    { t: "Try a price of $60",
+      c: cfg(ALL, { barAlpha: 0.3, priceOn: 1, price: 700, willing: 1 }) },
+    { t: "Try a price of $3",
       b: "Now all six fans would buy, but only Omar and Chen would sell. 4 fans are left without a ticket. Buyers start outbidding each other, and the price rises.",
-      c: cfg(ALL, { barAlpha: 0.3, priceOn: 1, price: 60, willing: 1 }) },
-    { t: "The market clears at $95",
-      b: "At $95, 4 fans want to buy and 4 want to sell. Any price from $90 to $100 does the same job: with only a handful of traders, the curves overlap over a range.",
+      c: cfg(ALL, { barAlpha: 0.3, priceOn: 1, price: 300, willing: 1 }) },
+    { t: "The market clears at $5",
+      b: "At $5, 4 fans want to buy and 4 want to sell. At any other price, the number of buyers and the number of sellers differ.",
       c: cfg(ALL, MKT, { willing: 1 }) },
     { t: "Who ends up with the tickets?",
-      b: "Priya, Marcus, Sofia and Kenji, the four fans who value a ticket most, each buy one. Omar, Chen, Leila and Noah, the four holders who value theirs least, sell. Amara and Liam are priced out; Zara and Diego keep their tickets.",
+      b: "Priya, Marcus, Sofia and Kenji, the four fans who value a ticket most, each buy one. Omar, Chen, Leila and Noah, the four holders who value theirs least, sell. Amara and Liam are priced out; Zara and Diego keep their tickets. Kenji and Noah both value a ticket at exactly $5, so their trade leaves each of them no better or worse off.",
       c: cfg(ALL, MKT, { trade: 1 }) },
     { t: "What is the ticket worth to Priya?",
-      b: "Priya would have paid up to $160. She pays the market price of $95. The $65 difference is her consumer surplus: what the trade is worth to her, over and above what she pays.",
+      b: "Priya would have paid up to $8. She pays the market price of $5. The $3 difference is her consumer surplus: what the trade is worth to her, over and above what she pays.",
       c: cfg(ALL, SURP, { cs: 1, focus: 1, focusName: "Priya", status: "focus" }) },
     { t: "Consumer surplus",
-      b: "Do the same for every buyer and add it up. Consumer surplus is the area between the demand curve and the price: here, $140.",
+      b: "Do the same for every buyer and add it up. Consumer surplus is the area between the demand curve and the price: here, $6.",
       c: cfg(ALL, SURP, { cs: 1, status: "cs" }) },
     { t: "Producer surplus",
-      b: "Sellers gain too. Omar would have sold for $30 and gets $95: $65 of producer surplus. Producer surplus is the area between the price and the supply curve: $140 in total.",
+      b: "Sellers gain too. Omar would have sold for $2 and gets $5: $3 of producer surplus. Producer surplus is the area between the price and the supply curve: $6 in total.",
       c: cfg(ALL, SURP, { cs: 0.3, ps: 1, status: "ps" }) },
     { t: "Total surplus",
-      b: "Together the trades create $280 of surplus, and no other way of allocating these six tickets creates more. A different price between $90 and $100 would only move dollars between buyers and sellers; the total stays $280.",
+      b: "Together the trades create $12 of surplus, and no other way of allocating these six tickets creates more.",
       c: cfg(ALL, SURP, { cs: 1, ps: 1, status: "total" }) },
     { t: "Allocative efficiency",
-      b: "Line up all twelve fans, buyers and sellers together, by what a ticket is worth to them. The six tickets end up with the top six: Priya, Marcus, Diego, Sofia, Zara and Kenji. That is allocative efficiency: the goods go to the people who value them most. Who started with a ticket doesn\u2019t matter: Diego and Zara keep theirs because they value them more than anyone left without one.",
+      b: "Line up all twelve fans, buyers and sellers together, by what a ticket is worth to them. The six tickets end up with the top six: Priya, Marcus, Diego, Sofia, Zara and Kenji, who ties with Noah at $5. That is allocative efficiency: the goods go to the people who value them most. Who started with a ticket doesn\u2019t matter: Diego and Zara keep theirs because they value them more than anyone left without one.",
       c: cfg(ALL, { barAlpha: 0.25, stair: [0, 0], priceOn: 1, price: "clear", money: 1, rank: 1, status: "rank" }) },
     { t: "What if they just haggle in pairs?",
-      b: "Here is one way it can go: Priya meets Diego, the most reluctant seller, Marcus meets Zara, and so on down the line. Every pair can strike a deal, so all six tickets change hands. But each deal is worth only $30: $180 in total, $100 less than the market.",
+      b: "Here is one way it can go: Priya meets Diego, the most reluctant seller, Marcus meets Zara, and so on down the line. Every pair can strike a deal, so all six tickets change hands. But each deal is worth only $1: $6 in total, $6 less than the market.",
       c: cfg(ALL, { barAlpha: 0, stair: [1, 0.2], match: "worst", money: 1, status: "haggle" }) },
     { t: "Trades left on the table",
-      b: "The haggling isn’t over. Liam now holds a ticket he values at $60, while Diego, who sold his, values one at $130. Liam can sell it on to Diego at any price in between, and both gain. The same goes for Amara and Zara. The outcome isn’t stable: trading continues until the tickets sit with the six fans who value them most, which is exactly where the market got in one step, with $280 of surplus.",
+      b: "The haggling isn’t over. Liam now holds a ticket he values at $3, while Diego, who sold his, values one at $7. Liam can sell it on to Diego at any price in between, and both gain. The same goes for Amara and Zara. The outcome isn’t stable: trading continues until the tickets sit with the six fans who value them most, which is exactly where the market got in one step, with $12 of surplus.",
       c: cfg(ALL, { barAlpha: 0, stair: [1, 0.2], match: "worst", money: 1, round2: 1, status: "round2" }) },
     { t: "Add more fans",
       b: "With 60 fans on each side, the staircases smooth out into the curves in the textbook, and consumer and producer surplus become the familiar triangles. The logic hasn’t changed.",
@@ -1195,7 +1199,7 @@
 
   function applyExplore(matchMode) {
     var P = +priceIn.value;
-    priceOut.textContent = "$" + P;
+    priceOut.textContent = money(P);
     applyCfg(cfg(ALL, {
       N: exN, barAlpha: 0.22, stair: [1, hag ? 0.2 : 1],
       priceOn: hag ? 0 : 1, price: P, willing: hag ? 0 : 1,
@@ -1217,14 +1221,14 @@
       var P = +priceIn.value, c = counts(P);
       if (c.qd > c.qs) {
         chip = "Excess demand"; cls = "alert";
-        text = "At $" + P + ", " + c.qd + " fans would buy but only " + c.qs + " would sell. Buyers outbid each other, so the price rises.";
+        text = "At " + money(P) + ", " + c.qd + " fans would buy but only " + c.qs + " would sell. Buyers outbid each other, so the price rises.";
       } else if (c.qs > c.qd) {
         chip = "Excess supply"; cls = "alert";
-        text = "At $" + P + ", " + c.qs + " holders would sell but only " + c.qd + " fans would buy. Sellers undercut each other, so the price falls.";
+        text = "At " + money(P) + ", " + c.qs + " holders would sell but only " + c.qd + " fans would buy. Sellers undercut each other, so the price falls.";
       } else {
         chip = "Market clears"; cls = "ok";
         var sp = surplus(P);
-        text = "At $" + P + ", " + c.qd + " would buy and " + c.qs + " would sell. Consumer surplus is " + money(sp.CS) +
+        text = "At " + money(P) + ", " + c.qd + " would buy and " + c.qs + " would sell. Consumer surplus is " + money(sp.CS) +
           " and producer surplus " + money(sp.PS) + ", for a total of " + money(sp.CS + sp.PS) +
           ": the most any allocation of these tickets can create.";
       }
@@ -1277,8 +1281,8 @@
     var r = mulberry32(seed + 101), b = [], s = [];
     for (var k = 0; k < n; k++) {
       var f = (k + 0.5) / n;
-      b.push(Math.max(5, Math.round(170 - 120 * f + (r() - 0.5) * 12)));
-      s.push(Math.min(175, Math.round(20 + 120 * f + (r() - 0.5) * 12)));
+      b.push(Math.max(30, Math.round((850 - 600 * f + (r() - 0.5) * 60) / 10) * 10));
+      s.push(Math.min(870, Math.round((100 + 600 * f + (r() - 0.5) * 60) / 10) * 10));
     }
     return { b: b, s: s };
   }
@@ -1317,7 +1321,7 @@
       ? '<span class="sw hold"></span>Omar, Chen, Leila, Noah, Zara and Diego hold tickets. <span class="sw want"></span>Priya, Marcus, Sofia, Kenji, Amara and Liam want one. Each fan knows only their own value.'
       : '<span class="sw hold"></span>' + n + ' fans hold tickets and <span class="sw want"></span>' + n + ' want one. Each fan knows only their own value.';
     document.getElementById("scIntroQ").textContent = n === 6
-      ? "Where do the six tickets end up? The market created $280 of gains from trade. How much will the scramble manage, and how long will it take?"
+      ? "Where do the six tickets end up? The market created $12 of gains from trade. How much will the scramble manage, and how long will it take?"
       : "Where do the tickets end up? How close will the scramble get to the " + money(SC.best) + " of gains the market creates, and how fast?";
     scIntro.hidden = SC.started || mode !== "scramble";
     scPause.textContent = SC.started ? "Pause" : "Start"; scLine.textContent = "Line them up";
@@ -1335,7 +1339,7 @@
     hold.holds = false; non.holds = true; hold.flash = 1; non.flash = 1;
     SC.trades++; SC.prices.push(price);
     SC.last = { from: hold, to: non, price: price, gain: gain };
-    SC.fx.push({ x: x, y: y, text: "+$" + gain, age: 0 });
+    SC.fx.push({ x: x, y: y, text: "+" + money(gain), age: 0 });
     SC.hist.push({ t: SC.t, g: scGains(), trade: true });
     SC.possible = scPossible();
     if (SC.possible === 0) SC.done = true;
@@ -1418,7 +1422,7 @@
       if (labels) {
         ctx.fillStyle = f.holds ? "#1D1500" : c.ink; ctx.font = "600 12px " + SANS;
         ctx.textAlign = "center"; ctx.textBaseline = "middle";
-        ctx.fillText("$" + f.v, x, y + 0.5);
+        ctx.fillText(money(f.v), x, y + 0.5);
         ctx.fillStyle = c.muted; ctx.font = "500 11px " + SANS; ctx.textBaseline = "top";
         ctx.fillText(f.name, x, y + r + 3);
       }
@@ -1490,11 +1494,11 @@
     if (SC.last) {
       var lt = SC.last;
       lines.push(lt.from.name
-        ? "Latest: " + lt.from.name + " sold to " + lt.to.name + " for $" + lt.price + ". Each gains " + money(lt.gain / 2) + "."
-        : "Latest trade: $" + lt.price + ", worth " + money(lt.gain) + " to the pair.");
+        ? "Latest: " + lt.from.name + " sold to " + lt.to.name + " for " + money(lt.price) + ". Each gains " + money(lt.gain / 2) + "."
+        : "Latest trade: " + money(lt.price) + ", worth " + money(lt.gain) + " to the pair.");
     }
     if (SC.prices.length > 1) {
-      lines.push("Prices paid so far run from $" + Math.min.apply(null, SC.prices) + " to $" + Math.max.apply(null, SC.prices) +
+      lines.push("Prices paid so far run from " + money(Math.min.apply(null, SC.prices)) + " to " + money(Math.max.apply(null, SC.prices)) +
         ". The market used one price for everyone.");
     }
     if (SC.done) {
